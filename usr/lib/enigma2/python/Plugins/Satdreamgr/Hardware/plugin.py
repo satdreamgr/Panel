@@ -78,6 +78,7 @@ class HardwareInfo(Screen):
 		self.session = session
 		menu = []
 		menu.append((_("System Information"),"system"))
+		menu.append((_("DVB Modules"),"modules"))		
 		menu.append((_("Netstat"),"netstat"))
 		menu.append((_("Ifconfig"),"ifconfig"))
 		menu.append((_("Performence Internet"),"internet"))
@@ -97,7 +98,10 @@ class HardwareInfo(Screen):
     		if self["menu"].l.getCurrentSelection() is not None:
         		choice = self["menu"].l.getCurrentSelection()[1]
 			if choice == "system":
-                         self.session.open(Info_Box, _(ScanSysem_mem()), MessageBox.TYPE_INFO)
+                         self.session.open(system_info)
+			if choice == "modules":
+				self.session.open(Console, _("DVB Modules"),["opkg list_installed | grep dvb-modules"])                         
+                         
 			if choice == "netstat":
 				self.session.open(Console, _("Netstat"),["netstat | grep tcp && netstat | grep unix"])
 			if choice == "ifconfig":
@@ -120,102 +124,73 @@ class HardwareInfo(Screen):
 
 	def layoutFinished(self):
 		self.setTitle(self.setup_title)
+		
 
+hardware_main = """<screen name="HardwareInfo" position="center,center" size="640,480" >
+    <ePixmap position="25,0" zPosition="5" size="50,50" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/ram.png" alphatest="blend" />
+    <widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/bar.png" position="90,0" size="515,20" transparent="1" borderColor="grey" zPosition="6">
+      <convert type="PanelSpaceInfo">MemTotal</convert>
+    </widget>
+    <widget source="session.CurrentService" render="Label" zPosition="6" position="90,25" size="515,26" halign="left" valign="center" font="Regular; 23" transparent="0">
+      <convert type="PanelSpaceInfo">MemTotal,Full</convert>
+    </widget>
+    
+    <ePixmap position="25,70" zPosition="1" size="50,50" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/swap.png" alphatest="blend" />
+    <widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/bar.png" position="90,70" size="515,20" transparent="1" borderColor="grey" zPosition="6">
+      <convert type="PanelSpaceInfo">SwapTotal</convert>
+    </widget>
+    <widget source="session.CurrentService" render="Label" zPosition="6" position="90,95" size="515,26" halign="left" valign="center" font="Regular; 23" transparent="0">
+      <convert type="PanelSpaceInfo">SwapTotal,Full</convert>
+    </widget>
+    
+    <ePixmap position="25,150" zPosition="1" size="50,50" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/flash.png" alphatest="blend" />
+    <widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/bar.png" position="90,150" size="515,20" transparent="1" borderColor="grey" zPosition="6">
+      <convert type="PanelSpaceInfo">FleshInfo</convert>
+    </widget>
+    <widget source="session.CurrentService" render="Label" zPosition="6" position="90,175" size="515,26" halign="left" valign="center" font="Regular; 23" transparent="0">
+      <convert type="PanelSpaceInfo">Flesh,Full</convert>
+    </widget>
+    
+    <ePixmap position="25,230" zPosition="1" size="50,50" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/hdd.png" alphatest="blend" />
+    <widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/bar.png" position="90,230" size="515,20" transparent="1" borderColor="grey" zPosition="6">
+      <convert type="PanelSpaceInfo">HddInfo</convert>
+    </widget>
+    <widget source="session.CurrentService" render="Label" zPosition="6" position="90,255" size="515,26" halign="left" valign="center" font="Regular; 23" transparent="0">
+      <convert type="PanelSpaceInfo">HddInfo,Full</convert>
+    </widget>
+    
+    <ePixmap position="25,310" zPosition="1" size="50,50" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/usb.png" alphatest="blend" />
+    <widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/bar.png" position="90,310" size="515,20" transparent="1" borderColor="grey" zPosition="6">
+      <convert type="PanelSpaceInfo">UsbInfo</convert>
+    </widget>
+    <widget source="session.CurrentService" render="Label" zPosition="6" position="90,335" size="515,26" halign="left" valign="center" font="Regular; 23" transparent="0" foregroundColor="yellow1">
+      <convert type="PanelSpaceInfo">UsbInfo,Full</convert>
+    </widget>	  
+     <widget backgroundColor="Background" font="Regular; 23" foregroundColor="green" halign="center" position="25,390" render="Label" size="120,20" source="session.CurrentService" transparent="1" zPosition="1" valign="center">
+      <convert type="PanelCpuUsage">Total</convert>
+    </widget>   
+    
+     <widget source="session.CurrentService" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/net_on.png" position="50,440" size="24,24" zPosition="2" alphatest="blend">
+      <convert type="PanelConnection">
+      </convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="global.CurrentTime" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/net_off.png" position="50,440" size="24,24" alphatest="blend">
+      <convert type="AlwaysTrue" />
+      <convert type="ConditionalShowHide">Blink</convert>
+    </widget>     
+                   </screen>"""
 
-class Info_Box(MessageBox):
-	try:
-		sz_w = getDesktop(0).size().width()
-	except:
-		sz_w = 720
-	if (sz_w == 1280):
-		skin = """
-		<screen position="center,center" size="600,580" title="Info">
-		<widget name="list" position="0,0" size="600,580" transparent="1" scrollbarMode="showOnDemand" zPosition="9"/>
-		<widget name="text" position="20,0" size="600,580" font="Regular;20" transparent="1" zPosition="9" halign="left" valign="center" />
-		</screen>"""
-	else:
-		skin = """
-		<screen backgroundColor="#00000030" flags="wfNoBorder" position="center,center" size="600,400" title="Info">
-		<widget name="list" position="0,0" size="600,380" transparent="1" scrollbarMode="showOnDemand" zPosition="9"/>
-		<widget name="text" position="20,0" size="600,380" font="Regular;22" transparent="1" foregroundColor="#FFC000" zPosition="9" halign="left" valign="center" />
-		</screen>"""
+class system_info(Screen):
 
-	def __init__(self, session, text = "", type = MessageBox.TYPE_INFO , timeout = -1, close_on_any_key = True, default = True):
-		MessageBox.__init__(self, session, text, type, timeout, close_on_any_key, default)
+	def __init__(self, session):
+		self.skin = hardware_main
+		Screen.__init__(self, session)
+		self.session = session
 
+        	self.setup_title = _("Hardware Info")
+        	self.onLayoutFinish.append(self.layoutFinished)
+        	self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "WizardActions", "DirectionActions"],{"ok": self.close, "back": self.close,}, -1)
 
-def ScanSysem_mem():
-	try:
-		ret = "System information:\n"
-		out_line = os_popen("uptime").readline()
-		ret = ret  + "at" + out_line + "\n"
-		out_lines = []
-		out_lines = os_popen("cat /proc/meminfo").readlines()
-		for lidx in range(len(out_lines)):
-			tstLine = out_lines[lidx].split()
-			if "MemTotal:" in tstLine:
-				ret = ret + out_lines[lidx]
-			if "MemFree:" in tstLine:
-				ret = ret + out_lines[lidx]
-
-			if "SwapTotal:" in tstLine:
-				ret = ret + out_lines[lidx]
-
-			if "SwapFree:" in tstLine:
-				ret = ret + out_lines[lidx]
-			if "SwapCached: " in tstLine:
-				ret = ret + out_lines[lidx]
-
-			if "Buffers:" in tstLine:
-				ret = ret + out_lines[lidx]
-
-			if "Cached:" in tstLine:
-				ret = ret + out_lines[lidx]
-
-			if "Active:" in tstLine:
-				ret = ret + out_lines[lidx]
-
-			if "Inactive:" in tstLine:
-				ret = ret + out_lines[lidx]
-
-
-			elif "Mapped:" in tstLine:
-				ret = ret + out_lines[lidx] + "...........\n"
-		out_lines = []
-
-		out_line = os_popen("opkg list_installed | grep dvb-modules").readline() + "...........\n"
-		ret = ret + out_line
-
-		out_lines = []
-		out_lines = os_popen("df -h").readlines()
-		fl_da = False
-		cf_da = False
-		usb_da = False
-		hdd_da = False
-		for lidx in range(len(out_lines)-1):
-			tstLine = out_lines[lidx].split()
-			if (("/boot/mnt/flash" in tstLine) or ("/boot" in tstLine)) and not fl_da:
-				fl_da = True
-				ret = ret + "Flash  total: " + tstLine[1] + "  free: " + tstLine[3] + "  used: " + tstLine[4] + "\n"
-			elif ("/media/cf" in tstLine) and not cf_da:
-				cf_da = True
-				ret = ret + tstLine[5] + "  total: " + tstLine[1] + "  free: " + tstLine[3] + "  used: " + tstLine[4] + "\n"
-			elif ("/media/usb" in tstLine) and not usb_da:
-				usb_da = True
-				ret = ret + tstLine[5] + "  total: " + tstLine[1] + "  free: " + tstLine[3] + "  used: " + tstLine[4] + "\n"
-			elif ("/media/hdd" in tstLine) and not hdd_da:
-				hdd_da = True
-				ret = ret + tstLine[5] + "  total: " + tstLine[1] + "  free: " + tstLine[3] + "  used: " + tstLine[4] + "\n"
-
-		ret = ret + "...........\n"
-		out_lines = []
-		out_lines = os_popen("cat /proc/stat").readlines()
-		for lidx in range(len(out_lines)-1):
-			tstLine = out_lines[lidx].split()
-			if "procs_running" in tstLine:
-				ret = ret + "Running processes: " + tstLine[1]
-
-		return ret
-	except:
-		return "N/A"
-
+	def layoutFinished(self):
+		self.setTitle(self.setup_title)
