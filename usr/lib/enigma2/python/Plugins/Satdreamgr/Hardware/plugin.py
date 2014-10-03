@@ -126,7 +126,7 @@ class HardwareInfo(Screen):
 		self.setTitle(self.setup_title)
 		
 
-hardware_main = """<screen name="HardwareInfo" position="center,center" size="640,480" >
+hardware_main_info = """<screen name="HardwareInfo" position="center,center" size="640,480" >
     <ePixmap position="25,0" zPosition="5" size="50,50" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/ram.png" alphatest="blend" />
     <widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/bar.png" position="90,0" size="515,20" transparent="1" borderColor="grey" zPosition="6">
       <convert type="PanelSpaceInfo">MemTotal</convert>
@@ -184,7 +184,7 @@ hardware_main = """<screen name="HardwareInfo" position="center,center" size="64
 class system_info(Screen):
 
 	def __init__(self, session):
-		self.skin = hardware_main
+		self.skin = hardware_main_info
 		Screen.__init__(self, session)
 		self.session = session
 
