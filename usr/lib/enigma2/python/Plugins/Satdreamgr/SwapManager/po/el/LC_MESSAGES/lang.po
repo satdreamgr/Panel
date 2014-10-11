@@ -1,47 +1,175 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: enigma2 plugin newmenu greek locale\n"
+"Project-Id-Version: enigma2 plugin swapmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-20 23:43+0100\n"
-"PO-Revision-Date: 2014-06-21 00:00+0100\n"
+"POT-Creation-Date: 2014-10-11 18:03+0100\n"
+"PO-Revision-Date: 2014-10-11 18:06+0100\n"
 "Last-Translator: devilcosta\n"
 "Language-Team: www.satdreamgr.com>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Basepath: /home/devil/Bureau/Satdreamgr/SwapManager\n"
+"X-Poedit-Basepath: /home/devil/Bureau/SwapManager\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-SearchPath-0: /home/devil/Bureau/Satdreamgr/SwapManager\n"
+"X-Poedit-SearchPath-0: /home/devil/Bureau/SwapManager\n"
 
-#: /home/devil/Bureau/Satdreamgr/SwapManager/plugin.py:50
+#: /home/devil/Bureau/SwapManager/SystemToolsText.py:26
+#: /home/devil/Bureau/SwapManager/plugin.py:84
+msgid "Exit"
+msgstr "Έξοδος"
+
+#: /home/devil/Bureau/SwapManager/SystemToolsText.py:27
+#: /home/devil/Bureau/SwapManager/plugin.py:66
+msgid "OK"
+msgstr ""
+
+#: /home/devil/Bureau/SwapManager/SystemToolsText.py:66
+#: /home/devil/Bureau/SwapManager/SystemToolsText.py:67
+msgid "Close"
+msgstr "Κλείσιμο"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:42
+#: /home/devil/Bureau/SwapManager/plugin.py:46
 msgid "Swap Manager"
 msgstr ""
 
-#: /home/devil/Bureau/Satdreamgr/SwapManager/plugin.py:103
-msgid "info"
+#: /home/devil/Bureau/SwapManager/plugin.py:65
+msgid "Cancel"
+msgstr "Ακύρωση"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:76
+msgid "Info Swap "
+msgstr "Πληροφορίες Swap"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:77
+msgid "Deactivating Swap"
+msgstr "Απενεργοποίηση Swap"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:78
+msgid "Creating swap file on hdd"
+msgstr "Δημιουργία αρχείου Swap σε HDD"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:79
+msgid "Activate swap on HDD"
+msgstr "Ενεργοποίηση Swap σε HDD"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:80
+msgid "Creating swap file on usb"
+msgstr "Δημιουργία αρχείου Swap σε USB"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:81
+msgid "Activate swap on USB"
+msgstr "Ενεργοποίηση Swap σε USB"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:82
+msgid "Creating swap file on cf"
+msgstr "Δημιουργία αρχείου Swap σε CF"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:83
+msgid "Activate swap on CF"
+msgstr "Ενεργοποίηση Swap σε CF"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:93
+msgid "Info Swap"
+msgstr "Πληροφορίες Swap"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:98
+msgid "Please wait : Creating swap File on hdd"
+msgstr "Παρακαλώ περιμένετε : Δημιουργία αρχείου Swap σε HDD"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:105
+msgid "Please wait : Creating swap File on cf"
+msgstr "Παρακαλώ περιμένετε : Δημιουργία αρχείου Swap σε CF"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:112
+msgid "Please wait : Creating swap File on usb"
+msgstr "Παρακαλώ περιμένετε : Δημιουργία αρχείου Swap σε USB"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:128
+msgid "Swap is Deactivated"
+msgstr "Το Swap απενεργοποιήθηκε!!"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:168
+msgid "Swapfile is Not Activated !"
+msgstr "Τα αρχεία Swap δεν είναι ενεργοποιημένα !"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:176
+msgid "Swap File was already created ! You can activate the SWAP on CF if not done yet"
+msgstr "Το αρχείο SWAP έχει ήδη δημιουργηθεί,μπορείτε να το ενεργοποιήσετε από το Menu CF"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:184
+msgid "Done! You can now activate the SWAP on CF"
+msgstr "Το SWAP δημιουργήθηκε , τώρα μπορείτε να το ενεργοποιήσετε από το Menu CF"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:188
+msgid "No compact flash mounted on /media/cf"
+msgstr "Δεν υπάρχει εγκατεστημένη συσκευή σε /media/cf"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:196
+msgid "Swap File was already created ! You can activate the SWAP on HDD if not done yet"
+msgstr "Το αρχείο SWAP έχει ήδη δημιουργηθεί,μπορείτε να το ενεργοποιήσετε από το Menu HDD"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:204
+msgid "Done! You can now activate the SWAP on HDD"
+msgstr "Το SWAP δημιουργήθηκε , τώρα μπορείτε να το ενεργοποιήσετε από το Menu HDD"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:208
+msgid "No hard drive mounted on /media/hdd"
+msgstr "Δεν υπάρχει εγκατεστημένη συσκευή σε /media/hdd"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:216
+msgid "Swap File was already created ! You can activate the SWAP on USB if not done yet"
+msgstr "Το αρχείο SWAP έχει ήδη δημιουργηθεί,μπορείτε να το ενεργοποιήσετε από το Menu USB"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:224
+msgid "Done! You can now activate the SWAP on USB"
+msgstr "Το SWAP δημιουργήθηκε , τώρα μπορείτε να το ενεργοποιήσετε από το Menu USB"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:228
+msgid "No usb stick mounted on /media/usb"
+msgstr "Δεν υπάρχει εγκατεστημένη συσκευή σε /media/usb"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:236
+msgid "Swap is activated on HDD"
+msgstr "Το SWAP ενεργοποιήθηκε σε HDD"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:239
+msgid "There is no swap file found on HDD. Create it first"
+msgstr "Δεν υπάρχει αρχείο swap σε HDD ,Πρέπει να το δημιουργήσετε."
+
+#: /home/devil/Bureau/SwapManager/plugin.py:246
+msgid "Swap is activated on CF"
+msgstr "Το SWAP ενεργοποιήθηκε σε CF"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:249
+msgid "There is no swap file found on CF. Create it first"
+msgstr "Δεν υπάρχει αρχείο swap σε CF ,Πρέπει να το δημιουργήσετε."
+
+#: /home/devil/Bureau/SwapManager/plugin.py:256
+msgid "Swap is activated on USB"
+msgstr "Το SWAP ενεργοποιήθηκε σε USB"
+
+#: /home/devil/Bureau/SwapManager/plugin.py:259
+msgid "There is no swap file found on USB. Create it first"
+msgstr "Δεν υπάρχει αρχείο swap σε USB ,Πρέπει να το δημιουργήσετε."
+
+#: /home/devil/Bureau/SwapManager/plugin.py:263
+#: /home/devil/Bureau/SwapManager/plugin.py:266
+#, python-format
+msgid "start shell com: %s"
 msgstr ""
 
-#: /home/devil/Bureau/Satdreamgr/SwapManager/plugin.py:103
-msgid "create"
-msgstr ""
+#: /home/devil/Bureau/SwapManager/SystemToolsConsole.py:45
+#: /home/devil/Bureau/SwapManager/SystemToolsConsole.py:113
+msgid "Execution Progress:"
+msgstr "Πρόοδος εκτέλεσης:"
 
-#: /home/devil/Bureau/Satdreamgr/SwapManager/plugin.py:196
-msgid "Really delete swap ?"
-msgstr ""
-
-#: /home/devil/Bureau/Satdreamgr/SwapManager/plugin.py:198
-msgid "No swapfile for delete"
-msgstr ""
-
-#: /home/devil/Bureau/Satdreamgr/SwapManager/plugin.py:293
-msgid "Size: "
-msgstr ""
-
-#: /home/devil/Bureau/Satdreamgr/SwapManager/plugin.py:294
-msgid "Disk: "
-msgstr ""
+#: /home/devil/Bureau/SwapManager/SystemToolsConsole.py:57
+#: /home/devil/Bureau/SwapManager/SystemToolsConsole.py:125
+msgid "Execution finished!!"
+msgstr "Η Εκτέλεση τελείωσε !!"
 
 #~ msgid "Hardware Info"
 #~ msgstr "Πληροφορίες Υλικού"
@@ -79,9 +207,6 @@ msgstr ""
 #~ msgid "Show Harddisk Space"
 #~ msgstr "Χώρος Σκληρού Δίσκου"
 
-#~ msgid "Exit"
-#~ msgstr "Έξοδος"
-
 #~ msgid "Ok"
 #~ msgstr "Επιβεβαίωση"
 
@@ -105,12 +230,6 @@ msgstr ""
 
 #~ msgid "Delete"
 #~ msgstr "Διαγραφή"
-
-#~ msgid "Info"
-#~ msgstr "Πληροφορίες"
-
-#~ msgid "Cancel"
-#~ msgstr "Ακύρωση"
 
 #~ msgid "Install new bootlogo..."
 #~ msgstr "Εγκατάσταση νέου λογότυπου εκκίνησης"
