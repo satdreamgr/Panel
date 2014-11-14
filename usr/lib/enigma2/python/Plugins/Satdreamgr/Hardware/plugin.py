@@ -51,7 +51,6 @@ def autostart(reason,**kwargs):
     if reason == 0:
         print "[PluginMenu] no autostart"
 
-
 def menu(menuid, **kwargs):
 	if menuid == "cam":
 		return [(_("Hardware Info"), main, "harware_setup", 45)]
@@ -59,8 +58,6 @@ def menu(menuid, **kwargs):
 
 def Plugins(**kwargs):
 	return PluginDescriptor(name = _("Hardware Info"), description = _("Hardware Info"), where = PluginDescriptor.WHERE_MENU, fnc = menu)
-
-
 
 hardware_main = """<screen name="HardwareInfo" position="center,center" size="600,405" >
                    <widget name="menu" itemHeight="35" position="20,10" size="580,330" scrollbarMode="showOnDemand" transparent="1" zPosition="9"/>
@@ -120,66 +117,58 @@ class HardwareInfo(Screen):
 			if choice == "crashlogs":
 				self.session.open(Console, _("Remove crashlogs /media/hdd"),["rm -rf /media/hdd/enigma2_crash*"])
 
-
-
 	def layoutFinished(self):
 		self.setTitle(self.setup_title)
 		
-
-hardware_main_info = """<screen name="HardwareInfo" position="center,center" size="640,480" >
-    <ePixmap position="25,0" zPosition="5" size="50,50" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/ram.png" alphatest="blend" />
-    <widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/bar.png" position="90,0" size="515,20" transparent="1" borderColor="grey" zPosition="6">
+hardware_main_info = """<screen name="HardwareInfo" position="center,center" size="640,480">
+    <ePixmap position="20,30" zPosition="5" size="50,50" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/ram.png" alphatest="blend" />
+    <widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/bar.png" position="90,30" size="515,20" transparent="1" zPosition="6">
       <convert type="PanelSpaceInfo">MemTotal</convert>
     </widget>
-    <widget source="session.CurrentService" render="Label" zPosition="6" position="90,25" size="515,26" halign="left" valign="center" font="Regular; 23" transparent="0">
+    <widget source="session.CurrentService" render="Label" zPosition="6" position="90,56" size="515,26" halign="left" valign="center" font="Regular; 23" transparent="0">
       <convert type="PanelSpaceInfo">MemTotal,Full</convert>
     </widget>
-    
-    <ePixmap position="25,70" zPosition="1" size="50,50" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/swap.png" alphatest="blend" />
-    <widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/bar.png" position="90,70" size="515,20" transparent="1" borderColor="grey" zPosition="6">
+    <ePixmap position="20,110" zPosition="1" size="50,50" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/swap.png" alphatest="blend" />
+    <widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/bar.png" position="90,110" size="515,20" transparent="1" zPosition="6">
       <convert type="PanelSpaceInfo">SwapTotal</convert>
     </widget>
-    <widget source="session.CurrentService" render="Label" zPosition="6" position="90,95" size="515,26" halign="left" valign="center" font="Regular; 23" transparent="0">
+    <widget source="session.CurrentService" render="Label" zPosition="6" position="90,134" size="515,26" halign="left" valign="center" font="Regular; 23" transparent="0">
       <convert type="PanelSpaceInfo">SwapTotal,Full</convert>
     </widget>
-    
-    <ePixmap position="25,150" zPosition="1" size="50,50" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/flash.png" alphatest="blend" />
-    <widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/bar.png" position="90,150" size="515,20" transparent="1" borderColor="grey" zPosition="6">
+    <ePixmap position="20,190" zPosition="1" size="50,50" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/flash.png" alphatest="blend" />
+    <widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/bar.png" position="90,190" size="515,20" transparent="1" zPosition="6">
       <convert type="PanelSpaceInfo">FleshInfo</convert>
     </widget>
-    <widget source="session.CurrentService" render="Label" zPosition="6" position="90,175" size="515,26" halign="left" valign="center" font="Regular; 23" transparent="0">
+    <widget source="session.CurrentService" render="Label" zPosition="6" position="90,213" size="515,26" halign="left" valign="center" font="Regular; 23" transparent="0">
       <convert type="PanelSpaceInfo">Flesh,Full</convert>
     </widget>
-    
-    <ePixmap position="25,230" zPosition="1" size="50,50" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/hdd.png" alphatest="blend" />
-    <widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/bar.png" position="90,230" size="515,20" transparent="1" borderColor="grey" zPosition="6">
+    <ePixmap position="20,270" zPosition="1" size="50,50" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/hdd.png" alphatest="blend" />
+    <widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/bar.png" position="90,270" size="515,20" transparent="1" zPosition="6">
       <convert type="PanelSpaceInfo">HddInfo</convert>
     </widget>
-    <widget source="session.CurrentService" render="Label" zPosition="6" position="90,255" size="515,26" halign="left" valign="center" font="Regular; 23" transparent="0">
+    <widget source="session.CurrentService" render="Label" zPosition="6" position="90,293" size="515,26" halign="left" valign="center" font="Regular; 23" transparent="0">
       <convert type="PanelSpaceInfo">HddInfo,Full</convert>
     </widget>
-    
-    <ePixmap position="25,310" zPosition="1" size="50,50" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/usb.png" alphatest="blend" />
-    <widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/bar.png" position="90,310" size="515,20" transparent="1" borderColor="grey" zPosition="6">
+    <ePixmap position="20,350" zPosition="1" size="50,50" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/usb.png" alphatest="blend" />
+    <widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/bar.png" position="90,350" size="515,20" transparent="1" zPosition="6">
       <convert type="PanelSpaceInfo">UsbInfo</convert>
     </widget>
-    <widget source="session.CurrentService" render="Label" zPosition="6" position="90,335" size="515,26" halign="left" valign="center" font="Regular; 23" transparent="0" foregroundColor="yellow1">
+    <widget source="session.CurrentService" render="Label" zPosition="6" position="90,378" size="515,26" halign="left" valign="center" font="Regular; 23" transparent="0">
       <convert type="PanelSpaceInfo">UsbInfo,Full</convert>
     </widget>	  
-     <widget backgroundColor="Background" font="Regular; 23" foregroundColor="green" halign="center" position="25,390" render="Label" size="120,20" source="session.CurrentService" transparent="1" zPosition="1" valign="center">
+     <widget backgroundColor="#000015" font="Regular; 23" foregroundColor="green" halign="center" position="20,440" render="Label" size="120,23" source="session.CurrentService" transparent="1" zPosition="1" valign="center">
       <convert type="PanelCpuUsage">Total</convert>
     </widget>   
-    
-     <widget source="session.CurrentService" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/net_on.png" position="50,440" size="24,24" zPosition="2" alphatest="blend">
+     <widget source="session.CurrentService" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/net_on.png" position="580,440" size="24,24" zPosition="2" alphatest="blend">
       <convert type="PanelConnection">
       </convert>
       <convert type="ConditionalShowHide" />
     </widget>
-    <widget source="global.CurrentTime" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/net_off.png" position="50,440" size="24,24" alphatest="blend">
-      <convert type="AlwaysTrue" />
+    <widget source="global.CurrentTime" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/net_off.png" position="580,440" size="24,24" alphatest="blend">
+      <convert type="PanelAlwaysTrue" />
       <convert type="ConditionalShowHide">Blink</convert>
-    </widget>     
-                   </screen>"""
+	  </widget>
+	</screen>"""
 
 class system_info(Screen):
 
