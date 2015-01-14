@@ -70,6 +70,7 @@ check_dep
 checkb /usr/sbin/nanddump
 checkb /usr/sbin/mkfs.jffs2
 checkb /usr/bin/buildimage
+checkb /usr/bin/python
 
 #
 # Read Dreambox Model
@@ -166,7 +167,7 @@ case $MACHINE in
       DREAMBOX_PART2_SIZE="0x3F800000"
 
       # dm7020hdv2 when writesize = 2048
-      WRITESIZE = "4096"
+      WRITESIZE="4096"
       if [ -f /sys/devices/virtual/mtd/mtd0/writesize ] ; then 
          WRITESIZE=$(cat /sys/devices/virtual/mtd/mtd0/writesize)
       fi
@@ -222,11 +223,21 @@ mkdir -p "$TBI"
 # Export secondstage
 #
 log "Exporting secondstage"
-/usr/sbin/nanddump --noecc --omitoob --bb=skipbad --truncate --file="$SECSTAGE" /dev/mtd1
+/usr/sbin/nanddump --noecc --omitoob --bb=skipbad --file="$SECSTAGE" /dev/mtd1
 if [ $? -ne 0 ] && [ ! -f "$SECSTAGE" ] ; then
-   log "Error: Probably nanddump misses --truncate option!"
+   log "Error: nanddump failed to dump secondstage!"
    exit 8
 fi
+
+#
+# Trim 0xFFFFFF from secondstage
+#
+/usr/bin/python -c "
+data=open('$SECSTAGE', 'rb').read()
+cutoff=data.find('\xff\xff\xff\xff')
+if cutoff:
+    open('$SECSTAGE', 'wb').write(data[0:cutoff])
+"
 
 SIZE="$(du -k "$SECSTAGE" | awk '{ print $1 }')"
 if [ $SIZE -gt 200 ] ; then 
