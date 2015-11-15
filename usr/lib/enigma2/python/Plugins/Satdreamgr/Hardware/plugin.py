@@ -87,7 +87,6 @@ class HardwareInfo(Screen):
         	self["menu"] = MenuList(menu)
         	self["key_red"] = Label(_("Exit"))
         	self["key_green"] = Label(_("Ok"))
-        	self['info'] = Label()
         	self.setup_title = _("Hardware Info")
         	self.onLayoutFinish.append(self.layoutFinished)
         	self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "WizardActions", "DirectionActions"],{"ok": self.go, "red": self.close, "green": self.go, "back": self.close,}, -1)
@@ -120,7 +119,7 @@ class HardwareInfo(Screen):
 	def layoutFinished(self):
 		self.setTitle(self.setup_title)
 		
-hardware_main_info = """<screen name="HardwareInfo" position="center,center" size="640,480">
+hardware_main_info = """<screen name="HardwareInfobis" position="center,center" size="640,480">
     <ePixmap position="20,30" zPosition="5" size="50,50" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/ram.png" alphatest="blend" />
     <widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/bar.png" position="90,30" size="515,20" transparent="1" zPosition="6">
       <convert type="PanelSpaceInfo">MemTotal</convert>
