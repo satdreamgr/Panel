@@ -53,18 +53,17 @@ def autostart(reason,**kwargs):
 
 
 def menu(menuid, **kwargs):
-	if menuid == "cam":
+	if menuid == "none":
 		return [(_("Remove Additional Packages"), main, "removeopkg_setup", 45)]
 	return []
 
 def Plugins(**kwargs):
 	return PluginDescriptor(name = _("Remove Additional Packages"), description = _("Remove Additional Packages"), where = PluginDescriptor.WHERE_MENU, fnc = menu)
 
-
 removeopkg_main = """<screen name="Removeopkg" position="center,center" size="600,405" >
                    <widget name="list" itemHeight="35" position="20,10" size="580,350" scrollbarMode="showOnDemand" transparent="1" zPosition="9"/>
-                   <ePixmap pixmap="/usr/share/enigma2/Satdreamgr-HD/buttons/red.png" position="80,370" size="32,32" zPosition="1" alphatest="blend"/>
-                   <ePixmap pixmap="/usr/share/enigma2/Satdreamgr-HD/buttons/green.png" position="240,370" size="32,32" zPosition="1" alphatest="blend"/>
+                   <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/red.png" position="80,370" size="32,32" zPosition="1" alphatest="blend"/>
+                   <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/green.png" position="240,370" size="32,32" zPosition="1" alphatest="blend"/>
                    <widget name="key_red" position="110,370" size="80,32" valign="center" halign="center" zPosition="1" font="Regular;22" transparent="1" />
                    <widget name="key_green" position="270,370" size="80,32" valign="center" halign="center" zPosition="1" font="Regular;22" transparent="1" />
                    </screen>"""
@@ -103,4 +102,3 @@ class Removeopkg(Screen):
 				command = "opkg remove %s" % archive
 			self.session.open(Console, _("Remove"), cmdlist=[command])
 			self.close(Removeopkg)
-

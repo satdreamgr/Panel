@@ -38,7 +38,7 @@ def autostart(reason,**kwargs):
 
 
 def menu(menuid, **kwargs):
-	if menuid == "cam":
+	if menuid == "none":
 		return [(_("Swap Manager"), main, "swapmanager_setup", 45)]
 	return []
 

@@ -34,7 +34,7 @@ def autostart(reason,**kwargs):
 
 
 def menu(menuid, **kwargs):
-	if menuid == "cam":
+	if menuid == "none":
 		return [(_("GreekStreamTV in Bouquets"), main, "update_setup", 45)]
 	return []
 

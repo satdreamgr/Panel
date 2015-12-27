@@ -19,7 +19,7 @@ def autostart(reason,**kwargs):
         print "[PluginMenu] no autostart"
 
 def menu(menuid, **kwargs):
-    if menuid == "cam":
+    if menuid == "none":
         return [(_("SDGBackup Dreambox Enigma2"), main, "sdgbackup_setup", 45)]
     return []
 

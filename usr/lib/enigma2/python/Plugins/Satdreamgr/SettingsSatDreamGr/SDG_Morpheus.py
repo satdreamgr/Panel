@@ -79,10 +79,8 @@ morpheus_main = """<screen name="SDG_Morpheus" position="center,center" size="60
 					}
 				</convert>
 			</widget>	
-                   <ePixmap pixmap="/usr/share/enigma2/Satdreamgr-HD/buttons/exit_key.png" position="80,360" size="40,32" zPosition="1" alphatest="blend"/>
-                   <ePixmap pixmap="/usr/share/enigma2/Satdreamgr-HD/buttons/key_ok.png" position="240,360" size="40,32" zPosition="1" alphatest="blend"/>                   
-                   <widget name="exit_key" position="110,360" size="80,32" valign="center" halign="center" zPosition="1" font="Regular;22" transparent="1" />
-                   <widget name="key_ok" position="270,360" size="80,32" valign="center" halign="center" zPosition="1" font="Regular;22" transparent="1" />
+                   <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/key_exit.png" position="80,360" size="40,32" zPosition="1" alphatest="blend"/>
+                   <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/key_ok.png" position="240,360" size="40,32" zPosition="1" alphatest="blend"/>                   
                    </screen>"""   			
 		
 class SDG_Morpheus(SDG_SettingsList):

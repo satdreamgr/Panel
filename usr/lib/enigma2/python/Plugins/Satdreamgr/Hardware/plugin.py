@@ -52,7 +52,7 @@ def autostart(reason,**kwargs):
         print "[PluginMenu] no autostart"
 
 def menu(menuid, **kwargs):
-	if menuid == "cam":
+	if menuid == "none":
 		return [(_("Hardware Info"), main, "harware_setup", 45)]
 	return []
 
@@ -61,8 +61,8 @@ def Plugins(**kwargs):
 
 hardware_main = """<screen name="HardwareInfo" position="center,center" size="600,405" >
                    <widget name="menu" itemHeight="35" position="20,10" size="580,330" scrollbarMode="showOnDemand" transparent="1" zPosition="9"/>
-                   <ePixmap pixmap="/usr/share/enigma2/Satdreamgr-HD/buttons/red.png" position="80,360" size="32,32" zPosition="1" alphatest="blend"/>
-                   <ePixmap pixmap="/usr/share/enigma2/Satdreamgr-HD/buttons/green.png" position="240,360" size="32,32" zPosition="1" alphatest="blend"/>
+                   <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/red.png" position="80,360" size="32,32" zPosition="1" alphatest="blend"/>
+                   <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/green.png" position="240,360" size="32,32" zPosition="1" alphatest="blend"/>
                    <widget name="key_red" position="110,360" size="80,32" valign="center" halign="center" zPosition="1" font="Regular;22" transparent="1" />
                    <widget name="key_green" position="270,360" size="80,32" valign="center" halign="center" zPosition="1" font="Regular;22" transparent="1" />
                    </screen>"""
