@@ -8,6 +8,7 @@ from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eList
 from SDG_Vhannibal import SDG_VhannibalHelper
 from SDG_Morpheus import SDG_MorpheusHelper
 from SDG_Satdreamgr import SDG_SatdreamgrHelper
+from SDG_Satvenus import SDG_SatvenusHelper
 from Components.Label import Label
 from Components.Button import Button
 from Components.MenuList import MenuList
@@ -54,7 +55,7 @@ def menu(menuid, **kwargs):
 	return []
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name = _("Settings E2"), description = _("Morpheus,Vhannibal,Cyrus"), where = PluginDescriptor.WHERE_MENU, fnc = menu)
+	return PluginDescriptor(name = _("Settings E2"), description = _("Satvenus Morpheus Vhannibal Cyrus"), where = PluginDescriptor.WHERE_MENU, fnc = menu)
 
 sdg_main = """<screen name="SDG_Menu" position="center,center" size="600,405" title="Settings E2" >
 		<widget source="list" render="Listbox" position="20,10" size="580,330" scrollbarMode="showOnDemand" transparent="1" >
@@ -95,6 +96,7 @@ class SDG_Menu(Screen):
 
 	def refresh(self):
 		self.drawList = []
+		self.drawList.append(self.buildListEntry(_("SatVenus settings"), "satv.png"))		
 		self.drawList.append(self.buildListEntry(_("Morpheus883 settings"), "morphd.png"))
 		self.drawList.append(self.buildListEntry(_("Vhannibal settings"), "Vhannibal.png"))
 		self.drawList.append(self.buildListEntry(_("Cyrus settings"), "downloads.png"))
@@ -103,10 +105,12 @@ class SDG_Menu(Screen):
 	def openSelected(self):
 		index = self["list"].getIndex()
 		if index == 0:
-			SDG_MorpheusHelper(self.session).load()
+			SDG_SatvenusHelper(self.session).load()		
 		elif index == 1:
-			SDG_VhannibalHelper(self.session).load()
+			SDG_MorpheusHelper(self.session).load()
 		elif index == 2:
+			SDG_VhannibalHelper(self.session).load()
+		elif index == 3:
 			SDG_SatdreamgrHelper(self.session).load()
 
 	def quit(self):
