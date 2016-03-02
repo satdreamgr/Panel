@@ -34,6 +34,7 @@ import time
 import gettext
 import datetime
 import time
+from Screens.PanelTextexit import PanelTextexit
 
 try:
 	cat = gettext.translation('lang', '/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/po', [config.osd.language.getText()])
@@ -90,31 +91,29 @@ class HardwareInfo(Screen):
         	self.setup_title = _("Hardware Info")
         	self.onLayoutFinish.append(self.layoutFinished)
         	self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "WizardActions", "DirectionActions"],{"ok": self.go, "red": self.close, "green": self.go, "back": self.close,}, -1)
-    	def go(self):
+    	def go (self):
     		if self["menu"].l.getCurrentSelection() is not None:
         		choice = self["menu"].l.getCurrentSelection()[1]
 			if choice == "system":
                          self.session.open(system_info)
 			if choice == "modules":
-				self.session.open(Console, _("DVB Modules"),["opkg list_installed | grep dvb-modules"])                         
-                         
+				self.session.open(PanelTextexit, _("DVB Modules"),["opkg list_installed | grep dvb-modules"])                         
 			if choice == "netstat":
-				self.session.open(Console, _("Netstat"),["netstat | grep tcp && netstat | grep unix"])
+				self.session.open(PanelTextexit, _("Netstat"), ["netstat | grep tcp && netstat | grep unix"])
 			if choice == "ifconfig":
-				self.session.open(Console, _("Ifconfig"),["ifconfig"])
+				self.session.open(PanelTextexit, _("Ifconfig"),["ifconfig"])
 			if choice == "internet":
-				self.session.open(Console, _("Performence Internet"),["ping -c 1 www.satdreamgr.com && ping -c 1 www.google.com"])
+				self.session.open(PanelTextexit, _("Performence Internet"),["ping -c 1 www.satdreamgr.com && ping -c 1 www.google.com"])
 			if choice == "Second":
-				self.session.open(Console, _("Your Version SecondStage Loader Installed"),["opkg list | grep second"])
-
+				self.session.open(PanelTextexit, _("Your Version SecondStage Loader Installed"),["opkg list | grep second"])
 			if choice == "listinstalled":
-				self.session.open(Console, _("opkg list installed"),["opkg list_installed"])
+				self.session.open(PanelTextexit, _("opkg list installed"),["opkg list_installed"])
 			if choice == "devices":
-				self.session.open(Console, _("Info All Devices"),["df -h"])
+				self.session.open(PanelTextexit, _("Info All Devices"),["df -h"])
 			if choice == "mounts":
-				self.session.open(Console, _("Info Mounts Devices"),["mount"])
+				self.session.open(PanelTextexit, _("Info Mounts Devices"),["mount"])
 			if choice == "crashlogs":
-				self.session.open(Console, _("Remove crashlogs /media/hdd"),["rm -rf /media/hdd/enigma2_crash*"])
+				self.session.open(PanelTextexit, _("Remove crashlogs /media/hdd"),["rm -rf /media/hdd/enigma2_crash*"])
 
 	def layoutFinished(self):
 		self.setTitle(self.setup_title)
