@@ -33,11 +33,10 @@ config.plugins.ExFiles = ConfigSubsection()
 config.plugins.ExFiles.Execute = ConfigText(default="/")
 config.plugins.ExFiles.Filtre = ConfigText(default="off")
 try:
-	cat = gettext.translation('lang', '/usr/lib/enigma2/python/Plugins/Satdreamgr/Manipulate/po', [config.osd.language.getText()])
+	cat = gettext.translation('Satdreamgr-Panel', '/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/locale', [config.osd.language.getText()])
 	_ = cat.gettext
 except IOError:
 	pass
-
 def main(session,**kwargs):
     try:
      	session.open(PluginStart)

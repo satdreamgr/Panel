@@ -35,12 +35,6 @@ import gettext
 import datetime
 import time
 
-try:
-	cat = gettext.translation('lang', '/usr/lib/enigma2/python/Plugins/Satdreamgr/RemoveOPKG/po', [config.osd.language.getText()])
-	_ = cat.gettext
-except IOError:
-	pass
-
 def main(session,**kwargs):
     try:
      	session.open(Removeopkg)

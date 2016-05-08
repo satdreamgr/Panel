@@ -13,14 +13,11 @@ import gettext
 url_sc = "/usr/lib/enigma2/python/Plugins/Satdreamgr/UpdateBouquet/update.sh"
 GSXML = "/usr/lib/enigma2/python/Plugins/Satdreamgr/UpdateBouquet/stream.xml"
 GSBQ = "/etc/enigma2/userbouquet.greekstreamtv.tv"
-
-
 try:
-	cat = gettext.translation('lang', '/usr/lib/enigma2/python/Plugins/Satdreamgr/UpdateBouquet/po', [config.osd.language.getText()])
+	cat = gettext.translation('Satdreamgr-Panel', '/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/locale', [config.osd.language.getText()])
 	_ = cat.gettext
 except IOError:
 	pass
-
 
 def main(session,**kwargs):
     try:

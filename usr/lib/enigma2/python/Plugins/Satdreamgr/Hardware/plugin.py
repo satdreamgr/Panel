@@ -35,9 +35,8 @@ import gettext
 import datetime
 import time
 from Screens.PanelTextexit import PanelTextexit
-
 try:
-	cat = gettext.translation('lang', '/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/po', [config.osd.language.getText()])
+	cat = gettext.translation('Satdreamgr-Panel', '/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/locale', [config.osd.language.getText()])
 	_ = cat.gettext
 except IOError:
 	pass
@@ -76,7 +75,7 @@ class HardwareInfo(Screen):
 		self.session = session
 		menu = []
 		menu.append((_("System Information"),"system"))
-		menu.append((_("DVB Modules"),"modules"))		
+		menu.append((_("DVB Modules"),"modules"))
 		menu.append((_("Netstat"),"netstat"))
 		menu.append((_("Ifconfig"),"ifconfig"))
 		menu.append((_("Performence Internet"),"internet"))
@@ -97,7 +96,7 @@ class HardwareInfo(Screen):
 			if choice == "system":
                          self.session.open(system_info)
 			if choice == "modules":
-				self.session.open(PanelTextexit, _("DVB Modules"),["opkg list_installed | grep dvb-modules"])                         
+				self.session.open(PanelTextexit, _("DVB Modules"),["opkg list_installed | grep dvb-modules"])
 			if choice == "netstat":
 				self.session.open(PanelTextexit, _("Netstat"), ["netstat | grep tcp && netstat | grep unix"])
 			if choice == "ifconfig":
@@ -117,7 +116,7 @@ class HardwareInfo(Screen):
 
 	def layoutFinished(self):
 		self.setTitle(self.setup_title)
-		
+
 hardware_main_info = """<screen name="HardwareInfobis" position="center,center" size="640,480">
     <ePixmap position="20,30" zPosition="5" size="50,50" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/ram.png" alphatest="blend" />
     <widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/bar.png" position="90,30" size="515,20" transparent="1" zPosition="6">
@@ -153,10 +152,10 @@ hardware_main_info = """<screen name="HardwareInfobis" position="center,center" 
     </widget>
     <widget source="session.CurrentService" render="Label" zPosition="6" position="90,378" size="515,26" halign="left" valign="center" font="Regular; 23" transparent="0">
       <convert type="PanelSpaceInfo">UsbInfo,Full</convert>
-    </widget>	  
+    </widget>
      <widget backgroundColor="#000015" font="Regular; 23" foregroundColor="green" halign="center" position="20,440" render="Label" size="120,23" source="session.CurrentService" transparent="1" zPosition="1" valign="center">
       <convert type="PanelCpuUsage">Total</convert>
-    </widget>   
+    </widget>
      <widget source="session.CurrentService" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/net_on.png" position="580,440" size="24,24" zPosition="2" alphatest="blend">
       <convert type="PanelConnection">
       </convert>

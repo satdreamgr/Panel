@@ -16,6 +16,7 @@ from Plugins.Satdreamgr.SettingsSatDreamGr.plugin import SDG_Menu
 from Plugins.Satdreamgr.SwapManager.plugin import SystemToolsSwap
 from Plugins.Satdreamgr.UpdateBouquet.plugin import UpdateBouquet
 from Plugins.Extensions.GreekStreamTV.plugin import GSMenu
+from Plugins.Satdreamgr.SkinSatdreamgr.plugin import MyMenuSKIN
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Tools.LoadPixmap import LoadPixmap
 import gettext
@@ -24,7 +25,6 @@ try:
 	_ = cat.gettext
 except IOError:
 	pass
-	
 def main(session,**kwargs):
     try:
      	session.open(Panel)
@@ -85,15 +85,17 @@ class Panel(Screen):
 
 	def refresh(self):
 		self.drawList = []
-		self.drawList.append(self.buildListEntry(_("Softcam setup"), "key.png"))		
+		self.drawList.append(self.buildListEntry(_("Softcam setup"), "key.png"))
 		self.drawList.append(self.buildListEntry(_("Archives Explorer"), "Archives.png"))
 		self.drawList.append(self.buildListEntry(_("Hardware Info"), "hardware.png"))
-		self.drawList.append(self.buildListEntry(_("GreekStreamTV"), "greekstream.png"))		
-		self.drawList.append(self.buildListEntry(_("GreekStreamTV in Bouquets"), "greekstreamb.png"))		
-		self.drawList.append(self.buildListEntry(_("Settings E2"), "settings.png"))		
-		self.drawList.append(self.buildListEntry(_("SDGBackup Dreambox Enigma2"), "backup.png"))		
-		self.drawList.append(self.buildListEntry(_("Remove Additional Packages"), "remove.png"))	
-		self.drawList.append(self.buildListEntry(_("Swap Manager"), "swap.png"))				
+		self.drawList.append(self.buildListEntry(_("Change Color TranspBA Skin"), "eye.png"))
+		self.drawList.append(self.buildListEntry(_("GreekStreamTV"), "greekstream.png"))
+		self.drawList.append(self.buildListEntry(_("GreekStreamTV in Bouquets"), "greekstreamb.png"))
+		self.drawList.append(self.buildListEntry(_("Settings E2"), "settings.png"))
+		self.drawList.append(self.buildListEntry(_("SDGBackup Dreambox Enigma2"), "backup.png"))
+		self.drawList.append(self.buildListEntry(_("Remove Additional Packages"), "remove.png"))
+		self.drawList.append(self.buildListEntry(_("Swap Manager"), "swap.png"))
+
 		self["list"].setList(self.drawList)
 
 	def openSelected(self):
@@ -103,24 +105,25 @@ class Panel(Screen):
 						from Plugins.PLi.SoftcamSetup.plugin import main
 						main(self.session)
 					except:
-						self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)		
+						self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 1:
-			self.session.open(PluginStart)			
+			self.session.open(PluginStart)
 		elif index == 2:
 			self.session.open(HardwareInfo)
 		elif index == 3:
-			self.session.open(GSMenu)			
+			self.session.open(MyMenuSKIN)
 		elif index == 4:
-			self.session.open(UpdateBouquet)
+			self.session.open(GSMenu)
 		elif index == 5:
-			self.session.open(SDG_Menu)			
+			self.session.open(UpdateBouquet)
 		elif index == 6:
-			self.session.open(SDGBackup)			
+			self.session.open(SDG_Menu)
 		elif index == 7:
-			self.session.open(Removeopkg)						
+			self.session.open(SDGBackup)
 		elif index == 8:
-			self.session.open(SystemToolsSwap)						
-	
+			self.session.open(Removeopkg)
+		elif index == 9:
+			self.session.open(SystemToolsSwap)
 	def quit(self):
 		self.close()
 

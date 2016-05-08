@@ -21,7 +21,7 @@ lengthList = [0,0,0,0]
 import gettext
 
 try:
-	cat = gettext.translation('lang', '/usr/lib/enigma2/python/Plugins/Satdreamgr/SwapManager/po', [config.osd.language.getText()])
+	cat = gettext.translation('Satdreamgr-Panel', '/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/locale', [config.osd.language.getText()])
 	_ = cat.gettext
 except IOError:
 	pass

@@ -6,6 +6,14 @@ from Components.ActionMap import ActionMap
 from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
+from Components.config import config
+import gettext
+try:
+	cat = gettext.translation('Satdreamgr-Panel', '/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/locale', [config.osd.language.getText()])
+	_ = cat.gettext
+except IOError:
+	pass
+
 menu_s = "/usr/lib/enigma2/python/Plugins/Satdreamgr/SDGBackup/dreambox-fullbackup.sh"
 ###########################################################################
 def main(session,**kwargs):
