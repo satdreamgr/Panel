@@ -87,19 +87,12 @@ class MyMenuSKIN(Screen):
 		if choice == "skinsd":
 		                   self.session.open(SatdreamgrTranspBASD)
 		if choice == "remove":
-		                   self.session.openWithCallback(self.removeskin, MessageBox,_("This will restore the original settings of the skin s.\nDo you want to Restart Enigma2 now ?"), MessageBox.TYPE_YESNO)
-
-	def removeskin(self, answer):
-		if answer is True:
-			os.system("rm -f /etc/enigma2/skin_user_Satdreamgr-HD-TranspBA.xml")
-			os.system("rm -f /etc/enigma2/skin_user_Satdreamgr-TranspBA.xml")
-			restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply a new skin.\nDo you want to Restart the GUI now ?"), MessageBox.TYPE_YESNO)
-			restartbox.setTitle(_("Restart GUI"))
-		else:
-			self.close()
+		                   self.session.openWithCallback(self.restartGUI, MessageBox,_("This will restore the original settings of the skin s.\nDo you want to Restart Enigma2 now ?"), MessageBox.TYPE_YESNO)
 
 	def restartGUI(self, answer):
 		if answer is True:
+			os.system("rm -f /etc/enigma2/skin_user_Satdreamgr-HD-TranspBA.xml")
+			os.system("rm -f /etc/enigma2/skin_user_Satdreamgr-TranspBA.xml")			
 			configfile.save()
 			self.session.open(TryQuitMainloop, 3)
 		else:
