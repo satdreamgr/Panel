@@ -14,7 +14,6 @@ from Components.Label import Label
 from os import environ, listdir, remove, rename, system, path
 from skin import parseColor
 from Components.Label import Label
-import gettext
 from Tools.Directories import fileExists, resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS
 from shutil import move, copy
 import re

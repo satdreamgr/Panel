@@ -1,40 +1,21 @@
 import os
-import urllib
-from Components.ScrollLabel import ScrollLabel
 from Plugins.Plugin import PluginDescriptor
-from Components.Sources.List import List
 from Components.Input import Input
-from Components.Pixmap import Pixmap
 from Screens.ChoiceBox import ChoiceBox
 from Components.ActionMap import ActionMap
 from Screens.InputBox import InputBox
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.FileList import FileList
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.Button import Button
 from Components.Label import Label
+from Components.config import config, configfile, ConfigYesNo, ConfigSubsection, getConfigListEntry, ConfigSelection, ConfigNumber, ConfigText, ConfigInteger
 from Components.MenuList import MenuList
-from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad
-from enigma import getDesktop
-from Tools import Notifications
-from Tools.LoadPixmap import LoadPixmap
-from Tools.Directories import fileExists, resolveFilename, SCOPE_SKIN_IMAGE, SCOPE_LANGUAGE, SCOPE_PLUGINS
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console
-from Screens.Standby import *
-from ServiceReference import ServiceReference
-from urllib2 import urlopen
-from os import popen as os_popen
-from os import listdir
-from time import localtime as time_localtime
-from time import strftime as time_strftime
-import datetime
-import time
 import gettext
-import datetime
-import time
 from Screens.PanelTextexit import PanelTextexit
+
 try:
 	cat = gettext.translation('Satdreamgr-Panel', '/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/locale', [config.osd.language.getText()])
 	_ = cat.gettext
@@ -84,6 +65,7 @@ class HardwareInfo(Screen):
 		menu.append((_("Show All Devices"),"devices"))
 		menu.append((_("Show Mounts"),"mounts"))
 		menu.append((_("Remove crashlogs"),"crashlogs"))
+		menu.append((_("Create debug log"),"debuglog"))
         	self["menu"] = MenuList(menu)
         	self["key_red"] = Label(_("Exit"))
         	self["key_green"] = Label(_("Ok"))
@@ -113,6 +95,20 @@ class HardwareInfo(Screen):
 				self.session.open(PanelTextexit, _("Info Mounts Devices"),["mount"])
 			if choice == "crashlogs":
 				self.session.open(PanelTextexit, _("Remove crashlogs /media/hdd"),["rm -rf /media/hdd/enigma2_crash*"])
+			if choice == "debuglog":
+				self.session.openWithCallback(self.restartGUI, MessageBox,_("Do you really wish to run this command?"), MessageBox.TYPE_YESNO)
+
+	def restartGUI(self, answer):
+		if answer is True:
+			os.system("dmesg > /tmp/sdg.debug.log && lsusb >> /tmp/sdg.debug.log && lsmod >> /tmp/sdg.debug.log && cat /proc/bus/nim_sockets >> /tmp/sdg.debug.log")
+			configfile.save()
+			self.showInfo()
+		else:
+			self.close()
+
+	def showInfo(self):
+		msg = _("Execution finished")
+		self.session.open(MessageBox, msg, MessageBox.TYPE_INFO, timeout = 5)
 
 	def layoutFinished(self):
 		self.setTitle(self.setup_title)
