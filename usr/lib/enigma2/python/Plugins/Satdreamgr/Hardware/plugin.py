@@ -94,17 +94,25 @@ class HardwareInfo(Screen):
 			if choice == "mounts":
 				self.session.open(PanelTextexit, _("Info Mounts Devices"),["mount"])
 			if choice == "crashlogs":
-				self.session.open(PanelTextexit, _("Remove crashlogs /media/hdd"),["rm -rf /media/hdd/enigma2_crash*"])
+				self.session.openWithCallback(self.removeCRASH, MessageBox,_("Do you really wish to run this command?"), MessageBox.TYPE_YESNO)				
 			if choice == "debuglog":
-				self.session.openWithCallback(self.restartGUI, MessageBox,_("Do you really wish to run this command?"), MessageBox.TYPE_YESNO)
+				self.session.openWithCallback(self.debugLOG, MessageBox,_("Do you really wish to run this command?"), MessageBox.TYPE_YESNO)
 
-	def restartGUI(self, answer):
+	def debugLOG(self, answer):
 		if answer is True:
 			os.system("dmesg > /tmp/sdg.debug.log && lsusb >> /tmp/sdg.debug.log && lsmod >> /tmp/sdg.debug.log && cat /proc/bus/nim_sockets >> /tmp/sdg.debug.log")
 			configfile.save()
 			self.showInfo()
 		else:
 			self.close()
+			
+	def removeCRASH(self, answer):
+		if answer is True:
+			os.system("rm -rf /media/hdd/enigma2_crash*")
+			configfile.save()
+			self.showInfo()
+		else:
+			self.close()			
 
 	def showInfo(self):
 		msg = _("Execution finished")
