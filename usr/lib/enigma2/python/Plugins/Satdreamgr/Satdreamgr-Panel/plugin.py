@@ -17,6 +17,7 @@ from Plugins.Satdreamgr.SwapManager.plugin import SystemToolsSwap
 from Plugins.Satdreamgr.UpdateBouquet.plugin import UpdateBouquet
 from Plugins.Extensions.GreekStreamTV.plugin import GSMenu
 from Plugins.Satdreamgr.SkinSatdreamgr.plugin import MyMenuSKIN
+from Plugins.Satdreamgr.PictureCamera.plugin import PictureCamera
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Tools.LoadPixmap import LoadPixmap
 import gettext
@@ -95,6 +96,7 @@ class Panel(Screen):
 		self.drawList.append(self.buildListEntry(_("SDGBackup Dreambox Enigma2"), "backup.png"))
 		self.drawList.append(self.buildListEntry(_("Remove Additional Packages"), "remove.png"))
 		self.drawList.append(self.buildListEntry(_("Swap Manager"), "swap.png"))
+		self.drawList.append(self.buildListEntry(_("PictureCamera"), "camera.png"))		
 
 		self["list"].setList(self.drawList)
 
@@ -124,6 +126,8 @@ class Panel(Screen):
 			self.session.open(Removeopkg)
 		elif index == 9:
 			self.session.open(SystemToolsSwap)
+		elif index == 10:
+			self.session.open(PictureCamera)			
 	def quit(self):
 		self.close()
 
