@@ -18,6 +18,7 @@ from Plugins.Satdreamgr.UpdateBouquet.plugin import UpdateBouquet
 from Plugins.Extensions.GreekStreamTV.plugin import GSMenu
 from Plugins.Satdreamgr.SkinSatdreamgr.plugin import MyMenuSKIN
 from Plugins.Satdreamgr.PictureCamera.plugin import PictureCamera
+from Screens.SoftcamSetup import SoftcamSetup
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Tools.LoadPixmap import LoadPixmap
 import gettext
@@ -103,11 +104,7 @@ class Panel(Screen):
 	def openSelected(self):
 		index = self["list"].getIndex()
 		if index == 0:
-					try:
-						from Plugins.PLi.SoftcamSetup.plugin import main
-						main(self.session)
-					except:
-						self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
+			self.session.open(SoftcamSetup)
 		elif index == 1:
 			self.session.open(PluginStart)
 		elif index == 2:
