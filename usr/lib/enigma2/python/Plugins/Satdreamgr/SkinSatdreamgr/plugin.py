@@ -68,7 +68,7 @@ class MyMenuSKIN(Screen):
 		menu.append((_(" "), ))
 		menu.append((_("Satdreamgr-HD-TranspBA"),"skinhd"))
 		menu.append((_(" "), ))
-		menu.append((_("Satdreamgr-TranspBA"),"skinsd"))
+#		menu.append((_("Satdreamgr-TranspBA"),"skinsd"))
 		menu.append((_(" "), ))
 		menu.append((_(" "), ))
 		menu.append((_(" "), ))
@@ -91,7 +91,7 @@ class MyMenuSKIN(Screen):
 	def restartGUI(self, answer):
 		if answer is True:
 			os.system("rm -f /etc/enigma2/skin_user_Satdreamgr-HD-TranspBA.xml")
-			os.system("rm -f /etc/enigma2/skin_user_Satdreamgr-TranspBA.xml")			
+#			os.system("rm -f /etc/enigma2/skin_user_Satdreamgr-TranspBA.xml")			
 			configfile.save()
 			self.session.open(TryQuitMainloop, 3)
 		else:

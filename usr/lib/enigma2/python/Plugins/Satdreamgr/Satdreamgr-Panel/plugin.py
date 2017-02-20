@@ -18,8 +18,12 @@ from Plugins.Satdreamgr.UpdateBouquet.plugin import UpdateBouquet
 from Plugins.Extensions.GreekStreamTV.plugin import GSMenu
 from Plugins.Satdreamgr.SkinSatdreamgr.plugin import MyMenuSKIN
 from Plugins.Satdreamgr.PictureCamera.plugin import PictureCamera
+from Plugins.Extensions.SDGRadio.plugin import SDGRadioScreen
+from Plugins.Extensions.GreekNetRadio.plugin import GreekMenuscrn
 from Screens.SoftcamSetup import SoftcamSetup
+from Screens.Hotkey import HotkeySetup
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
+
 from Tools.LoadPixmap import LoadPixmap
 import gettext
 try:
@@ -88,16 +92,8 @@ class Panel(Screen):
 	def refresh(self):
 		self.drawList = []
 		self.drawList.append(self.buildListEntry(_("Softcam setup"), "key.png"))
-		self.drawList.append(self.buildListEntry(_("Archives Explorer"), "Archives.png"))
-		self.drawList.append(self.buildListEntry(_("Hardware Info"), "hardware.png"))
-		self.drawList.append(self.buildListEntry(_("Change Color TranspBA Skin"), "eye.png"))
-		self.drawList.append(self.buildListEntry(_("GreekStreamTV"), "greekstream.png"))
-		self.drawList.append(self.buildListEntry(_("GreekStreamTV in Bouquets"), "greekstreamb.png"))
-		self.drawList.append(self.buildListEntry(_("Settings E2"), "settings.png"))
-		self.drawList.append(self.buildListEntry(_("SDGBackup Dreambox Enigma2"), "backup.png"))
-		self.drawList.append(self.buildListEntry(_("Remove Additional Packages"), "remove.png"))
-		self.drawList.append(self.buildListEntry(_("Swap Manager"), "swap.png"))
-		self.drawList.append(self.buildListEntry(_("PictureCamera"), "camera.png"))		
+		self.drawList.append(self.buildListEntry(_("System Panel"), "system.png"))
+		self.drawList.append(self.buildListEntry(_("Plugins Panel"), "plus.png"))
 
 		self["list"].setList(self.drawList)
 
@@ -106,25 +102,117 @@ class Panel(Screen):
 		if index == 0:
 			self.session.open(SoftcamSetup)
 		elif index == 1:
-			self.session.open(PluginStart)
+			self.session.open(System_Panel)
 		elif index == 2:
+			self.session.open(Plugins_Panel)
+	def quit(self):
+		self.close()
+
+	def layoutFinished(self):
+		self.setTitle(self.setup_title)
+
+class System_Panel(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.skin = panel_main
+		self.session = session
+		self.drawList = []
+		self.setup_title = _("Panel +")
+		self.onLayoutFinish.append(self.layoutFinished)
+		self["list"] = List()
+		self["setupActions"] = ActionMap(["SetupActions"],
+		{
+			"cancel": self.quit,
+			"ok": self.openSelected,
+		}, -2)
+
+		self.refresh()
+
+	def buildListEntry(self, description, image):
+		pixmap = LoadPixmap(cached=True, path="%s/images/%s" % (os.path.dirname(sys.modules[__name__].__file__), image));
+		return((pixmap, description))
+
+	def refresh(self):
+		self.drawList = []
+		self.drawList.append(self.buildListEntry(_("Archives Explorer"), "Archives.png"))
+		self.drawList.append(self.buildListEntry(_("Hardware Info"), "hardware.png"))
+		self.drawList.append(self.buildListEntry(_("Change Color TranspBA Skin"), "eye.png"))
+		self.drawList.append(self.buildListEntry(_("Settings E2"), "settings.png"))
+		self.drawList.append(self.buildListEntry(_("SDGBackup Dreambox Enigma2"), "backup.png"))
+		self.drawList.append(self.buildListEntry(_("Remove Additional Packages"), "remove.png"))
+		self.drawList.append(self.buildListEntry(_("Swap Manager"), "swap.png"))
+		self.drawList.append(self.buildListEntry(_("Hotkey"), "hotkey.png"))
+		self["list"].setList(self.drawList)
+
+	def openSelected(self):
+		index = self["list"].getIndex()
+		if index == 0:
+			self.session.open(PluginStart)
+		elif index == 1:
 			self.session.open(HardwareInfo)
-		elif index == 3:
+		elif index == 2:
 			self.session.open(MyMenuSKIN)
-		elif index == 4:
-			self.session.open(GSMenu)
-		elif index == 5:
-			self.session.open(UpdateBouquet)
-		elif index == 6:
+		elif index == 3:
 			self.session.open(SDG_Menu)
-		elif index == 7:
+		elif index == 4:
 			self.session.open(SDGBackup)
-		elif index == 8:
+		elif index == 5:
 			self.session.open(Removeopkg)
-		elif index == 9:
+		elif index == 6:
 			self.session.open(SystemToolsSwap)
-		elif index == 10:
-			self.session.open(PictureCamera)			
+		elif index == 7:
+			self.session.open(HotkeySetup)
+	def quit(self):
+		self.close()
+
+	def layoutFinished(self):
+		self.setTitle(self.setup_title)
+
+class Plugins_Panel(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.skin = panel_main
+		self.session = session
+		self.drawList = []
+		self.setup_title = _("Panel +")
+		self.onLayoutFinish.append(self.layoutFinished)
+		self["list"] = List()
+		self["setupActions"] = ActionMap(["SetupActions"],
+		{
+			"cancel": self.quit,
+			"ok": self.openSelected,
+		}, -2)
+
+		self.refresh()
+
+	def buildListEntry(self, description, image):
+		pixmap = LoadPixmap(cached=True, path="%s/images/%s" % (os.path.dirname(sys.modules[__name__].__file__), image));
+		return((pixmap, description))
+
+	def refresh(self):
+		self.drawList = []
+		self.drawList.append(self.buildListEntry(_("SDG Radio"), "radio.png"))
+		self.drawList.append(self.buildListEntry(_("GreekNetRadio"), "netradio.png"))
+		self.drawList.append(self.buildListEntry(_("PictureCamera"), "camera.png"))
+		self.drawList.append(self.buildListEntry(_("GreekStreamTV"), "greekstream.png"))
+		self.drawList.append(self.buildListEntry(_("GreekStreamTV in Bouquets"), "greekstreamb.png"))
+
+
+		self["list"].setList(self.drawList)
+
+	def openSelected(self):
+		index = self["list"].getIndex()
+		if index == 0:
+			self.session.open(SDGRadioScreen)
+		elif index == 1:
+			self.session.open(GreekMenuscrn)
+		elif index == 2:
+			self.session.open(PictureCamera)
+		elif index == 3:
+			self.session.open(GSMenu)
+		elif index == 4:
+			self.session.open(UpdateBouquet)
+
 	def quit(self):
 		self.close()
 
