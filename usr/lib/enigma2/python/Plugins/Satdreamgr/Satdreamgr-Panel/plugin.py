@@ -136,7 +136,7 @@ class System_Panel(Screen):
 		self.drawList = []
 		self.drawList.append(self.buildListEntry(_("Archives Explorer"), "Archives.png"))
 		self.drawList.append(self.buildListEntry(_("Hardware Info"), "hardware.png"))
-		self.drawList.append(self.buildListEntry(_("Change Color TranspBA Skin"), "eye.png"))
+		self.drawList.append(self.buildListEntry(_("Configuration TranspBA Skin"), "eye.png"))
 		self.drawList.append(self.buildListEntry(_("Settings E2"), "settings.png"))
 		self.drawList.append(self.buildListEntry(_("SDGBackup Dreambox Enigma2"), "backup.png"))
 		self.drawList.append(self.buildListEntry(_("Remove Additional Packages"), "remove.png"))

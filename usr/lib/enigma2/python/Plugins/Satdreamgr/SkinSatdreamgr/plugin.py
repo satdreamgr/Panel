@@ -64,17 +64,19 @@ class MyMenuSKIN(Screen):
 		Screen.__init__(self, session)
 		self.session = session
 		menu = []
-		menu.append((_("Skin Configuration"), ))
+		menu.append((_("Change Color"), ))
 		menu.append((_(" "), ))
-		menu.append((_("Satdreamgr-HD-TranspBA"),"skinhd"))
+		menu.append((_("Change Color Satdreamgr-HD-TranspBA"),"skinhd"))
 		menu.append((_(" "), ))
-#		menu.append((_("Satdreamgr-TranspBA"),"skinsd"))
-		menu.append((_(" "), ))
-		menu.append((_(" "), ))
+		menu.append((_("Restore Default Color Satdreamgr-HD-TranspBA"),"remove"))
 		menu.append((_(" "), ))
 		menu.append((_(" "), ))
 		menu.append((_(" "), ))
-		menu.append((_("Restore Default Settings"),"remove"))
+		menu.append((_("Change Infobar"), ))
+		menu.append((_(" "), ))
+		menu.append((_("Full Infobar Satdreamgr-HD-TranspBA"),"full"))
+		menu.append((_(" "), ))
+		menu.append((_("Simple Infobar Satdreamgr-HD-TranspBA"),"simple"))
 		self["menu"] = MenuList(menu)
 		self["actions"] = ActionMap(["WizardActions", "DirectionActions"],{"ok": self.go,"back": self.close,}, -1)
 
@@ -83,19 +85,49 @@ class MyMenuSKIN(Screen):
         		choice = self["menu"].l.getCurrentSelection()[1]
 		if choice == "skinhd":
 			               self.session.open(SatdreamgrTranspBA)
-		if choice == "skinsd":
-		                   self.session.open(SatdreamgrTranspBASD)
 		if choice == "remove":
-		                   self.session.openWithCallback(self.restartGUI, MessageBox,_("This will restore the original settings of the skin s.\nDo you want to Restart Enigma2 now ?"), MessageBox.TYPE_YESNO)
+		                   self.session.openWithCallback(self.restartGUI, MessageBox,_("This will restore the original settings of the skin.\nDo you want to Restart Enigma2 now ?"), MessageBox.TYPE_YESNO)
+
+		if choice == "full":
+		                   self.session.openWithCallback(self.FullInfobar, MessageBox,_("Do you want to use full infobar in this skin.\nDo you want to Restart Enigma2 now ?"), MessageBox.TYPE_YESNO)
+
+		if choice == "simple":
+		                   self.session.openWithCallback(self.SimpleInfobar, MessageBox,_("Do you want to use simple infobar in this skin.\nDo you want to Restart Enigma2 now ?"), MessageBox.TYPE_YESNO)
 
 	def restartGUI(self, answer):
 		if answer is True:
 			os.system("rm -f /etc/enigma2/skin_user_Satdreamgr-HD-TranspBA.xml")
-#			os.system("rm -f /etc/enigma2/skin_user_Satdreamgr-TranspBA.xml")			
 			configfile.save()
 			self.session.open(TryQuitMainloop, 3)
 		else:
 			self.close()
+
+	def SimpleInfobar(self, answer):
+		if answer is True:
+			f = file("/usr/share/enigma2/Satdreamgr-HD-TranspBA/skin.xml","r")
+			chaine = f.read()
+			f.close()
+			result=chaine.replace("infobar_b.xml", "infobar_a.xml")
+			f = file("/usr/share/enigma2/Satdreamgr-HD-TranspBA/skin.xml","w")
+			f.write(result)
+			configfile.save()
+			self.session.open(TryQuitMainloop, 3)
+		else:
+			self.close()
+
+	def FullInfobar(self, answer):
+		if answer is True:
+			f = file("/usr/share/enigma2/Satdreamgr-HD-TranspBA/skin.xml","r")
+			chaine = f.read()
+			f.close()
+			result=chaine.replace("infobar_a.xml", "infobar_b.xml")
+			f = file("/usr/share/enigma2/Satdreamgr-HD-TranspBA/skin.xml","w")
+			f.write(result)
+			configfile.save()
+			self.session.open(TryQuitMainloop, 3)
+		else:
+			self.close()
+
 #######################################################################
 
 class SatdreamgrTranspBA(ConfigListScreen, Screen):
@@ -126,7 +158,7 @@ class SatdreamgrTranspBA(ConfigListScreen, Screen):
 
 	def createConfigList(self):
 		list = []
-		list.append(getConfigListEntry(_("Satdreamgr-HD-TranspBASkin Configuration"), ))
+		list.append(getConfigListEntry(_("Choose a color"), ))
 		list.append(getConfigListEntry(_(" "), ))
 		list.append(getConfigListEntry(_(" "), ))
 		list.append(getConfigListEntry(_("   Main Color"), config.plugins.SatdreamgrTranspBA.SkinColor))
@@ -213,104 +245,3 @@ class SatdreamgrTranspBA(ConfigListScreen, Screen):
        				pass
 		self.close()
 
-class SatdreamgrTranspBASD(ConfigListScreen, Screen):
-	def __init__(self, session, args = None, picPath = None):
-		Screen.__init__(self, session)
-		self.skin = SatdreamgrTranspBA.skin
-		self.session = session
-		self.myskinpath = "/usr/share/enigma2/Satdreamgr-HD-TranspBA/skinconfig/"
-		self.SkinDefault = self.myskinpath + "skin_user_Satdreamgr-HD-TranspBA.xml.D"
-		self.SkinDefaultTmp = self.SkinDefault + ".TMP"
-		self.myskinpathout = "/etc/enigma2/"
-		self.SkinFinal = self.myskinpathout + "skin_user_Satdreamgr-TranspBA.xml"
-		ConfigListScreen.__init__(self, [])
-		self.createConfigList()
-		self["actions"] = ActionMap(["OkCancelActions","DirectionActions", "InputActions", "ColorActions"], {"left": self.keyLeft,"down": self.keyDown,"up": self.keyUp,"right": self.keyRight,"red": self.exit,"yellow": self.reboot, "blue": self.showInfo, "green": self.save,"cancel": self.exit}, -1)
-
-	def createConfigList(self):
-		list = []
-		list.append(getConfigListEntry(_("Satdreamgr-TranspBA Skin Configuration"), ))
-		list.append(getConfigListEntry(_(" "), ))
-		list.append(getConfigListEntry(_(" "), ))
-		list.append(getConfigListEntry(_("   Main Color"), config.plugins.SatdreamgrTranspBA.SkinColor))
-		self["config"].list = list
-		self["config"].l.setList(list)
-	def keyLeft(self):
-		ConfigListScreen.keyLeft(self)
-		self.createConfigList()
-
-	def keyRight(self):
-		ConfigListScreen.keyRight(self)
-		self.createConfigList()
-
-	def keyDown(self):
-		#print "key down"
-		self["config"].instance.moveSelection(self["config"].instance.moveDown)
-
-	def keyUp(self):
-		#print "key up"
-		self["config"].instance.moveSelection(self["config"].instance.moveUp)
-
-	def reboot(self):
-		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("Do you really want to restart Enigma2 now?"), MessageBox.TYPE_YESNO)
-		restartbox.setTitle(_("Restart GUI"))
-
-	def showInfo(self):
-		self.session.open(MessageBox, _("  "), MessageBox.TYPE_INFO)
-
-	def save(self):
-		for x in self["config"].list:
-			if len(x) > 1:
-        			x[1].save()
-			else:
-       				pass
-
-		try:
-
-			skinSearchAndReplace = []
-			if config.plugins.SatdreamgrTranspBA.SkinColor.value != "#20000000":
-				skinSearchAndReplace.append(['#20000000', config.plugins.SatdreamgrTranspBA.SkinColor.value ])
-			SkinDefaultFile = open(self.SkinDefault, "r")
-			SkinDefaultLines = SkinDefaultFile.readlines()
-			SkinDefaultFile.close()
-
-			PimpedLines = []
-			for Line in SkinDefaultLines:
-				for item in skinSearchAndReplace:
-					Line = Line.replace(item[0], item[1])
-				PimpedLines.append(Line)
-
-			TmpFile = open(self.SkinDefaultTmp, "w")
-			for Lines in PimpedLines:
-				TmpFile.writelines(Lines)
-			TmpFile.close()
-			move(self.SkinDefaultTmp, self.SkinFinal)
-
-			TmpFile = open(self.SkinDefaultTmp, "w")
-			for Lines in PimpedLines:
-				TmpFile.writelines(Lines)
-			TmpFile.close()
-			move(self.SkinDefaultTmp, self.SkinFinal)
-
-		except:
-			self.session.open(MessageBox, _("Error creating Skin!"), MessageBox.TYPE_ERROR)
-		config.skin.primary_skin.setValue("Satdreamgr-TranspBA/skin.xml")
-		config.skin.save()
-		configfile.save()
-		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply a new skin.\nDo you want to Restart the GUI now ?"), MessageBox.TYPE_YESNO)
-		restartbox.setTitle(_("Restart GUI"))
-
-	def restartGUI(self, answer):
-		if answer is True:
-			configfile.save()
-			self.session.open(TryQuitMainloop, 3)
-		else:
-			self.close()
-
-	def exit(self):
-		for x in self["config"].list:
-			if len(x) > 1:
-					x[1].cancel()
-			else:
-       				pass
-		self.close()
