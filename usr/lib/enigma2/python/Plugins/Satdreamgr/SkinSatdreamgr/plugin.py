@@ -30,7 +30,11 @@ config.plugins.SatdreamgrTranspBA = ConfigSubsection()
 config.plugins.SatdreamgrTranspBA.SkinColor = ConfigSelection(default="#20000000", choices = [
 				("#20000000", _("1-Original")),
 				("#00000000", _("2-Black")),
-				("#50000000", _("3-Ultra Transparent"))
+				("#50000000", _("3-Ultra Transparent")),
+				("#00102030", _("4-Blue")),
+				("#00002222", _("4-Green")),
+				("#00080022", _("4-Navy Blue")),
+				("#00333333", _("4-Grey"))
 				])
 #######################################################################
 def main(session,**kwargs):
