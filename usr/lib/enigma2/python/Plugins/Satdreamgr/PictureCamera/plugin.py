@@ -81,6 +81,7 @@ class PictureCamera(Screen):
 		self.url = None
         	self["menu"] = MenuList(getCameras())
         	self["actions"] = ActionMap(["OkCancelActions", "WizardActions", "ColorActions"],{"cancel": self.close,"red": self.close,"ok": self.go,"green": self.go,"yellow": self.downloadList,"blue": self.info,}, -1)
+
     	def go(self):
     		if self["menu"].l.getCurrentSelection():
         		self.url = self["menu"].l.getCurrentSelection()[1]
@@ -92,10 +93,13 @@ class PictureCamera(Screen):
 		self.cameraTimer.stop()
 		if not self.url:
 			return
-		r = requests.get(self.url, timeout=30)
-		if r.status_code == 200:
-			open("/tmp/camera.jpg", "wb").write(r.content)
-			self.downloadFinished(None)
+		try:
+			r = requests.get(self.url, timeout=30)
+			if r.status_code == 200:
+				open("/tmp/camera.jpg", "wb").write(r.content)
+				self.downloadFinished(None)
+		except:
+			pass
 
 	def downloadFinished(self, result):
 		image = '/tmp/camera.jpg'
