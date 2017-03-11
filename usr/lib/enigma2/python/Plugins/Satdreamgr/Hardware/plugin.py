@@ -160,15 +160,6 @@ hardware_main_info = """<screen name="HardwareInfobis" position="center,center" 
      <widget backgroundColor="#000015" font="Regular; 23" foregroundColor="green" halign="center" position="20,440" render="Label" size="120,23" source="session.CurrentService" transparent="1" zPosition="1" valign="center">
       <convert type="PanelCpuUsage">Total</convert>
     </widget>
-     <widget source="session.CurrentService" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/net_on.png" position="580,440" size="24,24" zPosition="2" alphatest="blend">
-      <convert type="PanelConnection">
-      </convert>
-      <convert type="ConditionalShowHide" />
-    </widget>
-    <widget source="global.CurrentTime" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/net_off.png" position="580,440" size="24,24" alphatest="blend">
-      <convert type="PanelAlwaysTrue" />
-      <convert type="ConditionalShowHide">Blink</convert>
-	  </widget>
 	</screen>"""
 
 class system_info(Screen):
