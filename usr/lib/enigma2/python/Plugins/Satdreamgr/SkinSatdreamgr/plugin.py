@@ -188,8 +188,20 @@ class SatdreamgrTranspBA(ConfigListScreen, Screen):
 		try:
 
 			skinSearchAndReplace = []
-			if config.plugins.SatdreamgrTranspBA.SkinColor.value != "#20000000":
-				skinSearchAndReplace.append(['#20000000', config.plugins.SatdreamgrTranspBA.SkinColor.value ])
+			if config.plugins.SatdreamgrTranspBA.SkinColor.value !="#20000000":
+				skinSearchAndReplace.append(["#20000000", config.plugins.SatdreamgrTranspBA.SkinColor.value ])
+			if config.plugins.SatdreamgrTranspBA.SkinColor.value !="#00000000":
+				skinSearchAndReplace.append(["#00000000", config.plugins.SatdreamgrTranspBA.SkinColor.value ])
+			if config.plugins.SatdreamgrTranspBA.SkinColor.value !="#50000000":
+				skinSearchAndReplace.append(["#50000000", config.plugins.SatdreamgrTranspBA.SkinColor.value ])
+			if config.plugins.SatdreamgrTranspBA.SkinColor.value !="#00102030":
+				skinSearchAndReplace.append(["#00102030", config.plugins.SatdreamgrTranspBA.SkinColor.value ])
+			if config.plugins.SatdreamgrTranspBA.SkinColor.value !="#00002222":
+				skinSearchAndReplace.append(["#00002222", config.plugins.SatdreamgrTranspBA.SkinColor.value ])
+			if config.plugins.SatdreamgrTranspBA.SkinColor.value !="#00080022":
+				skinSearchAndReplace.append(["#00080022", config.plugins.SatdreamgrTranspBA.SkinColor.value ])
+			if config.plugins.SatdreamgrTranspBA.SkinColor.value !="#00333333":
+				skinSearchAndReplace.append(["#00333333", config.plugins.SatdreamgrTranspBA.SkinColor.value ])
 			SkinDefaultFile = open(self.SkinDefault, "r")
 			SkinDefaultLines = SkinDefaultFile.readlines()
 			SkinDefaultFile.close()
