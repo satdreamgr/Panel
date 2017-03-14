@@ -8,23 +8,9 @@ from Tools.LoadPixmap import LoadPixmap
 from Components.config import config
 from Components.Sources.List import List
 from Components.PluginComponent import plugins
-from Plugins.Satdreamgr.Manipulate.plugin import PluginStart
-from Plugins.Satdreamgr.Hardware.plugin import HardwareInfo
-from Plugins.Satdreamgr.RemoveOPKG.plugin import Removeopkg
-from Plugins.Satdreamgr.SDGBackup.plugin import SDGBackup
-from Plugins.Satdreamgr.SettingsSatDreamGr.plugin import SDG_Menu
-from Plugins.Satdreamgr.SwapManager.plugin import SystemToolsSwap
-from Plugins.Satdreamgr.UpdateBouquet.plugin import UpdateBouquet
-from Plugins.Extensions.GreekStreamTV.plugin import GSMenu
-from Plugins.Satdreamgr.SkinSatdreamgr.plugin import MyMenuSKIN
-from Plugins.Satdreamgr.PictureCamera.plugin import PictureCamera
-from Plugins.Extensions.SDGRadio.plugin import SDGRadioScreen
-from Plugins.Extensions.GreekNetRadio.plugin import GreekMenuscrn
-from Screens.SoftcamSetup import SoftcamSetup
-from Screens.Hotkey import HotkeySetup
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
-
 from Tools.LoadPixmap import LoadPixmap
+
 import gettext
 try:
 	cat = gettext.translation('Satdreamgr-Panel', '/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/locale', [config.osd.language.getText()])
@@ -100,11 +86,16 @@ class Panel(Screen):
 	def openSelected(self):
 		index = self["list"].getIndex()
 		if index == 0:
-			self.session.open(SoftcamSetup)
+			try:
+				from Screens.SoftcamSetup import SoftcamSetup
+				self.session.open(SoftcamSetup)
+			except:
+				self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 1:
 			self.session.open(System_Panel)
 		elif index == 2:
 			self.session.open(Plugins_Panel)
+
 	def quit(self):
 		self.close()
 
@@ -147,21 +138,54 @@ class System_Panel(Screen):
 	def openSelected(self):
 		index = self["list"].getIndex()
 		if index == 0:
-			self.session.open(PluginStart)
+			try:
+				from Plugins.Satdreamgr.Manipulate.plugin import PluginStart
+				self.session.open(PluginStart)
+			except:
+				self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 1:
-			self.session.open(HardwareInfo)
+			try:
+				from Plugins.Satdreamgr.Hardware.plugin import HardwareInfo
+				self.session.open(HardwareInfo)
+			except:
+				self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 2:
-			self.session.open(MyMenuSKIN)
+			try:
+				from Plugins.Satdreamgr.SkinSatdreamgr.plugin import MyMenuSKIN
+				self.session.open(MyMenuSKIN)
+			except:
+				self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 3:
-			self.session.open(SDG_Menu)
+			try:
+				from Plugins.Satdreamgr.SettingsSatDreamGr.plugin import SDG_Menu
+				self.session.open(SDG_Menu)
+			except:
+				self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 4:
-			self.session.open(SDGBackup)
+			try:
+				from Plugins.Satdreamgr.SDGBackup.plugin import SDGBackup
+				self.session.open(SDGBackup)
+			except:
+				self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 5:
-			self.session.open(Removeopkg)
+			try:
+				from Plugins.Satdreamgr.RemoveOPKG.plugin import Removeopkg
+				self.session.open(Removeopkg)
+			except:
+				self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 6:
-			self.session.open(SystemToolsSwap)
+			try:
+				from Plugins.Satdreamgr.SwapManager.plugin import SystemToolsSwap
+				self.session.open(SystemToolsSwap)
+			except:
+				self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 7:
-			self.session.open(HotkeySetup)
+			try:
+				from Screens.Hotkey import HotkeySetup
+				self.session.open(HotkeySetup)
+			except:
+				self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
+
 	def quit(self):
 		self.close()
 
@@ -196,22 +220,42 @@ class Plugins_Panel(Screen):
 		self.drawList.append(self.buildListEntry(_("PictureCamera"), "camera.png"))
 		self.drawList.append(self.buildListEntry(_("GreekStreamTV"), "greekstream.png"))
 		self.drawList.append(self.buildListEntry(_("GreekStreamTV in Bouquets"), "greekstreamb.png"))
-
-
 		self["list"].setList(self.drawList)
 
 	def openSelected(self):
 		index = self["list"].getIndex()
 		if index == 0:
-			self.session.open(SDGRadioScreen)
+			try:
+				from Plugins.Extensions.SDGRadio.plugin import SDGRadioScreen
+				self.session.open(SDGRadioScreen)
+			except:
+				self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 1:
-			self.session.open(GreekMenuscrn)
+			try:
+				from Plugins.Extensions.GreekNetRadio.plugin import GreekMenuscrn
+				self.session.open(GreekMenuscrn)
+			except:
+				self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 2:
-			self.session.open(PictureCamera)
+			try:
+				from Plugins.Satdreamgr.PictureCamera.plugin import PictureCamera
+				self.session.open(PictureCamera)
+			except:
+				self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 3:
-			self.session.open(GSMenu)
+			try:
+				from Plugins.Extensions.GreekStreamTV.plugin import GSMenu
+				self.session.open(GSMenu)
+			except:
+				self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 4:
-			self.session.open(UpdateBouquet)
+			try:
+				from Plugins.Satdreamgr.UpdateBouquet.plugin import UpdateBouquet
+				self.session.open(UpdateBouquet)
+			except:
+				self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
+
+
 
 	def quit(self):
 		self.close()
