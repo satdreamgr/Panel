@@ -58,15 +58,16 @@ def Plugins(**kwargs):
 
 class MyMenuSKIN(Screen):
 	skin = """
-	<screen name="SatdreamgrTranspBA" position="center,center"  size="690,606" flags="wfNoBorder" backgroundColor="#20000000">
-	<eLabel font="Regular; 22" foregroundColor="#00ffffff" backgroundColor="#20000000" halign="left" position="100,555" size="250,33" text="Exit" transparent="1" />
-	<eLabel font="Regular; 22" foregroundColor="#00ffffff" backgroundColor="#20000000" halign="left" position="300,555" size="250,33" text="Ok" transparent="1" />
-	<widget name="menu" position="21,77" scrollbarMode="showOnDemand" size="590,506" transparent="1" />
+	<screen name="SatdreamgrTranspBA" position="center,center"  size="620,520" title="Configuration tool for Satdreamgr TranspBA skin" >
+	<eLabel font="Regular; 22" foregroundColor="#00ffffff" backgroundColor="#20000000" halign="left" position="100,490" size="250,33" text="Exit" transparent="1" />
+	<eLabel font="Regular; 22" foregroundColor="#00ffffff" backgroundColor="#20000000" halign="left" position="300,490" size="250,33" text="Ok" transparent="1" />
+	<widget name="menu" position="20,20" scrollbarMode="showOnDemand" size="590,480" transparent="1" />
 	</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
+		Screen.setTitle(self, _("Configuration tool for Satdreamgr TranspBA skin"))		
 		menu = []
 		menu.append((_("Change Color"), ))
 		menu.append((_(" "), ))
@@ -87,10 +88,10 @@ class MyMenuSKIN(Screen):
 		if choice == "skinhd":
 			               self.session.open(SatdreamgrTranspBA)
 		if choice == "full":
-		                   self.session.openWithCallback(self.FullInfobar, MessageBox,_("Do you want to use full infobar in this skin.\nDo you want to Restart Enigma2 now ?"), MessageBox.TYPE_YESNO)
+		                   self.session.openWithCallback(self.FullInfobar, MessageBox,_("Confirm your selection ?"), MessageBox.TYPE_YESNO)
 
 		if choice == "simple":
-		                   self.session.openWithCallback(self.SimpleInfobar, MessageBox,_("Do you want to use simple infobar in this skin.\nDo you want to Restart Enigma2 now ?"), MessageBox.TYPE_YESNO)
+		                   self.session.openWithCallback(self.SimpleInfobar, MessageBox,_("Confirm your selection ?"), MessageBox.TYPE_YESNO)
 
 	def SimpleInfobar(self, answer):
 		if answer is True:
@@ -102,8 +103,6 @@ class MyMenuSKIN(Screen):
 			f.write(result)
 			configfile.save()
 			self.session.open(TryQuitMainloop, 3)
-		else:
-			self.close()
 
 	def FullInfobar(self, answer):
 		if answer is True:
@@ -115,28 +114,25 @@ class MyMenuSKIN(Screen):
 			f.write(result)
 			configfile.save()
 			self.session.open(TryQuitMainloop, 3)
-		else:
-			self.close()
 
 #######################################################################
 
 class SatdreamgrTranspBA(ConfigListScreen, Screen):
 	skin = """
-	<screen name="SatdreamgrTranspBA" position="center,center" size="690,606" flags="wfNoBorder" backgroundColor="#20000000">
-	<eLabel font="Regular; 20" foregroundColor="#00ffffff" backgroundColor="#20000000" halign="left" position="37,555" size="250,33" text="Cancel" transparent="1" />
-	<eLabel font="Regular; 20" foregroundColor="#00ffffff" backgroundColor="#20000000" halign="left" position="187,555" size="250,33" text="Save" transparent="1" />
-	<eLabel font="Regular; 20" foregroundColor="#00ffffff" backgroundColor="#20000000" halign="left" position="337,555" size="250,33" text="Reboot" transparent="1" />
-	<eLabel font="Regular; 20" foregroundColor="#00ffffff" backgroundColor="#20000000" halign="left" position="487,555" size="250,33" text="Information" transparent="1" />
-	<widget name="config" position="21,77" scrollbarMode="showOnDemand" size="590,506" transparent="1" />
-	<eLabel position="470,550" size="5,40" backgroundColor="#000000ff" />
-	<eLabel position="320,550" size="5,40" backgroundColor="#00ffff00" />
-	<eLabel position="170,550" size="5,40" backgroundColor="#0000ff00" />
-	<eLabel position="20,550" size="5,40" backgroundColor="#00ff0000" />
+	<screen name="SatdreamgrTranspBA" position="center,center"  size="620,520" title="Edit color">
+	<eLabel font="Regular; 20" foregroundColor="#00ffffff" backgroundColor="#20000000" halign="left" position="37,460" size="250,33" text="Cancel" transparent="1" />
+	<eLabel font="Regular; 20" foregroundColor="#00ffffff" backgroundColor="#20000000" halign="left" position="187,460" size="250,33" text="Save" transparent="1" />
+	<eLabel font="Regular; 20" foregroundColor="#00ffffff" backgroundColor="#20000000" halign="left" position="487,460" size="250,33" text="Information" transparent="1" />
+	<widget name="config" position="20,20" scrollbarMode="showOnDemand" size="590,380" transparent="1" />
+	<eLabel position="470,455" size="5,40" backgroundColor="#000000ff" />
+	<eLabel position="170,455" size="5,40" backgroundColor="#0000ff00" />
+	<eLabel position="20,455" size="5,40" backgroundColor="#00ff0000" />
 	</screen>"""
 
 	def __init__(self, session, args = None, picPath = None):
 		Screen.__init__(self, session)
 		self.session = session
+		Screen.setTitle(self, _("Edit color"))		
 		self.myskinpath = "/etc/enigma2/"
 		self.SkinDefault = self.myskinpath + "skin_user_Satdreamgr-HD-TranspBA.xml"
 		self.SkinDefaultTmp = self.SkinDefault + ".TMP"
@@ -144,7 +140,7 @@ class SatdreamgrTranspBA(ConfigListScreen, Screen):
 		self.SkinFinal = self.myskinpathout + "skin_user_Satdreamgr-HD-TranspBA.xml"
 		ConfigListScreen.__init__(self, [])
 		self.createConfigList()
-		self["actions"] = ActionMap(["OkCancelActions","DirectionActions", "InputActions", "ColorActions"], {"left": self.keyLeft,"down": self.keyDown,"up": self.keyUp,"right": self.keyRight,"red": self.exit,"yellow": self.reboot, "blue": self.showInfo, "green": self.save,"cancel": self.exit}, -1)
+		self["actions"] = ActionMap(["OkCancelActions","DirectionActions", "InputActions", "ColorActions"], {"left": self.keyLeft,"down": self.keyDown,"up": self.keyUp,"right": self.keyRight,"red": self.exit, "blue": self.showInfo, "green": self.save,"cancel": self.exit}, -1)
 
 	def createConfigList(self):
 		list = []
@@ -170,10 +166,6 @@ class SatdreamgrTranspBA(ConfigListScreen, Screen):
 	def keyUp(self):
 		#print "key up"
 		self["config"].instance.moveSelection(self["config"].instance.moveUp)
-
-	def reboot(self):
-		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("Do you really want to restart Enigma2 now?"), MessageBox.TYPE_YESNO)
-		restartbox.setTitle(_("Restart GUI"))
 
 	def showInfo(self):
 		self.session.open(MessageBox, _("  "), MessageBox.TYPE_INFO)
@@ -229,7 +221,7 @@ class SatdreamgrTranspBA(ConfigListScreen, Screen):
 		config.skin.primary_skin.setValue("Satdreamgr-HD-TranspBA/skin.xml")
 		config.skin.save()
 		configfile.save()
-		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply a new skin.\nDo you want to Restart the GUI now ?"), MessageBox.TYPE_YESNO)
+		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("Confirm your selection ?"), MessageBox.TYPE_YESNO)
 		restartbox.setTitle(_("Restart GUI"))
 
 	def restartGUI(self, answer):
