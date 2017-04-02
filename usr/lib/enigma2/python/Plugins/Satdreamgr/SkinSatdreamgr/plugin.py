@@ -67,7 +67,7 @@ class MyMenuSKIN(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
-		Screen.setTitle(self, _("Configuration tool for Satdreamgr TranspBA skin"))		
+		Screen.setTitle(self, _("Configuration tool for Satdreamgr TranspBA skin"))
 		menu = []
 		menu.append((_("Change Color"), ))
 		menu.append((_(" "), ))
@@ -77,6 +77,8 @@ class MyMenuSKIN(Screen):
 		menu.append((_("Change Infobar"), ))
 		menu.append((_(" "), ))
 		menu.append((_("Full Infobar Satdreamgr-HD-TranspBA"),"full"))
+		menu.append((_(" "), ))
+		menu.append((_("Full Bottom Infobar Satdreamgr-HD-TranspBA"),"fullbottom"))
 		menu.append((_(" "), ))
 		menu.append((_("Simple Infobar Satdreamgr-HD-TranspBA"),"simple"))
 		self["menu"] = MenuList(menu)
@@ -89,7 +91,8 @@ class MyMenuSKIN(Screen):
 			               self.session.open(SatdreamgrTranspBA)
 		if choice == "full":
 		                   self.session.openWithCallback(self.FullInfobar, MessageBox,_("Confirm your selection ?"), MessageBox.TYPE_YESNO)
-
+		if choice == "fullbottom":
+		                   self.session.openWithCallback(self.FullBottomInfobar, MessageBox,_("Confirm your selection ?"), MessageBox.TYPE_YESNO)
 		if choice == "simple":
 		                   self.session.openWithCallback(self.SimpleInfobar, MessageBox,_("Confirm your selection ?"), MessageBox.TYPE_YESNO)
 
@@ -98,7 +101,18 @@ class MyMenuSKIN(Screen):
 			f = file("/etc/enigma2/skin_user_Satdreamgr-HD-TranspBA.xml","r")
 			chaine = f.read()
 			f.close()
-			result=chaine.replace("infobar_b.xml", "infobar_a.xml")
+			result=chaine.replace("infobar_b.xml", "infobar_a.xml").replace("infobar_c.xml", "infobar_a.xml")
+			f = file("/etc/enigma2/skin_user_Satdreamgr-HD-TranspBA.xml","w")
+			f.write(result)
+			configfile.save()
+			self.session.open(TryQuitMainloop, 3)
+
+	def FullBottomInfobar(self, answer):
+		if answer is True:
+			f = file("/etc/enigma2/skin_user_Satdreamgr-HD-TranspBA.xml","r")
+			chaine = f.read()
+			f.close()
+			result=chaine.replace("infobar_a.xml", "infobar_c.xml").replace("infobar_b.xml", "infobar_c.xml")
 			f = file("/etc/enigma2/skin_user_Satdreamgr-HD-TranspBA.xml","w")
 			f.write(result)
 			configfile.save()
@@ -109,7 +123,7 @@ class MyMenuSKIN(Screen):
 			f = file("/etc/enigma2/skin_user_Satdreamgr-HD-TranspBA.xml","r")
 			chaine = f.read()
 			f.close()
-			result=chaine.replace("infobar_a.xml", "infobar_b.xml")
+			result=chaine.replace("infobar_a.xml", "infobar_b.xml").replace("infobar_c.xml", "infobar_b.xml")
 			f = file("/etc/enigma2/skin_user_Satdreamgr-HD-TranspBA.xml","w")
 			f.write(result)
 			configfile.save()
@@ -132,7 +146,7 @@ class SatdreamgrTranspBA(ConfigListScreen, Screen):
 	def __init__(self, session, args = None, picPath = None):
 		Screen.__init__(self, session)
 		self.session = session
-		Screen.setTitle(self, _("Edit color"))		
+		Screen.setTitle(self, _("Edit color"))
 		self.myskinpath = "/etc/enigma2/"
 		self.SkinDefault = self.myskinpath + "skin_user_Satdreamgr-HD-TranspBA.xml"
 		self.SkinDefaultTmp = self.SkinDefault + ".TMP"
