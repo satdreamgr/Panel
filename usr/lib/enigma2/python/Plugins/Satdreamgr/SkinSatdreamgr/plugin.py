@@ -76,11 +76,11 @@ class MyMenuSKIN(Screen):
 		menu.append((_(" "), ))
 		menu.append((_("Change Infobar"), ))
 		menu.append((_(" "), ))
-		menu.append((_("Full Infobar Satdreamgr-HD-TranspBA"),"full"))
+		menu.append((_("Simple Infobar Satdreamgr-HD-TranspBA"),"simple"))
 		menu.append((_(" "), ))
 		menu.append((_("Full Bottom Infobar Satdreamgr-HD-TranspBA"),"fullbottom"))
 		menu.append((_(" "), ))
-		menu.append((_("Simple Infobar Satdreamgr-HD-TranspBA"),"simple"))
+		menu.append((_("Full Infobar Satdreamgr-HD-TranspBA"),"full"))
 		self["menu"] = MenuList(menu)
 		self["actions"] = ActionMap(["WizardActions", "DirectionActions"],{"ok": self.go,"back": self.close,}, -1)
 
