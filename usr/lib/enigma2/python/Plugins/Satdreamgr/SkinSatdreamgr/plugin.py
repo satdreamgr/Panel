@@ -70,17 +70,16 @@ class MyMenuSKIN(Screen):
 		Screen.setTitle(self, _("Configuration tool for Satdreamgr TranspBA skin"))
 		menu = []
 		menu.append((_("Change Color"), ))
-		menu.append((_(" "), ))
 		menu.append((_("Change Color Satdreamgr-HD-TranspBA"),"skinhd"))
-		menu.append((_(" "), ))
-		menu.append((_(" "), ))
+		menu.append((_(" "), ))		
 		menu.append((_("Change Infobar"), ))
-		menu.append((_(" "), ))
 		menu.append((_("Simple Infobar Satdreamgr-HD-TranspBA"),"simple"))
-		menu.append((_(" "), ))
 		menu.append((_("Full Bottom Infobar Satdreamgr-HD-TranspBA"),"fullbottom"))
-		menu.append((_(" "), ))
 		menu.append((_("Full Infobar Satdreamgr-HD-TranspBA"),"full"))
+		menu.append((_(" "), ))		
+		menu.append((_("Weather in Infobar"), ))		
+		menu.append((_("Weather ON in Infobar"),"weatheron"))			
+		menu.append((_("Weather OFF in Infobar"),"weatheroff"))					
 		self["menu"] = MenuList(menu)
 		self["actions"] = ActionMap(["WizardActions", "DirectionActions"],{"ok": self.go,"back": self.close,}, -1)
 
@@ -95,7 +94,11 @@ class MyMenuSKIN(Screen):
 		                   self.session.openWithCallback(self.FullBottomInfobar, MessageBox,_("Confirm your selection ?"), MessageBox.TYPE_YESNO)
 		if choice == "simple":
 		                   self.session.openWithCallback(self.SimpleInfobar, MessageBox,_("Confirm your selection ?"), MessageBox.TYPE_YESNO)
-
+		if choice == "weatheron":
+		                   self.session.openWithCallback(self.WeatherONInfobar, MessageBox,_("Confirm your selection ?"), MessageBox.TYPE_YESNO)	
+		if choice == "weatheroff":
+		                   self.session.openWithCallback(self.WeatherOFFInfobar, MessageBox,_("Confirm your selection ?"), MessageBox.TYPE_YESNO)		                   	                   
+		                   
 	def SimpleInfobar(self, answer):
 		if answer is True:
 			f = file("/etc/enigma2/skin_user_Satdreamgr-HD-TranspBA.xml","r")
@@ -128,7 +131,57 @@ class MyMenuSKIN(Screen):
 			f.write(result)
 			configfile.save()
 			self.session.open(TryQuitMainloop, 3)
-
+			
+	def WeatherONInfobar(self, answer):
+		if answer is True:
+			f = file("/usr/share/enigma2/Satdreamgr-HD-TranspBA/infobar_a.xml","r")
+			chaine = f.read()
+			f.close()
+			result=chaine.replace("<!--<eLabel /> ", "<ePixmap />")
+			f = file("/usr/share/enigma2/Satdreamgr-HD-TranspBA/infobar_a.xml","w")
+			f.write(result)
+			configfile.save()
+			a = file("/usr/share/enigma2/Satdreamgr-HD-TranspBA/infobar_b.xml","r")
+			chaine = a.read()
+			a.close()
+			result=chaine.replace("<!--<eLabel /> ", "<ePixmap />")
+			a = file("/usr/share/enigma2/Satdreamgr-HD-TranspBA/infobar_b.xml","w")
+			a.write(result)
+			configfile.save()	
+			b = file("/usr/share/enigma2/Satdreamgr-HD-TranspBA/infobar_c.xml","r")
+			chaine = b.read()
+			b.close()
+			result=chaine.replace("<!--<eLabel /> ", "<ePixmap />")
+			b = file("/usr/share/enigma2/Satdreamgr-HD-TranspBA/infobar_c.xml","w")
+			b.write(result)
+			configfile.save()
+			self.session.open(TryQuitMainloop, 3)
+			
+	def WeatherOFFInfobar(self, answer):
+		if answer is True:
+			f = file("/usr/share/enigma2/Satdreamgr-HD-TranspBA/infobar_a.xml","r")
+			chaine = f.read()
+			f.close()
+			result=chaine.replace("<ePixmap />", "<!--<eLabel /> ")
+			f = file("/usr/share/enigma2/Satdreamgr-HD-TranspBA/infobar_a.xml","w")
+			f.write(result)
+			configfile.save()
+			a = file("/usr/share/enigma2/Satdreamgr-HD-TranspBA/infobar_b.xml","r")
+			chaine = a.read()
+			a.close()
+			result=chaine.replace("<ePixmap />", "<!--<eLabel /> ")
+			a = file("/usr/share/enigma2/Satdreamgr-HD-TranspBA/infobar_b.xml","w")
+			a.write(result)
+			configfile.save()	
+			b = file("/usr/share/enigma2/Satdreamgr-HD-TranspBA/infobar_c.xml","r")
+			chaine = b.read()
+			b.close()
+			result=chaine.replace("<ePixmap />", "<!--<eLabel /> ")
+			b = file("/usr/share/enigma2/Satdreamgr-HD-TranspBA/infobar_c.xml","w")
+			b.write(result)
+			configfile.save()				
+			self.session.open(TryQuitMainloop, 3)
+			
 #######################################################################
 
 class SatdreamgrTranspBA(ConfigListScreen, Screen):
@@ -252,4 +305,3 @@ class SatdreamgrTranspBA(ConfigListScreen, Screen):
 			else:
        				pass
 		self.close()
-
