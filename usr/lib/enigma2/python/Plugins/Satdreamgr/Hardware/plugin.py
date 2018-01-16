@@ -59,7 +59,7 @@ class HardwareInfo(Screen):
 		menu.append((_("DVB Modules"),"modules"))
 		menu.append((_("Netstat"),"netstat"))
 		menu.append((_("Ifconfig"),"ifconfig"))
-		menu.append((_("Performence Internet"),"internet"))
+		menu.append((_("Internet Connectivity Test"),"internet"))
 		menu.append((_("V. SecondStage Loader"),"Second"))
 		menu.append((_("ipkg list installed"),"listinstalled"))
 		menu.append((_("Show All Devices"),"devices"))
@@ -84,7 +84,7 @@ class HardwareInfo(Screen):
 			if choice == "ifconfig":
 				self.session.open(PanelTextexit, _("Ifconfig"),["ifconfig"])
 			if choice == "internet":
-				self.session.open(PanelTextexit, _("Performence Internet"),["ping -c 1 www.satdreamgr.com && ping -c 1 www.google.com"])
+				self.session.open(PanelTextexit, _("Internet Connectivity Test"),["ping -c 1 www.satdreamgr.com && ping -c 1 www.google.com"])
 			if choice == "Second":
 				self.session.open(PanelTextexit, _("Your Version SecondStage Loader Installed"),["opkg list | grep second"])
 			if choice == "listinstalled":
