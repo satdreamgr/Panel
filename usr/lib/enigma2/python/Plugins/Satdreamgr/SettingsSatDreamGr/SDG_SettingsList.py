@@ -97,7 +97,7 @@ class SDG_SettingsList(Screen):
 		index = self["list"].getIndex()
 
 		self.url = self.list[index][2]
-		self.session.open(SDG_ActionBox, _("Downloading settings"), _("Downloading ..."), self.download)
+		self.session.open(SDG_ActionBox, _("Downloading settings"), _("Downloading..."), self.download)
 
 	def quit(self):
 		self.close()

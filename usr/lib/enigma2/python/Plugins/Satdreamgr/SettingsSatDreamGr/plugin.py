@@ -38,15 +38,15 @@ config.settingsloader.keepcablesxml = ConfigYesNo(False)
 config.settingsloader.keepterrestrialxml = ConfigYesNo(False)
 config.settingsloader.keepbouquets = ConfigText("", False)
 
-def main(session,**kwargs):
-    try:
-     	session.open(SDG_Menu)
-    except:
-        print "[Settings] Pluginexecution failed"
+def main(session, **kwargs):
+	try:
+		session.open(SDG_Menu)
+	except:
+		print "[Settings] Pluginexecution failed"
 
-def autostart(reason,**kwargs):
-    if reason == 0:
-        print "[PluginMenu] no autostart"
+def autostart(reason, **kwargs):
+	if reason == 0:
+		print "[PluginMenu] no autostart"
 
 
 def menu(menuid, **kwargs):
@@ -57,21 +57,22 @@ def menu(menuid, **kwargs):
 def Plugins(**kwargs):
 	return PluginDescriptor(name = _("Settings E2"), description = _("Satvenus Morpheus Vhannibal Cyrus"), where = PluginDescriptor.WHERE_MENU, fnc = menu)
 
-sdg_main = """<screen name="SDG_Menu" position="center,center" size="600,405" title="Settings E2" >
-		<widget source="list" render="Listbox" position="20,10" size="580,330" scrollbarMode="showOnDemand" transparent="1" >
-		<convert type="TemplatedMultiContent">
-		{"template": [
-		MultiContentEntryPixmapAlphaTest(pos = (12, 4), size = (32, 32), png = 0),
-				MultiContentEntryText(pos = (58, 5), size = (440, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
-						],
-						"fonts": [gFont("Regular", 22)],
-						"itemHeight": 40
-					}
-				</convert>
-			</widget>
-                   <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/key_exit.png" position="80,360" size="40,32" zPosition="1" alphatest="blend"/>
-                   <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/key_ok.png" position="240,360" size="40,32" zPosition="1" alphatest="blend"/>
-                   </screen>"""
+sdg_main = """
+	<screen name="SDG_Menu" position="center,center" size="600,405" title="Settings E2">
+		<widget source="list" render="Listbox" position="20,10" size="580,330" scrollbarMode="showOnDemand" transparent="1">
+			<convert type="TemplatedMultiContent">
+				{"template": [
+					MultiContentEntryPixmapAlphaTest(pos = (12, 4), size = (32, 32), png = 0),
+					MultiContentEntryText(pos = (58, 5), size = (440, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
+					],
+					"fonts": [gFont("Regular", 22)],
+					"itemHeight": 40
+				}
+			</convert>
+		</widget>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/key_exit.png" position="80,360" size="40,32" zPosition="1" alphatest="blend"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/key_ok.png" position="240,360" size="40,32" zPosition="1" alphatest="blend"/>
+	</screen>"""
 
 class SDG_Menu(Screen):
 	def __init__(self, session):
@@ -91,12 +92,12 @@ class SDG_Menu(Screen):
 		self.refresh()
 
 	def buildListEntry(self, description, image):
-		pixmap = LoadPixmap(cached=True, path="%s/images/%s" % (os.path.dirname(sys.modules[__name__].__file__), image));
+		pixmap = LoadPixmap(cached=True, path="%s/images/%s" % (os.path.dirname(sys.modules[__name__].__file__), image))
 		return((pixmap, description))
 
 	def refresh(self):
 		self.drawList = []
-		self.drawList.append(self.buildListEntry(_("SatVenus settings"), "satv.png"))		
+		self.drawList.append(self.buildListEntry(_("Satvenus settings"), "satv.png"))
 		self.drawList.append(self.buildListEntry(_("Morpheus883 settings"), "morphd.png"))
 		self.drawList.append(self.buildListEntry(_("Vhannibal settings"), "Vhannibal.png"))
 		self.drawList.append(self.buildListEntry(_("Cyrus settings"), "downloads.png"))
@@ -105,7 +106,7 @@ class SDG_Menu(Screen):
 	def openSelected(self):
 		index = self["list"].getIndex()
 		if index == 0:
-			SDG_SatvenusHelper(self.session).load()		
+			SDG_SatvenusHelper(self.session).load()
 		elif index == 1:
 			SDG_MorpheusHelper(self.session).load()
 		elif index == 2:
@@ -119,5 +120,3 @@ class SDG_Menu(Screen):
 
 	def layoutFinished(self):
 		self.setTitle(self.setup_title)
-
-
