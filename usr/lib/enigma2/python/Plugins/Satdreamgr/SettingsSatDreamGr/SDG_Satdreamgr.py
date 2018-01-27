@@ -61,29 +61,31 @@ class SDG_SatdreamgrHelper():
 			self.loaded = False
 
 	def load(self):
-		self.session.openWithCallback(self.show, SDG_ActionBox, _("Downloading Cyrus list"), _("Downloading ..."), self.download)
+		self.session.openWithCallback(self.show, SDG_ActionBox, _("Downloading Cyrus list"), _("Downloading..."), self.download)
 
 	def show(self, ret = None):
 		if self.loaded:
 			self.session.open(SDG_Satdreamgr, self.list)
 
-cyrus_main = """<screen name="SDG_Vhannibal" position="center,center" size="600,405" title="Cyrus list" >
-			<widget source="list" render="Listbox" position="10,10" size="580,330" scrollbarMode="showOnDemand" transparent="1" >
-				<convert type="TemplatedMultiContent">
-					{"template": [
-						MultiContentEntryText(pos = (10, 5), size = (440, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 0),
-						MultiContentEntryText(pos = (450, 5), size = (120, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
-						],
-						"fonts": [gFont("Regular", 22)],
-						"itemHeight": 40
-					}
-				</convert>
-			</widget>	
-                   <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/key_exit.png" position="80,360" size="40,32" zPosition="1" alphatest="blend"/>
-                   <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/key_ok.png" position="240,360" size="40,32" zPosition="1" alphatest="blend"/>                   
-                   </screen>""" 
+cyrus_main = """
+	<screen name="SDG_Satdreamgr" position="center,center" size="600,405" title="Cyrus settings">
+		<widget source="list" render="Listbox" position="10,10" size="580,330" scrollbarMode="showOnDemand" transparent="1" >
+			<convert type="TemplatedMultiContent">
+				{"template": [
+					MultiContentEntryText(pos = (10, 5), size = (440, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 0),
+					MultiContentEntryText(pos = (450, 5), size = (120, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
+					],
+					"fonts": [gFont("Regular", 22)],
+					"itemHeight": 40
+				}
+			</convert>
+		</widget>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/key_exit.png" position="80,360" size="40,32" zPosition="1" alphatest="blend"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/key_ok.png" position="240,360" size="40,32" zPosition="1" alphatest="blend"/>
+	</screen>"""
 
 class SDG_Satdreamgr(SDG_SettingsList):
 	def __init__(self, session, list):
 		SDG_SettingsList.__init__(self, session, list)
-		self.skin = cyrus_main	
+		self.skin = cyrus_main
+		self.title = _("Cyrus settings")
