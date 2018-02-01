@@ -62,7 +62,7 @@ class SDGBackup(Screen):
 		returnValue = self["menu"].l.getCurrentSelection()[1]
 		if returnValue:
 			self.location = returnValue
-			self.session.openWithCallback(self.greek,MessageBox,_("Confirm your selection, or exit"), MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.greek,MessageBox,_("You are about to create a backup to the selected location.\nDo you really want to proceed?"), MessageBox.TYPE_YESNO)
 
 	def greek(self, answer):
 		if answer:
