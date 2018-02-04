@@ -40,10 +40,10 @@ def Plugins(**kwargs):
 
 class SDGBackup(Screen):
 	skin = """
-		<screen position="center,center" size="460,400" title="SDGBackup Dreambox Enigma2" >
-			<widget name="menu" position="10,10" size="420,380" scrollbarMode="showOnDemand" />
-			<widget name="myRedBtn" position="10,320" size="100,40" backgroundColor="red" valign="center" halign="center" zPosition="2" foregroundColor="white" font="Regular;20"/>
-			<widget name="myGreenBtn" position="120,320" size="100,40" backgroundColor="green" valign="center" halign="center" zPosition="2" foregroundColor="white" font="Regular;20"/>
+		<screen position="center,center" size="460,400" title="SDGBackup Dreambox Enigma2">
+			<widget name="menu" position="10,10" size="420,380" scrollbarMode="showOnDemand"/>
+			<widget name="key_red" position="10,320" size="100,40" backgroundColor="red" valign="center" halign="center" zPosition="2" foregroundColor="white" font="Regular;20"/>
+			<widget name="key_green" position="120,320" size="100,40" backgroundColor="green" valign="center" halign="center" zPosition="2" foregroundColor="white" font="Regular;20"/>
 		</screen>"""
 
 	def __init__(self, session):
@@ -53,8 +53,8 @@ class SDGBackup(Screen):
 		menu = []
 		menu.append((_("Start SDGBackup on USB"), "/media/usb"))
 		menu.append((_("Start SDGBackup on HDD"), "/media/hdd"))
-		self["myRedBtn"] = Label(_("Cancel"))
-		self["myGreenBtn"] = Label(_("OK"))
+		self["key_red"] = self["myRedBtn"] = Label(_("Cancel")) # keep old button name for compatibility with skins
+		self["key_green"] = self["myGreenBtn"] = Label(_("OK")) # keep old button name for compatibility with skins
 		self["menu"] = MenuList(menu)
 		self["actions"] = ActionMap(["OkCancelActions", "SetupActions", "ColorActions", "WizardActions", "DirectionActions"], {"ok": self.go, "green": self.go, "cancel": self.close}, -1)
 
