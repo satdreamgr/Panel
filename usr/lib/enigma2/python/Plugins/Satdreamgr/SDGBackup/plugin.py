@@ -53,6 +53,7 @@ class SDGBackup(Screen):
 		menu = []
 		menu.append((_("Start SDGBackup on USB"), "/media/usb"))
 		menu.append((_("Start SDGBackup on HDD"), "/media/hdd"))
+		self.setTitle("SDGBackup Dreambox Enigma2")
 		self["key_red"] = self["myRedBtn"] = Label(_("Cancel")) # keep old button name for compatibility with skins
 		self["key_green"] = self["myGreenBtn"] = Label(_("OK")) # keep old button name for compatibility with skins
 		self["menu"] = MenuList(menu)
