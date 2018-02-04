@@ -53,6 +53,7 @@ class SDGBackup(Screen):
 		menu = []
 		menu.append((_("Start SDGBackup on USB"), "/media/usb"))
 		menu.append((_("Start SDGBackup on HDD"), "/media/hdd"))
+		self.setTitle(_("SDGBackup Dreambox Enigma2"))
 		self["myRedBtn"] = Label(_("Cancel"))
 		self["myGreenBtn"] = Label(_("OK"))
 		self["menu"] = MenuList(menu)
