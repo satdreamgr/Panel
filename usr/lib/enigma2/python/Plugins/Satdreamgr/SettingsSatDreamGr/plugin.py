@@ -9,6 +9,7 @@ from SDG_Vhannibal import SDG_VhannibalHelper
 from SDG_Morpheus import SDG_MorpheusHelper
 from SDG_Satdreamgr import SDG_SatdreamgrHelper
 from SDG_Satvenus import SDG_SatvenusHelper
+from SDG_Likra import SDG_LikraHelper
 from Components.Label import Label
 from Components.Button import Button
 from Components.MenuList import MenuList
@@ -55,7 +56,7 @@ def menu(menuid, **kwargs):
 	return []
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name = _("Settings E2"), description = _("Satvenus Morpheus Vhannibal Cyrus"), where = PluginDescriptor.WHERE_MENU, fnc = menu)
+	return PluginDescriptor(name = _("Settings E2"), description = _("Morpheus Vhannibal Cyrus Satvenus Likra"), where = PluginDescriptor.WHERE_MENU, fnc = menu)
 
 sdg_main = """
 	<screen name="SDG_Menu" position="center,center" size="600,405" title="Settings E2">
@@ -97,22 +98,25 @@ class SDG_Menu(Screen):
 
 	def refresh(self):
 		self.drawList = []
-		self.drawList.append(self.buildListEntry(_("Satvenus settings"), "satv.png"))
 		self.drawList.append(self.buildListEntry(_("Morpheus883 settings"), "morphd.png"))
 		self.drawList.append(self.buildListEntry(_("Vhannibal settings"), "Vhannibal.png"))
 		self.drawList.append(self.buildListEntry(_("Cyrus settings"), "downloads.png"))
+		self.drawList.append(self.buildListEntry(_("Satvenus settings"), "satv.png"))
+		self.drawList.append(self.buildListEntry(_("Likra settings"), "likra.png"))
 		self["list"].setList(self.drawList)
 
 	def openSelected(self):
 		index = self["list"].getIndex()
 		if index == 0:
-			SDG_SatvenusHelper(self.session).load()
-		elif index == 1:
 			SDG_MorpheusHelper(self.session).load()
-		elif index == 2:
+		elif index == 1:
 			SDG_VhannibalHelper(self.session).load()
-		elif index == 3:
+		elif index == 2:
 			SDG_SatdreamgrHelper(self.session).load()
+		elif index == 3:
+			SDG_SatvenusHelper(self.session).load()
+		elif index == 4:
+			SDG_LikraHelper(self.session).load()
 
 	def quit(self):
 		self.close()
