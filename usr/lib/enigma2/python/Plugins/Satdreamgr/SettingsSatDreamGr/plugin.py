@@ -52,42 +52,48 @@ def autostart(reason, **kwargs):
 
 def menu(menuid, **kwargs):
 	if menuid == "none":
-		return [(_("Settings E2"), main, "settings_setup", 45)]
+		return [(_("Enigma2 settings"), main, "settings_setup", 45)]
 	return []
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name = _("Settings E2"), description = _("Morpheus Vhannibal Cyrus Satvenus Likra"), where = PluginDescriptor.WHERE_MENU, fnc = menu)
-
-sdg_main = """
-	<screen name="SDG_Menu" position="center,center" size="600,405" title="Settings E2">
-		<widget source="list" render="Listbox" position="20,10" size="580,330" scrollbarMode="showOnDemand" transparent="1">
-			<convert type="TemplatedMultiContent">
-				{"template": [
-					MultiContentEntryPixmapAlphaTest(pos = (12, 4), size = (32, 32), png = 0),
-					MultiContentEntryText(pos = (58, 5), size = (440, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
-					],
-					"fonts": [gFont("Regular", 22)],
-					"itemHeight": 40
-				}
-			</convert>
-		</widget>
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/key_exit.png" position="80,360" size="40,32" zPosition="1" alphatest="blend"/>
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/key_ok.png" position="240,360" size="40,32" zPosition="1" alphatest="blend"/>
-	</screen>"""
+	return PluginDescriptor(name = _("Enigma2 settings"), description = _("Morpheus, Vhannibal, Cyrus, Satvenus, Likra"), where = PluginDescriptor.WHERE_MENU, fnc = menu)
 
 class SDG_Menu(Screen):
+
+	skin = """
+		<screen name="SDG_Menu" position="center,center" size="600,405" title="Enigma2 settings">
+			<widget source="list" render="Listbox" position="10,10" size="580,350" scrollbarMode="showOnDemand">
+				<convert type="TemplatedMultiContent">
+					{"template": [
+						MultiContentEntryPixmapAlphaTest(pos = (12, 4), size = (32, 32), png = 0),
+						MultiContentEntryText(pos = (58, 5), size = (440, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
+						],
+						"fonts": [gFont("Regular", 20)],
+						"itemHeight": 35
+					}
+				</convert>
+			</widget>
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/red.png" position="10,372" size="32,32" alphatest="blend"/>
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/green.png" position="165,372" size="32,32" alphatest="blend"/>
+			<widget name="key_red" position="45,370" size="120,32" valign="center" font="Regular;20"/>
+			<widget name="key_green" position="200,370" size="120,32" valign="center" font="Regular;20"/>
+		</screen>"""
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.skin = sdg_main
 		self.session = session
 		self.drawList = []
-		self.setup_title = _("Settings E2")
+		self.setup_title = _("Enigma2 settings")
 		self.onLayoutFinish.append(self.layoutFinished)
 		self["list"] = List()
-		self["setupActions"] = ActionMap(["SetupActions"],
+		self["key_red"] = Label(_("Exit"))
+		self["key_green"] = Label(_("Select"))
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
 			"cancel": self.quit,
 			"ok": self.openSelected,
+			"red": self.quit,
+			"green": self.openSelected,
 		}, -2)
 
 		self.refresh()
