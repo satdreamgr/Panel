@@ -18,14 +18,14 @@ try:
 except IOError:
 	pass
 def main(session,**kwargs):
-    try:
-     	session.open(Panel)
-    except:
-        print "[Panel +] Pluginexecution failed"
+	try:
+		session.open(Panel)
+	except:
+		print "[Panel +] Pluginexecution failed"
 
 def autostart(reason,**kwargs):
-    if reason == 0:
-        print "[PluginMenu] no autostart"
+	if reason == 0:
+		print "[PluginMenu] no autostart"
 
 def menu(menuid):
 	if menuid == "mainmenu":
@@ -39,20 +39,20 @@ def Plugins(**kwargs):
 	return list
 
 panel_main = """<screen name="Panel+" position="center,center" size="600,405" title="Panel +" >
-		<widget source="list" render="Listbox" position="20,10" size="580,320" scrollbarMode="showOnDemand" transparent="1" >
-		<convert type="TemplatedMultiContent">
-		{"template": [
-		MultiContentEntryPixmapAlphaTest(pos = (12, 4), size = (32, 32), png = 0),
-				MultiContentEntryText(pos = (58, 5), size = (440, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
-						],
-						"fonts": [gFont("Regular", 22)],
-						"itemHeight": 40
-					}
-				</convert>
-			</widget>
-                   <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/key_exit.png" position="80,360" size="40,32" zPosition="1" alphatest="blend"/>
-                   <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/key_ok.png" position="240,360" size="40,32" zPosition="1" alphatest="blend"/>
-                   </screen>"""
+					<widget source="list" render="Listbox" position="20,10" size="580,320" scrollbarMode="showOnDemand" transparent="1" >
+						<convert type="TemplatedMultiContent">
+							{"template": [
+								MultiContentEntryPixmapAlphaTest(pos = (12, 4), size = (32, 32), png = 0),
+								MultiContentEntryText(pos = (58, 5), size = (440, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
+								],
+							"fonts": [gFont("Regular", 22)],
+							"itemHeight": 40
+							}
+						</convert>
+					</widget>
+					<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/key_exit.png" position="80,360" size="40,32" zPosition="1" alphatest="blend"/>
+					<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/key_ok.png" position="240,360" size="40,32" zPosition="1" alphatest="blend"/>
+				</screen>"""
 
 class Panel(Screen):
 	def __init__(self, session):
@@ -125,13 +125,13 @@ class System_Panel(Screen):
 
 	def refresh(self):
 		self.drawList = []
-		self.drawList.append(self.buildListEntry(_("Archives Explorer"), "Archives.png"))
-		self.drawList.append(self.buildListEntry(_("Hardware Info"), "hardware.png"))
-		self.drawList.append(self.buildListEntry(_("Configuration TranspBA Skin"), "eye.png"))
-		self.drawList.append(self.buildListEntry(_("Settings E2"), "settings.png"))
+		self.drawList.append(self.buildListEntry(_("Archives explorer"), "Archives.png"))
+		self.drawList.append(self.buildListEntry(_("Hardware info"), "hardware.png"))
+		self.drawList.append(self.buildListEntry(_("TranspBA skin configuration"), "eye.png"))
+		self.drawList.append(self.buildListEntry(_("Enigma2 settings"), "settings.png"))
 		self.drawList.append(self.buildListEntry(_("SDGBackup Dreambox Enigma2"), "backup.png"))
-		self.drawList.append(self.buildListEntry(_("Remove Additional Packages"), "remove.png"))
-		self.drawList.append(self.buildListEntry(_("Swap Manager"), "swap.png"))
+		self.drawList.append(self.buildListEntry(_("Remove additional packages"), "remove.png"))
+		self.drawList.append(self.buildListEntry(_("Swap manager"), "swap.png"))
 		self.drawList.append(self.buildListEntry(_("Hotkey"), "hotkey.png"))
 		self["list"].setList(self.drawList)
 
@@ -142,49 +142,49 @@ class System_Panel(Screen):
 				from Plugins.Satdreamgr.Manipulate.plugin import PluginStart
 				self.session.open(PluginStart)
 			except:
-				self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, _("Sorry plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 1:
 			try:
 				from Plugins.Satdreamgr.Hardware.plugin import HardwareInfo
 				self.session.open(HardwareInfo)
 			except:
-				self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, _("Sorry plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 2:
 			try:
 				from Plugins.Satdreamgr.SkinSatdreamgr.plugin import MyMenuSKIN
 				self.session.open(MyMenuSKIN)
 			except:
-				self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, _("Sorry plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 3:
 			try:
 				from Plugins.Satdreamgr.SettingsSatDreamGr.plugin import SDG_Menu
 				self.session.open(SDG_Menu)
 			except:
-				self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, _("Sorry plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 4:
 			try:
 				from Plugins.Satdreamgr.SDGBackup.plugin import SDGBackup
 				self.session.open(SDGBackup)
 			except:
-				self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, _("Sorry plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 5:
 			try:
 				from Plugins.Satdreamgr.RemoveOPKG.plugin import Removeopkg
 				self.session.open(Removeopkg)
 			except:
-				self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, _("Sorry plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 6:
 			try:
 				from Plugins.Satdreamgr.SwapManager.plugin import SystemToolsSwap
 				self.session.open(SystemToolsSwap)
 			except:
-				self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, _("Sorry plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 7:
 			try:
 				from Screens.Hotkey import HotkeySetup
 				self.session.open(HotkeySetup)
 			except:
-				self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, _("Sorry plugin is not installed!"), MessageBox.TYPE_INFO)
 
 	def quit(self):
 		self.close()
@@ -254,8 +254,6 @@ class Plugins_Panel(Screen):
 				self.session.open(UpdateBouquet)
 			except:
 				self.session.open(MessageBox, _("Sorry Plugin is not installed!"), MessageBox.TYPE_INFO)
-
-
 
 	def quit(self):
 		self.close()

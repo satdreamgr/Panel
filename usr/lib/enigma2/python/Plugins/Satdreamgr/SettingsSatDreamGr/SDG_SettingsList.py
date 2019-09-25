@@ -21,6 +21,26 @@ except IOError:
 	pass
 
 class SDG_SettingsList(Screen):
+
+	skin = """
+		<screen name="SDG_SettingsList" position="center,center" size="600,405">
+			<widget source="list" render="Listbox" position="10,10" size="580,350" scrollbarMode="showOnDemand" transparent="1">
+				<convert type="TemplatedMultiContent">
+					{"template": [
+						MultiContentEntryText(pos = (10, 5), size = (440, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 0),
+						MultiContentEntryText(pos = (450, 5), size = (120, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
+						],
+						"fonts": [gFont("Regular", 20)],
+						"itemHeight": 35
+					}
+				</convert>
+			</widget>
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/red.png" position="10,372" size="32,32" alphatest="blend"/>
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/green.png" position="165,372" size="32,32" alphatest="blend"/>
+			<widget name="key_red" position="45,370" size="120,32" valign="center" font="Regular;20"/>
+			<widget name="key_green" position="200,370" size="120,32" valign="center" font="Regular;20"/>
+		</screen>"""
+
 	def __init__(self, session, list):
 		Screen.__init__(self, session)
 
@@ -32,17 +52,14 @@ class SDG_SettingsList(Screen):
 			self.drawList.append(self.buildListEntry(entry[0], entry[1]))
 
 		self["list"] = List(self.drawList)
-		self["key_red"] = Button(_("Download"))
-		self["key_green"] = Button("")
-		self["key_yellow"] = Button("")
-		self["key_blue"] = Button(_("Back"))
+		self["key_red"] = Button(_("Back"))
+		self["key_green"] = Button(_("Download"))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 				{
 					"ok": self.ok,
-					"red": self.ok,
-					#"green": self.green,
-					"blue": self.quit,
 					"cancel": self.quit,
+					"red": self.quit,
+					"green": self.ok,
 				}, -2)
 
 	def buildListEntry(self, sat, date):

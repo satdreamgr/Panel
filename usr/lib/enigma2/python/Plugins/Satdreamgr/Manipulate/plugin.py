@@ -29,41 +29,48 @@ from os import listdir as os_listdir
 from time import strftime as time_strftime
 from time import localtime as time_localtime
 import gettext
+
 config.plugins.ExFiles = ConfigSubsection()
 config.plugins.ExFiles.Execute = ConfigText(default="/")
 config.plugins.ExFiles.Filtre = ConfigText(default="off")
+
 try:
 	cat = gettext.translation('Satdreamgr-Panel', '/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/locale', [config.osd.language.getText()])
 	_ = cat.gettext
 except IOError:
 	pass
+
 def main(session,**kwargs):
-    try:
-     	session.open(PluginStart)
-    except:
-        print "[ArchivesExplorer] Pluginexecution failed"
+	try:
+		session.open(PluginStart)
+	except:
+		print "[Archives explorer] Plugin execution failed"
 
 def menu(menuid, **kwargs):
 	if menuid == "none":
-		return [(_("Archives Explorer"), main, "archives_setup", 45)]
+		return [(_("Archives explorer"), main, "archives_setup", 45)]
 	return []
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name = _("Archives Explorer"), description = _("Install your ipk.tar.gz..."), where = PluginDescriptor.WHERE_MENU, fnc = menu)
+	return PluginDescriptor(name = _("Archives explorer"), description = _("Install your ipk.tar.gz..."), where = PluginDescriptor.WHERE_MENU, fnc = menu)
 
-explorer_main = """<screen name="PluginStart" position="center,center" size="600,405" >
-                   <widget name="myliste" itemHeight="35" position="20,10" size="580,350" font="Regular;22" scrollbarMode="showOnDemand" transparent="1" zPosition="9"/>
-                   <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/red.png" position="80,370" size="32,32" zPosition="1" alphatest="blend"/>
-                   <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/green.png" position="240,370" size="32,32" zPosition="1" alphatest="blend"/>
-                    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/blue.png" position="400,370" size="32,32" zPosition="1" alphatest="blend"/>
-                   <widget name="key_red" position="110,370" size="80,32" valign="center" halign="center" zPosition="1" font="Regular;22" transparent="1" />
-                   <widget name="key_green" position="270,370" size="80,32" valign="center" halign="center" zPosition="1" font="Regular;22" transparent="1" />
-                    <widget name="key_blue" position="430,370" size="80,32" valign="center" halign="center" zPosition="1" font="Regular;22" transparent="1" />
-                   </screen>"""
 
 class PluginStart(Screen):
+
+	skin = """
+		<screen name="PluginStart" position="center,center" size="640,405">
+			<widget name="myliste" itemHeight="35" position="10,10" size="620,350" font="Regular;20" scrollbarMode="showOnDemand"/>
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/red.png" position="10,372" size="32,32" alphatest="blend"/>
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/green.png" position="165,372" size="32,32" alphatest="blend"/>
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/yellow.png" position="320,372" size="32,32" alphatest="blend"/>
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/blue.png" position="475,372" size="32,32" alphatest="blend"/>
+			<widget name="key_red" position="45,370" size="120,32" valign="center" font="Regular;20"/>
+			<widget name="key_green" position="200,370" size="120,32" valign="center" font="Regular;20"/>
+			<widget name="key_yellow" position="355,370" size="120,32" valign="center" font="Regular;20"/>
+			<widget name="key_blue" position="510,370" size="120,32" valign="center" font="Regular;20"/>
+		</screen>"""
+
 	def __init__(self, session, args = None):
-		self.skin = explorer_main
 		Screen.__init__(self, session)
 		self.sesion = session
 		self.altservice = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -74,20 +81,24 @@ class PluginStart(Screen):
 		if (config.plugins.ExFiles.Filtre.value == "off"):
 			self.Filtre = False
 			self["myliste"] = FileList(StartP)
- 		self["key_red"] = Label(_("Delete"))
- 		self["key_green"] = Label(_("Info"))
-  		self["key_blue"] = Label(_("Ok"))
-		self["actions"] = ActionMap(["SetupActions", "WizardActions", "DirectionActions", "ColorActions", "MenuActions", "EPGSelectActions", "InfobarActions"],
+
+		self.setTitle(_("Archives explorer"))
+		self["key_red"] = Label(_("Exit"))
+		self["key_green"] = Label(_("Select"))
+		self["key_yellow"] = Label(_("Delete"))
+		self["key_blue"] = Label(_("Info"))
+		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ColorActions"],
 		{
 			"ok": self.ok,
-			"back": self.explExit,
-			"red": self.ExecDelete,
+			"cancel": self.explExit,
 			"left": self.left,
 			"right": self.right,
-			"green": self.about,
-			"blue": self.ok,
 			"up": self.up,
 			"down": self.down,
+			"red": self.explExit,
+			"green": self.ok,
+			"yellow": self.ExecDelete,
+			"blue": self.about,
 		}, -1)
 
 	def about(self):
@@ -148,9 +159,9 @@ class PluginStart(Screen):
 					askList = [(_("Cancel"), "NO"),(_("View this shell-script"), "ExecC"),(_("Start execution"), "ExecA"),(_("Chmod 755 this file"), "Chmod")]
 					self.session.openWithCallback(self.SysExecution, ChoiceBox, title= (_("Do you want to execute?\\n") +filename), list=askList)
 
-				elif testFileName.endswith(".info")  or (testFileName.endswith(".log")) or (testFileName.endswith(".py")) or (testFileName.endswith(".xml")):
+				elif testFileName.endswith(".info") or (testFileName.endswith(".log")) or (testFileName.endswith(".py")) or (testFileName.endswith(".xml")):
 					self.commando = [ filename ]
-					askList = [(_("Cancel"), "NO"),(_("View this File"), "ExecC")]
+					askList = [(_("Cancel"), "NO"), (_("View this file"), "ExecC")]
 					self.session.openWithCallback(self.SysExecution, ChoiceBox, title= (_("Do you want to execute?\\n") +filename), list=askList)
 
 				elif (testFileName.endswith(".jpg")) or (testFileName.endswith(".jpeg")) or (testFileName.endswith(".jpe")) or (testFileName.endswith(".png")) or (testFileName.endswith(".bmp")):
@@ -180,7 +191,7 @@ class PluginStart(Screen):
 			else:
 				self.setTitle(_("[All files] " + self["myliste"].getCurrentDirectory()))
 		except:
-			self.setTitle(_("Archives Explorer"))
+			self.setTitle(_("Archives explorer"))
 
 	def explExit(self):
 		self.session.nav.playService(self.altservice)
@@ -197,13 +208,13 @@ class PluginStart(Screen):
 	def ExecDelete(self):
 		if not(self["myliste"].canDescent()):
 			DELfilename = self["myliste"].getCurrentDirectory() + self["myliste"].getFilename()
-			dei = self.session.openWithCallback(self.callbackExecDelete,MessageBox, (_("Do you realy want to Delete:\n") +DELfilename), MessageBox.TYPE_YESNO)
+			dei = self.session.openWithCallback(self.callbackExecDelete,MessageBox, (_("Do you realy want to delete:\n") +DELfilename), MessageBox.TYPE_YESNO)
 			dei.setTitle(_("Delete file..."))
 
 		elif (self["myliste"].getSelectionIndex()!=0) and (self["myliste"].canDescent()):
 			DELDIR = self["myliste"].getSelection()[0]
-			dei = self.session.openWithCallback(self.callbackDelDir,MessageBox, (_("Do you realy want to Delete:\n") +DELDIR+'\n\nYou do it at your own risk!'), MessageBox.TYPE_YESNO)
-			dei.setTitle(_("Delete Directory..."))
+			dei = self.session.openWithCallback(self.callbackDelDir,MessageBox, (_("Do you realy want to delete:\n") +DELDIR+'\n\nYou do it at your own risk!'), MessageBox.TYPE_YESNO)
+			dei.setTitle(_("Delete directory..."))
 
 	def callbackExecDelete(self, answer):
 		if answer is True:
@@ -214,7 +225,7 @@ class PluginStart(Screen):
 				self["myliste"].refresh()
 			except:
 				dei = self.session.open(MessageBox,_("%s \nFAILED!" % order), MessageBox.TYPE_ERROR)
-				dei.setTitle(_("Manipulate Files"))
+				dei.setTitle(_("Manipulate files"))
 				self["myliste"].refresh()
 
 	def callbackDelDir(self, answer):
@@ -226,7 +237,7 @@ class PluginStart(Screen):
 				self["myliste"].refresh()
 			except:
 				dei = self.session.open(MessageBox,_("%s \nFAILED!" % order), MessageBox.TYPE_ERROR)
-				dei.setTitle(_("Manipulate Files"))
+				dei.setTitle(_("Manipulate files"))
 				self["myliste"].refresh()
 
 
@@ -238,12 +249,12 @@ class TextExit(Screen):
 	if (sz_w == 1280):
 			skin = """
 			<screen position="center,77" size="900,450" >
-			<widget name="filedata" position="2,0" size="896,450" itemHeight="25"/>
+				<widget name="filedata" position="2,0" size="896,450" itemHeight="25"/>
 			</screen>"""
 	else:
 		skin = """
 		<screen position="center,77" size="620,450" >
-		<widget name="filedata" position="0,0" size="620,450" itemHeight="25"/>
+			<widget name="filedata" position="0,0" size="620,450" itemHeight="25"/>
 		</screen>"""
 
 	def __init__(self, session, file):
@@ -252,13 +263,13 @@ class TextExit(Screen):
 		self.session = session
 		self.file_name = file
 		self.list = []
-  		self.setup_title = _("Info")
-  		self.onLayoutFinish.append(self.layoutFinished)
+		self.setup_title = _("Info")
+		self.onLayoutFinish.append(self.layoutFinished)
 		self["filedata"] = MenuList(self.list)
 		self["actions"] = ActionMap(["WizardActions"],
 		{
-            "back": self.close,
-            "ok": self.close
+			"back": self.close,
+			"ok": self.close
 		}, -1)
 		self.GetFileData(file)
 
@@ -277,23 +288,24 @@ class TextExit(Screen):
 			pass
 			self.close()
 
+
 class PictureExplorer(Screen):
 	try:
 		sz_w = getDesktop(0).size().width()
 	except:
 		sz_w = 720
 	if (sz_w == 1280):
-			skin="""
+			skin = """
 				<screen flags="wfNoBorder" position="0,0" size="1280,720" title="Picture-Explorer" backgroundColor="#00121214">
-				<widget name="Picture" position="0,0" size="1280,720" zPosition="1" alphatest="on" />
-				<widget name="State" font="Regular;20" halign="center" position="0,650" size="1280,70" backgroundColor="#01080911" foregroundColor="#fcc000" transparent="0" zPosition="9"/>
+					<widget name="Picture" position="0,0" size="1280,720" zPosition="1" alphatest="on" />
+					<widget name="State" font="Regular;20" halign="center" position="0,650" size="1280,70" backgroundColor="#01080911" foregroundColor="#fcc000" transparent="0" zPosition="9"/>
 				</screen>"""
 
 	else:
-		skin="""
+		skin = """
 			<screen flags="wfNoBorder" position="0,0" size="720,576" title="Picture-Explorer" backgroundColor="#00121214">
-			<widget name="Picture" position="0,0" size="720,576" zPosition="1" alphatest="on" />
-			<widget name="State" font="Regular;20" halign="center" position="0,506" size="720,70" backgroundColor="#01080911" foregroundColor="#fcc000" transparent="0" zPosition="9"/>
+				<widget name="Picture" position="0,0" size="720,576" zPosition="1" alphatest="on" />
+				<widget name="State" font="Regular;20" halign="center" position="0,506" size="720,70" backgroundColor="#01080911" foregroundColor="#fcc000" transparent="0" zPosition="9"/>
 			</screen>"""
 
 	def __init__(self, session, whatPic = None, whatDir = None):
@@ -384,21 +396,29 @@ class AboutScreen(Screen):
 		sz_w = 720
 	if (sz_w == 1280):
 		skin = """
-		<screen position="0,0" size="1280,720" title="About" >
-		<widget name="text" position="100,140" size="520,420" font="Regular;24" transparent="1"/>
+		<screen position="0,0" size="1280,720" title="About">
+		<widget name="text" position="100,140" size="520,420" font="Regular;20" transparent="1"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/red.png" position="10,342" size="32,32" alphatest="blend"/>
+		<widget name="key_red" position="45,340" size="120,32" valign="center" font="Regular;20"/>
 		</screen>"""
 	else:
 		skin = """
-		<screen position="center,center" size="550,320" title="About" >
-		<widget name="text" position="0,10" size="550,320" font="Regular;24" />
+		<screen position="center,center" size="550,400" title="About">
+		<widget name="text" position="10,10" size="530,340" font="Regular;20"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/red.png" position="10,362" size="32,32" alphatest="blend"/>
+		<widget name="key_red" position="45,360" size="120,32" valign="center" font="Regular;20"/>
 		</screen>"""
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		info=(_("Informations \n\n Delete your file \n Install Your Files .tar.gz--tar.bz2 --.ipk \n View your .png.jpg.jpeg Images \n View and execute your script shell .sh \n Permissions 755 for your script .sh \n Install your bootlogo (bootlogo.tar.gz)  \n ---------------------------  \n By SatDreamGR\n\n http://www.satdreamgr.com\n ---------------------------"))
+		info = (_("Information\n\n\nDelete files\nInstall extensions (tar.gz, tar.bz2, ipk)\nView images (png, jpg, jpeg)\nView and execute shell scripts (sh)\nPermissions 755 for your scripts\nInstall bootlogo (bootlogo.tar.gz)\n ---------------------------\nBy SatDreamGR\n\nhttp://www.satdreamgr.com\n---------------------------"))
+
 		self["text"] = ScrollLabel(info)
-		self["actions"] = ActionMap(["SetupActions"],
+		self.setTitle(_("About archives explorer"))
+		self["key_red"] = Label(_("Back"))
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 			{
 				"ok": self.close,
 				"cancel": self.close,
-
+				"red": self.close,
 			}, -1)
