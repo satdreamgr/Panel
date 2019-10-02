@@ -48,19 +48,18 @@ def Plugins(**kwargs):
 class SystemToolsSwap(Screen):
 
 	skin = """
-	<screen name="Swap Manager" position="center,center" size="670,522" title="Swap files Manager">
-		<widget name="entries" position="10,10" size="650,466" itemHeight="45" scrollbarMode="showOnDemand" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="130,482" size="140,40" alphatest="on" />
-		<widget name="key_red" position="130,482" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="red" transparent="1" />
-		<ePixmap position="400,482" size="140,40" pixmap="skin_default/buttons/green.png" alphatest="on" zPosition="1" />
-		<widget name="key_green" position="400,482" zPosition="2" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="green" transparent="1" />
-	</screen>"""
+		<screen name="SystemToolsSwap" position="center,center" size="670,522" title="Swap manager">
+			<widget name="entries" position="10,10" size="650,466" itemHeight="45" scrollbarMode="showOnDemand" />
+			<ePixmap pixmap="skin_default/buttons/red.png" position="130,482" size="140,40" alphatest="on" />
+			<widget name="key_red" position="130,482" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="red" transparent="1" />
+			<ePixmap position="400,482" size="140,40" pixmap="skin_default/buttons/green.png" alphatest="on" zPosition="1" />
+			<widget name="key_green" position="400,482" zPosition="2" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="green" transparent="1" />
+		</screen>"""
 
 	def __init__(self, session):
-		self.skin = SystemToolsSwap.skin
 		Screen.__init__(self, session)
 		self.list = []
-		self.setTitle(_("Swap files manager"))
+		self.setTitle(_("Swap manager"))
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("OK"))
 
@@ -171,7 +170,7 @@ class SystemToolsSwap(Screen):
 		self.activityTimer.stop()
 		del self.activityTimer
 		if fileExists("/media/cf/swapfile"):
-			msg = _("Swap file was already created! You can activate it on CF if not done yet.")
+			msg = _("Swap file exists! You can activate it on CF if you haven't already.")
 			self.mbox2 = self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
 			self.mbox.close()
 		else:
@@ -191,7 +190,7 @@ class SystemToolsSwap(Screen):
 		self.activityTimer.stop()
 		del self.activityTimer
 		if fileExists("/media/hdd/swapfile"):
-			msg = _("Swap file was already created! You can activate it on HDD if not done yet.")
+			msg = _("Swap file exists! You can activate it on HDD if you haven't already.")
 			self.mbox2 = self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
 			self.mbox.close()
 		else:
@@ -211,7 +210,7 @@ class SystemToolsSwap(Screen):
 		self.activityTimer.stop()
 		del self.activityTimer
 		if fileExists("/media/usb/swapfile"):
-			msg = _("Swap file has been already created! You can activate it on USB if not done yet.")
+			msg = _("Swap file exists! You can activate it on USB if you haven't already.")
 			self.mbox2 = self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
 			self.mbox.close()
 		else:
