@@ -81,4 +81,4 @@ class SDG_Vhannibal(SDG_SettingsList):
 	def __init__(self, session, list):
 		SDG_SettingsList.__init__(self, session, list)
 		self.skinName = "SDG_SettingsList"
-		self.title= _("Vhannibal settings")
+		self.title= _("Available Vhannibal settings")

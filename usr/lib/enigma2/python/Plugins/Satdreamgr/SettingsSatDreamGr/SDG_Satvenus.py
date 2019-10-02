@@ -68,4 +68,4 @@ class SDG_Satvenus(SDG_SettingsList):
 	def __init__(self, session, list):
 		SDG_SettingsList.__init__(self, session, list)
 		self.skinName = "SDG_SettingsList"
-		self.title = _("Satvenus settings")
+		self.title = _("Available Satvenus settings")

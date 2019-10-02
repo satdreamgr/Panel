@@ -71,4 +71,4 @@ class SDG_Likra(SDG_SettingsList):
 	def __init__(self, session, list):
 		SDG_SettingsList.__init__(self, session, list)
 		self.skinName = "SDG_SettingsList"
-		self.title = _("Likra settings")
+		self.title = _("Available Likra settings")
