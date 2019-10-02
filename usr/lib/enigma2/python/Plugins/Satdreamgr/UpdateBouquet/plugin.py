@@ -6,14 +6,10 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console
-from Tools.LoadPixmap import LoadPixmap
-from os import path
+#from os import path
 import os, urllib
 import gettext
 
-url_sc = "/usr/lib/enigma2/python/Plugins/Satdreamgr/UpdateBouquet/update.sh"
-GSXML = "/usr/lib/enigma2/python/Plugins/Satdreamgr/UpdateBouquet/stream.xml"
-GSBQ = "/etc/enigma2/userbouquet.greekstreamtv.tv"
 
 try:
 	cat = gettext.translation("Satdreamgr-Panel", "/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/locale", [config.osd.language.getText()])
@@ -21,23 +17,33 @@ try:
 except IOError:
 	pass
 
+
+url_sc = "/usr/lib/enigma2/python/Plugins/Satdreamgr/UpdateBouquet/update.sh"
+GSXML = "/usr/lib/enigma2/python/Plugins/Satdreamgr/UpdateBouquet/stream.xml"
+GSBQ = "/etc/enigma2/userbouquet.greekstreamtv.tv"
+
+
 def main(session, **kwargs):
 	try:
 		session.open(UpdateBouquet)
 	except:
 		print "[UpdateBouquet] Plugin execution failed"
 
+
 def autostart(reason, **kwargs):
 	if reason == 0:
 		print "[UpdateBouquet] no autostart"
+
 
 def menu(menuid, **kwargs):
 	if menuid == "none":
 		return [(_("GreekStreamTV in bouquets"), main, "update_setup", 45)]
 	return []
 
+
 def Plugins(**kwargs):
 	return PluginDescriptor(name = _("GreekStreamTV in bouquets"), description = _("Update bouquet list"), where = PluginDescriptor.WHERE_MENU, fnc = menu)
+
 
 class UpdateBouquet(Screen):
 
@@ -46,10 +52,11 @@ class UpdateBouquet(Screen):
 			<widget name="menu" itemHeight="35" position="10,10" size="580,300" scrollbarMode="showOnDemand"/>
 			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/red.png" position="10,372" size="32,32" alphatest="blend"/>
 			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/green.png" position="165,372" size="32,32" alphatest="blend"/>
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/blue.png" position="320,372" size="32,32" alphatest="blend"/>
 			<widget name="key_red" position="45,370" size="120,32" valign="center" font="Regular;20"/>
 			<widget name="key_green" position="200,370" size="120,32" valign="center" font="Regular;20"/>
-		</screen>
-		"""
+			<widget name="key_blue" position="355,370" size="120,32" valign="center" font="Regular;20"/>
+		</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -57,34 +64,29 @@ class UpdateBouquet(Screen):
 		self.setTitle(_("GreekStreamTV in bouquets"))
 		menu = []
 
-		if path.isdir("/usr/lib/enigma2/python/Plugins/Satdreamgr/UpdateBouquet"):
+		if os.path.isdir("/usr/lib/enigma2/python/Plugins/Satdreamgr/UpdateBouquet"):
 			menu.append((_("Create bouquets list"), "create"))
-			menu.append((_("Download & update bouquets list "), "updatebq"))
-			menu.append((_("About..."), "about"))
+			menu.append((_("Download & update bouquets list"), "updatebq"))
 			self["menu"] = MenuList(menu)
 
 			self["key_red"] = Label(_("Exit"))
-			self["key_green"] = Label(_("OK"))
+			self["key_green"] = Label(_("Select"))
+			self["key_blue"] = Label(_("Info"))
 			self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 			{
 				"ok": self.go,
 				"cancel": self.close,
 				"red": self.close,
 				"green": self.go,
+				"blue": self.showInfo,
 			}, -1)
 
 	def go(self):
 		if self["menu"].l.getCurrentSelection() is not None:
 			choice = self["menu"].l.getCurrentSelection()[1]
 
-		if choice == "about":
-			tmpMessage = "For information or questions please refer to www.satdreamgr.com forum.\n"
-			tmpMessage += "\n\n"
-			tmpMessage += "GreekStreamTV is free and source code included."
-			self.session.open(MessageBox, tmpMessage, MessageBox.TYPE_INFO)
-
-		elif choice == "create":
-			self.session.openWithCallback(self.create, MessageBox,_("Confirm your selection, or exit"), MessageBox.TYPE_YESNO)
+		if choice == "create":
+			self.session.openWithCallback(self.create, MessageBox, _("Confirm your selection?"), MessageBox.TYPE_YESNO)
 
 		elif choice == "updatebq":
 			try:
@@ -106,16 +108,22 @@ class UpdateBouquet(Screen):
 				from enigma import eDVBDB
 				eDVBDB.getInstance().reloadBouquets()
 				eDVBDB.getInstance().reloadServicelist()
-				tmpMessage = "GreekStreamTV bouquet updated successfully..."
+				tmpMessage = _("GreekStreamTV bouquet updated successfully...")
 				self.session.open(MessageBox, tmpMessage, MessageBox.TYPE_INFO)
 			except Exception as err:
 				print "[GreekStreamTV::PluginMenu] Exception: ", str(err)
-				tmpMessage = "GreekStreamTV bouquet update failed..."
+				tmpMessage = _("GreekStreamTV bouquet update failed...")
 				self.session.open(MessageBox, tmpMessage, MessageBox.TYPE_INFO)
 
 	def create(self, answer):
 		if answer:
 			self.session.open(Console,_("Create bouquets list"),["%s create" % url_sc])
+
+	def showInfo(self):
+		tmpMessage = _("For information or questions please refer to www.satdreamgr.com forum.")
+		tmpMessage += "\n\n"
+		tmpMessage += _("GreekStreamTV is free.")
+		self.session.open(MessageBox, tmpMessage, MessageBox.TYPE_INFO)
 
 	def updatebq(self):
 		from xml.etree.cElementTree import ElementTree
