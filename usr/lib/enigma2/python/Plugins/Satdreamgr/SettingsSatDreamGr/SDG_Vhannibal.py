@@ -18,8 +18,10 @@ import shutil
 import os
 import datetime
 import gettext
+
+
 try:
-	cat = gettext.translation('lang', '/usr/lib/enigma2/python/Plugins/Satdreamgr/po', [config.osd.language.getText()])
+	cat = gettext.translation('Satdreamgr-Panel', '/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/locale', [config.osd.language.getText()])
 	_ = cat.gettext
 except IOError:
 	pass
@@ -27,6 +29,7 @@ except IOError:
 
 Vhannibal_HOST = "sgcpm.com"
 Vhannibal_PATH = "/enigma2/Vhannibal/"
+
 
 class SDG_VhannibalHelper():
 	def __init__(self, session):
@@ -71,6 +74,7 @@ class SDG_VhannibalHelper():
 	def show(self, ret = None):
 		if self.loaded:
 			self.session.open(SDG_Vhannibal, self.list)
+
 
 class SDG_Vhannibal(SDG_SettingsList):
 

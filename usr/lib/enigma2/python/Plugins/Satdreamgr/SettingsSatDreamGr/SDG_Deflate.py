@@ -1,9 +1,10 @@
 import shutil
 import os
-
 from SDG_Common import TMP_SETTINGS_PWD
 
+
 class SDG_Deflate():
+
 	def __init__(self):
 		pass
 

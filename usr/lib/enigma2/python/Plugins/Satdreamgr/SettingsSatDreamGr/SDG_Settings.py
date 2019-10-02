@@ -1,13 +1,12 @@
 from enigma import eDVBDB
 from Components.config import config
-
 from SDG_Common import ENIGMA2_SETTINGS_PWD, TMP_SETTINGS_PWD, ENIGMA2_TUXBOX_PWD
-
 import os
-import re
 import shutil
 
+
 class SDG_Settings():
+
 	def __init__(self):
 		self.providers = []
 		self.providersT = []

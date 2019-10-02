@@ -3,47 +3,33 @@ from Components.Sources.List import List
 from Components.ActionMap import ActionMap
 from Components.config import config
 from Tools.LoadPixmap import LoadPixmap
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
-from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad
 from SDG_Vhannibal import SDG_VhannibalHelper
 from SDG_Morpheus import SDG_MorpheusHelper
 from SDG_Satdreamgr import SDG_SatdreamgrHelper
 from SDG_Satvenus import SDG_SatvenusHelper
 from SDG_Likra import SDG_LikraHelper
 from Components.Label import Label
-from Components.Button import Button
-from Components.MenuList import MenuList
-from Components.MultiContent import MultiContentEntryText
-from Components.Harddisk import harddiskmanager
-from Components.PluginComponent import plugins
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from Plugins.Plugin import PluginDescriptor
-
 import os
 import sys
-
 from enigma import *
-from Screens.MessageBox import MessageBox
-from Components.config import config, ConfigSubsection, ConfigText, ConfigYesNo
 from time import *
 import gettext
+
+
 try:
 	cat = gettext.translation('Satdreamgr-Panel', '/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/locale', [config.osd.language.getText()])
 	_ = cat.gettext
 except IOError:
 	pass
-config.settingsloader = ConfigSubsection()
-config.settingsloader.keepterrestrial = ConfigYesNo(False)
-config.settingsloader.keepsatellitesxml = ConfigYesNo(False)
-config.settingsloader.keepcablesxml = ConfigYesNo(False)
-config.settingsloader.keepterrestrialxml = ConfigYesNo(False)
-config.settingsloader.keepbouquets = ConfigText("", False)
+
 
 def main(session, **kwargs):
 	try:
 		session.open(SDG_Menu)
 	except:
-		print "[Settings] Pluginexecution failed"
+		print "[Settings] Plugin execution failed"
+
 
 def autostart(reason, **kwargs):
 	if reason == 0:
@@ -55,8 +41,10 @@ def menu(menuid, **kwargs):
 		return [(_("Enigma2 settings"), main, "settings_setup", 45)]
 	return []
 
+
 def Plugins(**kwargs):
 	return PluginDescriptor(name = _("Enigma2 settings"), description = _("Morpheus, Vhannibal, Cyrus, Satvenus, Likra"), where = PluginDescriptor.WHERE_MENU, fnc = menu)
+
 
 class SDG_Menu(Screen):
 
@@ -104,11 +92,11 @@ class SDG_Menu(Screen):
 
 	def refresh(self):
 		self.drawList = []
-		self.drawList.append(self.buildListEntry(_("Morpheus883 settings"), "morphd.png"))
-		self.drawList.append(self.buildListEntry(_("Vhannibal settings"), "Vhannibal.png"))
-		self.drawList.append(self.buildListEntry(_("Cyrus settings"), "downloads.png"))
-		self.drawList.append(self.buildListEntry(_("Satvenus settings"), "satv.png"))
-		self.drawList.append(self.buildListEntry(_("Likra settings"), "likra.png"))
+		self.drawList.append(self.buildListEntry(_("Morpheus883"), "morphd.png"))
+		self.drawList.append(self.buildListEntry(_("Vhannibal"), "Vhannibal.png"))
+		self.drawList.append(self.buildListEntry(_("Cyrus"), "downloads.png"))
+		self.drawList.append(self.buildListEntry(_("Satvenus"), "satv.png"))
+		self.drawList.append(self.buildListEntry(_("Likra"), "likra.png"))
 		self["list"].setList(self.drawList)
 
 	def openSelected(self):
@@ -126,7 +114,6 @@ class SDG_Menu(Screen):
 
 	def quit(self):
 		self.close()
-
 
 	def layoutFinished(self):
 		self.setTitle(self.setup_title)
