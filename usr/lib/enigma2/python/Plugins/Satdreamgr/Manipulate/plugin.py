@@ -1,38 +1,23 @@
 from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
-from Screens.InfoBar import InfoBar
 from Screens.Console import Console
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
-from Screens.EventView import EventViewSimple
+from Screens.TextBox import TextBox
 from Components.ActionMap import ActionMap
 from Components.FileList import FileList
 from Components.MenuList import MenuList
 from Components.Label import Label
-from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap
 from Components.AVSwitch import AVSwitch
 from Components.config import config, ConfigSubsection, ConfigText
 from Tools.Directories import fileExists, pathExists
-from ServiceReference import ServiceReference
-from FileList import FileList as FileList
-from Screens.InputBox import InputBox
-from enigma import eConsoleAppContainer, eServiceReference, ePicLoad, getDesktop, eServiceCenter
+from enigma import ePicLoad, getDesktop
 from os import system as os_system
 from os import stat as os_stat
 from os import walk as os_walk
-from os import popen as os_popen
-from os import rename as os_rename
-from os import mkdir as os_mkdir
-from os import path as os_path
-from os import listdir as os_listdir
-from time import strftime as time_strftime
-from time import localtime as time_localtime
 import gettext
 
-config.plugins.ExFiles = ConfigSubsection()
-config.plugins.ExFiles.Execute = ConfigText(default="/")
-config.plugins.ExFiles.Filtre = ConfigText(default="off")
 
 try:
 	cat = gettext.translation('Satdreamgr-Panel', '/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/locale', [config.osd.language.getText()])
@@ -40,19 +25,27 @@ try:
 except IOError:
 	pass
 
+
+config.plugins.ExFiles = ConfigSubsection()
+config.plugins.ExFiles.Execute = ConfigText(default="/")
+config.plugins.ExFiles.Filtre = ConfigText(default="off")
+
+
 def main(session,**kwargs):
 	try:
 		session.open(PluginStart)
 	except:
 		print "[Archives explorer] Plugin execution failed"
 
+
 def menu(menuid, **kwargs):
 	if menuid == "none":
 		return [(_("Archives explorer"), main, "archives_setup", 45)]
 	return []
 
+
 def Plugins(**kwargs):
-	return PluginDescriptor(name = _("Archives explorer"), description = _("Install your ipk.tar.gz..."), where = PluginDescriptor.WHERE_MENU, fnc = menu)
+	return PluginDescriptor(name = _("Archives explorer"), description = _("Install ipk or tar.gz files..."), where = PluginDescriptor.WHERE_MENU, fnc = menu)
 
 
 class PluginStart(Screen):
@@ -102,7 +95,8 @@ class PluginStart(Screen):
 		}, -1)
 
 	def about(self):
-		self.session.open(AboutScreen)
+		text = (_("Information\n\n\nDelete files\nInstall extensions (tar.gz, tar.bz2, ipk)\nView images (png, jpg, jpeg)\nView and execute shell scripts (sh)\nSet 755 permissions to your scripts\nInstall bootlogo (bootlogo.tar.gz)\n ---------------------------\nBy SatDreamGR\n\nhttp://www.satdreamgr.com\n---------------------------"))
+		self.session.open(TextBox, text, _("About archives explorer"))
 
 	def up(self):
 		self["myliste"].up()
@@ -150,13 +144,13 @@ class PluginStart(Screen):
 					else:
 						self.commando = [ "ipkg install " + filename ]
 					askList = [(_("Cancel"), "NO"),(_("Install this package"), "ExecA")]
-					dei = self.session.openWithCallback(self.SysExecution, ChoiceBox, title=_("\n"+filename), list=askList)
+					dei = self.session.openWithCallback(self.SysExecution, ChoiceBox, title=filename, list=askList)
 					dei.setTitle(("."))
 
 				elif testFileName.endswith(".sh"):
 					self.commando = [ filename ]
 					self.chmodexec = [ "chmod 755 " + filename ]
-					askList = [(_("Cancel"), "NO"),(_("View this shell-script"), "ExecC"),(_("Start execution"), "ExecA"),(_("Chmod 755 this file"), "Chmod")]
+					askList = [(_("Cancel"), "NO"),(_("View this shell-script"), "ExecC"),(_("Start execution"), "ExecA"),(_("Set chmod to 755 for this file"), "Chmod")]
 					self.session.openWithCallback(self.SysExecution, ChoiceBox, title= (_("Do you want to execute?\\n") +filename), list=askList)
 
 				elif testFileName.endswith(".info") or (testFileName.endswith(".log")) or (testFileName.endswith(".py")) or (testFileName.endswith(".xml")):
@@ -208,12 +202,12 @@ class PluginStart(Screen):
 	def ExecDelete(self):
 		if not(self["myliste"].canDescent()):
 			DELfilename = self["myliste"].getCurrentDirectory() + self["myliste"].getFilename()
-			dei = self.session.openWithCallback(self.callbackExecDelete,MessageBox, (_("Do you realy want to delete:\n") +DELfilename), MessageBox.TYPE_YESNO)
+			dei = self.session.openWithCallback(self.callbackExecDelete, MessageBox, _("Do you realy want to delete the following file?\n\n") + DELfilename, MessageBox.TYPE_YESNO)
 			dei.setTitle(_("Delete file..."))
 
 		elif (self["myliste"].getSelectionIndex()!=0) and (self["myliste"].canDescent()):
 			DELDIR = self["myliste"].getSelection()[0]
-			dei = self.session.openWithCallback(self.callbackDelDir,MessageBox, (_("Do you realy want to delete:\n") +DELDIR+'\n\nYou do it at your own risk!'), MessageBox.TYPE_YESNO)
+			dei = self.session.openWithCallback(self.callbackDelDir, MessageBox, _("Do you realy want to delete the following directory and its content?\n\n") + DELDIR + _("\n\nProceed at your own risk!"), MessageBox.TYPE_YESNO)
 			dei.setTitle(_("Delete directory..."))
 
 	def callbackExecDelete(self, answer):
@@ -224,7 +218,7 @@ class PluginStart(Screen):
 				os_system(order)
 				self["myliste"].refresh()
 			except:
-				dei = self.session.open(MessageBox,_("%s \nFAILED!" % order), MessageBox.TYPE_ERROR)
+				dei = self.session.open(MessageBox, _("%s\nFAILED!") % order, MessageBox.TYPE_ERROR)
 				dei.setTitle(_("Manipulate files"))
 				self["myliste"].refresh()
 
@@ -236,16 +230,18 @@ class PluginStart(Screen):
 				os_system(order)
 				self["myliste"].refresh()
 			except:
-				dei = self.session.open(MessageBox,_("%s \nFAILED!" % order), MessageBox.TYPE_ERROR)
+				dei = self.session.open(MessageBox, _("%s\nFAILED!") % order, MessageBox.TYPE_ERROR)
 				dei.setTitle(_("Manipulate files"))
 				self["myliste"].refresh()
 
 
 class TextExit(Screen):
+
 	try:
 		sz_w = getDesktop(0).size().width()
 	except:
 		sz_w = 720
+
 	if (sz_w == 1280):
 			skin = """
 			<screen position="center,77" size="900,450" >
@@ -290,10 +286,12 @@ class TextExit(Screen):
 
 
 class PictureExplorer(Screen):
+
 	try:
 		sz_w = getDesktop(0).size().width()
 	except:
 		sz_w = 720
+
 	if (sz_w == 1280):
 			skin = """
 				<screen flags="wfNoBorder" position="0,0" size="1280,720" title="Picture-Explorer" backgroundColor="#00121214">
@@ -319,7 +317,7 @@ class PictureExplorer(Screen):
 		self.EXscale = (AVSwitch().getFramebufferScale())
 		self.EXpicload = ePicLoad()
 		self["Picture"] = Pixmap()
-		self["State"] = Label(_('loading... '+self.whatPic))
+		self["State"] = Label(_("loading... ") + self.whatPic)
 		self["actions"] = ActionMap(["WizardActions", "DirectionActions"],
 		{
 			"ok": self.info,
@@ -360,12 +358,12 @@ class PictureExplorer(Screen):
 				self.Pindex = self.Pindex + 1
 				self.whatPic = self.whatDir + str(self.picList[self.Pindex])
 				self["State"].visible = True
-				self["State"].setText(_('loading... '+self.whatPic))
+				self["State"].setText(_("loading... ") + self.whatPic)
 				self.EXpicload.startDecode(self.whatPic)
 			else:
 				self["State"].setText(_("wait..."))
 				self["State"].visible = False
-				self.session.open(MessageBox,_('No more picture-files.'), MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, _("No more picture files."), MessageBox.TYPE_INFO)
 
 	def Pleft(self):
 		if len(self.picList)>2:
@@ -373,12 +371,12 @@ class PictureExplorer(Screen):
 				self.Pindex = self.Pindex - 1
 				self.whatPic = self.whatDir + str(self.picList[self.Pindex])
 				self["State"].visible = True
-				self["State"].setText(_('loading... '+self.whatPic))
+				self["State"].setText(_("loading... ") + self.whatPic)
 				self.EXpicload.startDecode(self.whatPic)
 			else:
 				self["State"].setText(_("wait..."))
 				self["State"].visible = False
-				self.session.open(MessageBox,_('No more picture-files.'), MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, _("No more picture files."), MessageBox.TYPE_INFO)
 
 	def info(self):
 		if self["State"].visible:
@@ -386,39 +384,4 @@ class PictureExplorer(Screen):
 			self["State"].visible = False
 		else:
 			self["State"].visible = True
-			self["State"].setText(_(self.whatPic))
-
-
-class AboutScreen(Screen):
-	try:
-		sz_w = getDesktop(0).size().width()
-	except:
-		sz_w = 720
-	if (sz_w == 1280):
-		skin = """
-		<screen position="0,0" size="1280,720" title="About">
-		<widget name="text" position="100,140" size="520,420" font="Regular;20" transparent="1"/>
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/red.png" position="10,342" size="32,32" alphatest="blend"/>
-		<widget name="key_red" position="45,340" size="120,32" valign="center" font="Regular;20"/>
-		</screen>"""
-	else:
-		skin = """
-		<screen position="center,center" size="550,400" title="About">
-		<widget name="text" position="10,10" size="530,340" font="Regular;20"/>
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/red.png" position="10,362" size="32,32" alphatest="blend"/>
-		<widget name="key_red" position="45,360" size="120,32" valign="center" font="Regular;20"/>
-		</screen>"""
-
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		info = (_("Information\n\n\nDelete files\nInstall extensions (tar.gz, tar.bz2, ipk)\nView images (png, jpg, jpeg)\nView and execute shell scripts (sh)\nPermissions 755 for your scripts\nInstall bootlogo (bootlogo.tar.gz)\n ---------------------------\nBy SatDreamGR\n\nhttp://www.satdreamgr.com\n---------------------------"))
-
-		self["text"] = ScrollLabel(info)
-		self.setTitle(_("About archives explorer"))
-		self["key_red"] = Label(_("Back"))
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
-			{
-				"ok": self.close,
-				"cancel": self.close,
-				"red": self.close,
-			}, -1)
+			self["State"].setText(self.whatPic)

@@ -1,39 +1,21 @@
-import os
-import urllib
 from Plugins.Plugin import PluginDescriptor
-from Components.Sources.List import List
-from Components.Input import Input
-from Components.Pixmap import Pixmap
-from Screens.ChoiceBox import ChoiceBox
 from Components.ActionMap import ActionMap
-from Screens.InputBox import InputBox
-from Components.ActionMap import ActionMap, NumberActionMap
-from Components.FileList import FileList
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
-from Components.Button import Button
 from Components.Label import Label
 from Components.MenuList import MenuList
-from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad
-from enigma import getDesktop
-from Tools import Notifications
-from Tools.LoadPixmap import LoadPixmap
-from Tools.Directories import fileExists, resolveFilename, SCOPE_SKIN_IMAGE, SCOPE_LANGUAGE, SCOPE_PLUGINS
+from Components.config import config
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console
-from Screens.Standby import *
-from Screens.Console import Console
-from ServiceReference import ServiceReference
-from urllib2 import urlopen
-from os import popen as os_popen
 from os import listdir
-from time import localtime as time_localtime
-from time import strftime as time_strftime
-import datetime
-import time
 import gettext
-import datetime
-import time
+
+
+try:
+	cat = gettext.translation('Satdreamgr-Panel', '/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/locale', [config.osd.language.getText()])
+	_ = cat.gettext
+except IOError:
+	pass
+
 
 def main(session,**kwargs):
 	try:
@@ -41,17 +23,20 @@ def main(session,**kwargs):
 	except:
 		print "[Removeopkg] Plugin execution failed"
 
+
 def autostart(reason,**kwargs):
 	if reason == 0:
 		print "[PluginMenu] no autostart"
 
+
 def menu(menuid, **kwargs):
 	if menuid == "none":
-		return [(_("Remove additional packages"), main, "removeopkg_setup", 45)]
+		return [(_("Remove packages"), main, "removeopkg_setup", 45)]
 	return []
 
+
 def Plugins(**kwargs):
-	return PluginDescriptor(name = _("Remove additional packages"), description = _("Remove additional packages"), where = PluginDescriptor.WHERE_MENU, fnc = menu)
+	return PluginDescriptor(name=_("Remove packages"), description=_("Remove packages"), where=PluginDescriptor.WHERE_MENU, fnc=menu)
 
 
 class Removeopkg(Screen):
@@ -77,8 +62,8 @@ class Removeopkg(Screen):
 		self["list"] = MenuList(list)
 		self["key_red"] = Label(_("Exit"))
 		self["key_green"] = Label(_("Remove"))
-		self.setup_title = _("Remove additional packages")
-		self.onLayoutFinish.append(self.layoutFinished)
+		self.setup_title = _("Remove packages")
+		self.setTitle(self.setup_title)
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 			{
 				"ok": self.ExecDelete,
@@ -87,13 +72,10 @@ class Removeopkg(Screen):
 				"green": self.ExecDelete,
 			}, -1)
 
-	def layoutFinished(self):
-		self.setTitle(self.setup_title)
-
 	def ExecDelete(self):
 			archive = self["list"].getCurrent()
-			start = self.session.openWithCallback(self.remove,MessageBox,_(("Do you realy want to delete:\n")+archive), MessageBox.TYPE_YESNO)
-			start.setTitle(_("Delete file..."))
+			start = self.session.openWithCallback(self.remove, MessageBox, _("Do you realy want to remove the following package?\n") + archive, MessageBox.TYPE_YESNO)
+			start.setTitle(_("Delete package..."))
 
 	def remove(self, answer):
 		archive = self["list"].getCurrent()

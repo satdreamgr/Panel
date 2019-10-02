@@ -3,25 +3,23 @@
 ## SatDreamGr Team
 ## www.satdreamgr.com
 ##
-import os, urllib
-import requests
-from Screens.Screen import Screen
 from Plugins.Plugin import PluginDescriptor
-from enigma import ePicLoad, eTimer, getDesktop
+from enigma import ePicLoad, eTimer
 from Components.AVSwitch import AVSwitch
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-from Components.config import config, configfile, ConfigYesNo, ConfigSubsection, getConfigListEntry, ConfigSelection, ConfigNumber, ConfigText, ConfigInteger
-from Tools.BoundFunction import boundFunction
+from Components.config import config
 from Components.MenuList import MenuList
-from Components.ActionMap import ActionMap, NumberActionMap
+from Components.ActionMap import ActionMap
 from requests.exceptions import *
-from urllib2 import urlopen
+import os
+import requests
 import urllib2
 import shutil
 import gettext
+
 
 try:
 	cat = gettext.translation('Satdreamgr-Panel', '/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/locale', [config.osd.language.getText()])
@@ -29,11 +27,13 @@ try:
 except IOError:
 	pass
 
+
 def main(session, **kwargs):
 	try:
 		session.open(PictureCamera)
 	except:
 		print "[Picture Camera] Plugin execution failed"
+
 
 def Plugins(**kwargs):
 	return [PluginDescriptor(name=("Picture camera"),
@@ -42,6 +42,7 @@ def Plugins(**kwargs):
 		where=PluginDescriptor.WHERE_PLUGINMENU,
 		fnc=main)]
 
+
 def getCameras():
 	cameras = []
 	with open('/usr/lib/enigma2/python/Plugins/Satdreamgr/PictureCamera/camera.txt','r') as f:
@@ -49,6 +50,7 @@ def getCameras():
 			for name, url in [x.split("|") for x in line.splitlines()]:
 				cameras.append((str(name), str(url)))
 		return cameras
+
 
 class PictureCamera(Screen):
 
@@ -132,12 +134,12 @@ class PictureCamera(Screen):
 		try:
 			src = urllib2.urlopen("http://sgcpm.com/camera/camera.txt")
 		except urllib2.HTTPError:
-			self.session.open(MessageBox, _("Internet connection error!\nPlease check your internet connection!\n\nPress exit..."), MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("Internet connection error! Please check your internet connection!"), MessageBox.TYPE_ERROR)
 			pass
 		else:
 			dst = open("/usr/lib/enigma2/python/Plugins/Satdreamgr/PictureCamera/camera.txt", "w");
 			shutil.copyfileobj(src, dst)
-			self.session.open(MessageBox, _("Download completed!\n\nPress exit..."), MessageBox.TYPE_INFO)
+			self.session.open(MessageBox, _("Download completed!"), MessageBox.TYPE_INFO)
 			self.close(PictureCamera)
 
 	def info(self):

@@ -1,28 +1,24 @@
-import os
-from Tools.Profile import profile
 from Components.MenuList import MenuList
 from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-from Screens.ChoiceBox import ChoiceBox
-from Screens.Console import Console
 from Screens.Standby import TryQuitMainloop
 from Components.ActionMap import ActionMap
-from Components.config import config, configfile, ConfigYesNo, ConfigSubsection, getConfigListEntry, ConfigSelection, ConfigNumber, ConfigText, ConfigInteger
+from Components.config import config, configfile, ConfigSubsection, getConfigListEntry, ConfigSelection
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
-from os import environ, listdir, remove, rename, system, path
-from skin import parseColor
-from Tools.Directories import fileExists, resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS
-from shutil import move, copy
+from shutil import move
+import os
 import re
 import gettext
+
 
 try:
 	cat = gettext.translation('Satdreamgr-Panel', '/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/locale', [config.osd.language.getText()])
 	_ = cat.gettext
 except IOError:
 	pass
+
 
 config.plugins.SatdreamgrTranspBA = ConfigSubsection()
 config.plugins.SatdreamgrTranspBA.SkinColor = ConfigSelection(default="#20000000", choices = [
@@ -35,14 +31,17 @@ config.plugins.SatdreamgrTranspBA.SkinColor = ConfigSelection(default="#20000000
 				("#00333333", _("7-Grey"))
 				])
 
+
 def main(session, **kwargs):
 	try:
 		session.open(MyMenuSKIN)
 	except:
 		print "[Satdreamgr-HD-TranspBA] Plugin execution failed"
 
+
 def autostart(reason, **kwargs):
 	if reason == 0:
+
 		print "[PluginMenu] no autostart"
 
 def menu(menuid, **kwargs):
@@ -50,10 +49,13 @@ def menu(menuid, **kwargs):
 		return [(_("Satdreamgr-HD-TranspBA"), main, "configskin_setup", 45)]
 	return []
 
+
 def Plugins(**kwargs):
 	return PluginDescriptor(name = _("Satdreamgr-HD-TranspBA"), description = _("Configuration tool for Satdreamgr TranspBA skin"), where = PluginDescriptor.WHERE_MENU, fnc = menu)
 
+
 class MyMenuSKIN(Screen):
+
 	skin = """
 		<screen name="MyMenuSKIN" position="center,center" size="600,480" title="TranspBA skin configuration">
 			<widget name="menu" position="10,10" size="580,420" font="Regular;20" scrollbarMode="showOnDemand"/>
@@ -69,16 +71,16 @@ class MyMenuSKIN(Screen):
 		Screen.setTitle(self, _("TranspBA skin configuration"))
 		menu = []
 		menu.append((_("Change color"), ))
-		menu.append((_("Change color Satdreamgr-HD-TranspBA"),"skinhd"))
+		menu.append((_("Select main skin color"), "skinhd"))
 		menu.append(("", ))
 		menu.append((_("Change infobar"), ))
-		menu.append((_("Simple infobar Satdreamgr-HD-TranspBA"),"simple"))
-		menu.append((_("Full bottom infobar Satdreamgr-HD-TranspBA"),"fullbottom"))
-		menu.append((_("Full infobar Satdreamgr-HD-TranspBA"),"full"))
+		menu.append((_("Simple infobar"), "simple"))
+		menu.append((_("Full bottom infobar"), "fullbottom"))
+		menu.append((_("Full infobar"), "full"))
 		menu.append(("", ))
 		menu.append((_("Weather in infobar"), ))
-		menu.append((_("Weather ON in infobar"),"weatheron"))
-		menu.append((_("Weather OFF in infobar"),"weatheroff"))
+		menu.append((_("Weather on"), "weatheron"))
+		menu.append((_("Weather off"), "weatheroff"))
 
 		self["menu"] = MenuList(menu)
 		self["key_red"] = Label(_("Exit"))
@@ -191,7 +193,9 @@ class MyMenuSKIN(Screen):
 			configfile.save()
 			self.session.open(TryQuitMainloop, 3)
 
+
 class SatdreamgrTranspBA(ConfigListScreen, Screen):
+
 	skin = """
 		<screen name="SatdreamgrTranspBA" position="center,center" size="600,480" title="Change color">
 			<widget name="config" position="10,10" scrollbarMode="showOnDemand" size="580,420" font="Regular;20"/>
@@ -296,7 +300,7 @@ class SatdreamgrTranspBA(ConfigListScreen, Screen):
 			move(self.SkinDefaultTmp, self.SkinFinal)
 
 		except:
-			self.session.open(MessageBox, _("Error creating Skin!"), MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("Error creating skin!"), MessageBox.TYPE_ERROR)
 		config.skin.primary_skin.setValue("Satdreamgr-HD-TranspBA/skin.xml")
 		config.skin.save()
 		configfile.save()
