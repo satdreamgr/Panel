@@ -54,7 +54,7 @@ class SDG_SettingsList(Screen):
 			self.drawList.append(self.buildListEntry(entry[0], entry[1]))
 
 		self["list"] = List(self.drawList)
-		self["key_red"] = Button(_("Back"))
+		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("Download"))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 				{
@@ -116,7 +116,7 @@ class SDG_SettingsList(Screen):
 		index = self["list"].getIndex()
 
 		self.url = self.list[index][2]
-		self.session.open(SDG_ActionBox, _("Downloading settings list"), _("Downloading..."), self.download)
+		self.session.open(SDG_ActionBox, _("Updating settings list"), _("Downloading..."), self.download)
 
 	def quit(self):
 		self.close()

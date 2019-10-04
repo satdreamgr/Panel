@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Panel\n"
-"POT-Creation-Date: 2019-10-02 12:27+0300\n"
-"PO-Revision-Date: 2019-10-02 12:27+0300\n"
+"POT-Creation-Date: 2019-10-03 01:20+0300\n"
+"PO-Revision-Date: 2019-10-03 01:29+0300\n"
 "Last-Translator: \n"
 "Language-Team: SatDreamGr\n"
 "Language: el_GR\n"
@@ -156,7 +156,8 @@ msgstr "Σχετικά με την εξερεύνηση αρχείων"
 
 #: Manipulate/plugin.py:128 Manipulate/plugin.py:133 Manipulate/plugin.py:138
 #: Manipulate/plugin.py:146 Manipulate/plugin.py:153 Manipulate/plugin.py:158
-#: SDGBackup/plugin.py:62 SwapManager/plugin.py:64
+#: SDGBackup/plugin.py:62 SettingsSatDreamGr/SDG_SettingsList.py:57
+#: SwapManager/plugin.py:63
 msgid "Cancel"
 msgstr "Ακύρωση"
 
@@ -309,7 +310,7 @@ msgstr "Απεγκατάσταση"
 
 #: RemoveOPKG/plugin.py:77
 msgid "Do you realy want to remove the following package?\n"
-msgstr "Είστε βέβαιοι ότι θέλετε να αφαιρέσετε το παρακάτω πακέτο;\n"
+msgstr "Είστε βέβαιοι ότι θέλετε να επεγκαταστήσετε το παρακάτω πακέτο;\n"
 
 #: RemoveOPKG/plugin.py:78
 msgid "Delete package..."
@@ -327,7 +328,7 @@ msgstr "Εκκίνηση SDGBackup σε USB"
 msgid "Start SDGBackup on HDD"
 msgstr "Εκκίνηση SDGBackup σε HDD"
 
-#: SDGBackup/plugin.py:63 SwapManager/plugin.py:65
+#: SDGBackup/plugin.py:63 SwapManager/plugin.py:64
 msgid "OK"
 msgstr "ΟΚ"
 
@@ -385,7 +386,7 @@ msgid "Enigma2 settings"
 msgstr "Λίστες καναλιών"
 
 #: Satdreamgr-Panel/plugin.py:143 SwapManager/plugin.py:40
-#: SwapManager/plugin.py:45
+#: SwapManager/plugin.py:45 SwapManager/plugin.py:62
 msgid "Swap manager"
 msgstr "Διαχείριση swap"
 
@@ -427,8 +428,8 @@ msgid "Downloading..."
 msgstr "Γίνεται λήψη..."
 
 #: SettingsSatDreamGr/SDG_Likra.py:74
-msgid "Likra settings"
-msgstr "Λίστα καναλιών Likra"
+msgid "Available Likra settings"
+msgstr "Διαθέσιμες λίστες Likra"
 
 #: SettingsSatDreamGr/SDG_Morpheus.py:50 SettingsSatDreamGr/SDG_Morpheus.py:54
 msgid "Cannot download morpheus883 list"
@@ -439,8 +440,8 @@ msgid "Downloading morpheus883 list"
 msgstr "Γίνεται λήψη της λίστας morpheus883"
 
 #: SettingsSatDreamGr/SDG_Morpheus.py:70
-msgid "Morpheus883 settings"
-msgstr "Λίστα καναλιών Morpheus883"
+msgid "Available Morpheus883 settings"
+msgstr "Διαθέσιμες λίστες Morpheus883"
 
 #: SettingsSatDreamGr/SDG_Satdreamgr.py:51
 #: SettingsSatDreamGr/SDG_Satdreamgr.py:55
@@ -452,8 +453,8 @@ msgid "Downloading Cyrus list"
 msgstr "Γίνεται λήψη της λίστας Cyrus"
 
 #: SettingsSatDreamGr/SDG_Satdreamgr.py:71
-msgid "Cyrus settings"
-msgstr "Λίστα καναλιών Cyrus"
+msgid "Available Cyrus settings"
+msgstr "Διαθέσιμες λίστες Cyrus"
 
 #: SettingsSatDreamGr/SDG_Satvenus.py:51 SettingsSatDreamGr/SDG_Satvenus.py:55
 msgid "Cannot download Satvenus list"
@@ -464,12 +465,8 @@ msgid "Downloading Satvenus list"
 msgstr "Γίνεται λήψη της λίστας Satvenus"
 
 #: SettingsSatDreamGr/SDG_Satvenus.py:71
-msgid "Satvenus settings"
-msgstr "Λίστα καναλιών Satvenus"
-
-#: SettingsSatDreamGr/SDG_SettingsList.py:57
-msgid "Back"
-msgstr "Πίσω"
+msgid "Available Satvenus settings"
+msgstr "Διαθέσιμες λίστες Satvenus"
 
 #: SettingsSatDreamGr/SDG_SettingsList.py:58
 msgid "Download"
@@ -486,8 +483,8 @@ msgid "Settings installed"
 msgstr "Η λίστα καναλιών εγκαταστάθηκε"
 
 #: SettingsSatDreamGr/SDG_SettingsList.py:119
-msgid "Downloading settings list"
-msgstr "Γίνεται λήψη λιστών"
+msgid "Updating settings list"
+msgstr "Ενημέρωση λιστών"
 
 #: SettingsSatDreamGr/SDG_Vhannibal.py:64
 #: SettingsSatDreamGr/SDG_Vhannibal.py:68
@@ -499,8 +496,8 @@ msgid "Downloading Vhannibal list"
 msgstr "Γίνεται λήψη της λίστας Vhannibal"
 
 #: SettingsSatDreamGr/SDG_Vhannibal.py:84
-msgid "Vhannibal settings"
-msgstr "Λίστα καναλιών Vhannibal"
+msgid "Available Vhannibal settings"
+msgstr "Διαθέσιμες λίστες Vhannibal"
 
 #: SettingsSatDreamGr/plugin.py:46
 msgid "Morpheus, Vhannibal, Cyrus, Satvenus, Likra"
@@ -621,132 +618,124 @@ msgstr "Σφάλμα κατά τη δημιουργία του θέματος!"
 msgid "Restart GUI"
 msgstr "Επανεκκίνηση GUI"
 
-#: SwapManager/plugin.py:63
-msgid "Swap files manager"
-msgstr "Διαχείριση αρχείων swap"
-
-#: SwapManager/plugin.py:75 SwapManager/plugin.py:91
+#: SwapManager/plugin.py:74 SwapManager/plugin.py:90
 msgid "Swap info"
 msgstr "Πληροφορίες swap"
 
-#: SwapManager/plugin.py:76
+#: SwapManager/plugin.py:75
 msgid "Deactivate swap"
 msgstr "Απενεργοποίηση swap"
 
-#: SwapManager/plugin.py:77
+#: SwapManager/plugin.py:76
 msgid "Create swap file on HDD"
 msgstr "Δημιουργία αρχείου swap στον σκληρό δίσκο"
 
-#: SwapManager/plugin.py:78
+#: SwapManager/plugin.py:77
 msgid "Activate swap on HDD"
 msgstr "Ενεργοποίηση swap στον σκληρό δίσκο"
 
-#: SwapManager/plugin.py:79
+#: SwapManager/plugin.py:78
 msgid "Create swap file on USB"
 msgstr "Δημιουργία αρχείου swap στη συσκευή USB"
 
-#: SwapManager/plugin.py:80
+#: SwapManager/plugin.py:79
 msgid "Activate swap on USB"
 msgstr "Ενεργοποίηση swap στη συσκευή USB"
 
-#: SwapManager/plugin.py:81
+#: SwapManager/plugin.py:80
 msgid "Create swap file on CF"
 msgstr "Δημιουργία αρχείου swap στη μνήμη CF"
 
-#: SwapManager/plugin.py:82
+#: SwapManager/plugin.py:81
 msgid "Activate swap on CF"
 msgstr "Ενεργοποίηση swap στη μνήμη CF"
 
-#: SwapManager/plugin.py:96
+#: SwapManager/plugin.py:95
 msgid "Please wait: Creating swap file on HDD."
 msgstr "Παρακαλώ περιμένετε: Το αρχείο swap δημιουργείται στον σκληρό δίσκο."
 
-#: SwapManager/plugin.py:103
+#: SwapManager/plugin.py:102
 msgid "Please wait: Creating swap file on CF."
 msgstr "Παρακαλώ περιμένετε: Το αρχείο swap δημιουργείται στη μνήμη CF."
 
-#: SwapManager/plugin.py:110
+#: SwapManager/plugin.py:109
 msgid "Please wait: Creating swap file on USB."
 msgstr "Παρακαλώ περιμένετε: Το αρχείο swap δημιουργείται στη συσκευή USB."
 
-#: SwapManager/plugin.py:126
+#: SwapManager/plugin.py:125
 msgid "Swap is deactivated."
 msgstr "Το swap απενεργοποιήθηκε."
 
-#: SwapManager/plugin.py:166
+#: SwapManager/plugin.py:165
 msgid "Swap file is not activated!"
 msgstr "Το αρχείο swap δεν είναι ενεργοποιημένο!"
 
-#: SwapManager/plugin.py:174
-msgid ""
-"Swap file was already created! You can activate it on CF if not done yet."
+#: SwapManager/plugin.py:173
+msgid "Swap file exists! You can activate it on CF if you haven't already."
 msgstr ""
-"Το αρχείο swap έχει ήδη δημιουργηθεί! Μπορείτε να το ενεργοποιήσετε στη "
-"μνήμη CF, αν δεν το έχετε ήδη κάνει."
+"Το αρχείο swap υπάρχει! Μπορείτε να το ενεργοποιήσετε στη μνήμη CF, αν δεν "
+"το έχετε ήδη κάνει."
 
-#: SwapManager/plugin.py:182
+#: SwapManager/plugin.py:181
 msgid "Done! You can now activate the swap on CF."
 msgstr "Ολοκληρώθηκε! Μπορείτε τώρα να ενεργοποιήσετε το swap στη μνήμη CF."
 
-#: SwapManager/plugin.py:186
+#: SwapManager/plugin.py:185
 msgid "No compact flash mounted on /media/cf."
 msgstr "Δεν βρέθηκε μνήμη compact flash προσαρτημένη στο /media/cf."
 
-#: SwapManager/plugin.py:194
-msgid ""
-"Swap file was already created! You can activate it on HDD if not done yet."
+#: SwapManager/plugin.py:193
+msgid "Swap file exists! You can activate it on HDD if you haven't already."
 msgstr ""
-"Το αρχείο swap έχει ήδη δημιουργηθεί! Μπορείτε να το ενεργοποιήσετε στον "
-"σκληρό δίσκο, αν δεν το έχετε ήδη κάνει."
+"Το αρχείο swap υπάρχει! Μπορείτε να το ενεργοποιήσετε στον σκληρό δίσκο, αν "
+"δεν το έχετε ήδη κάνει."
 
-#: SwapManager/plugin.py:202
+#: SwapManager/plugin.py:201
 msgid "Done! You can now activate the swap on HDD."
 msgstr ""
 "Ολοκληρώθηκε! Μπορείτε τώρα να ενεργοποιήσετε το swap στον σκληρό δίσκο."
 
-#: SwapManager/plugin.py:206
+#: SwapManager/plugin.py:205
 msgid "No hard drive mounted on /media/hdd."
 msgstr "Δεν βρέθηκε σκληρός δίσκος προσαρτημένος στο /media/hdd."
 
-#: SwapManager/plugin.py:214
-msgid ""
-"Swap file has been already created! You can activate it on USB if not done "
-"yet."
+#: SwapManager/plugin.py:213
+msgid "Swap file exists! You can activate it on USB if you haven't already."
 msgstr ""
-"Το αρχείο swap έχει ήδη δημιουργηθεί! Μπορείτε να το ενεργοποιήσετε στη "
-"συσκευή USB, αν δεν το έχετε ήδη κάνει."
+"Το αρχείο swap υπάρχει! Μπορείτε να το ενεργοποιήσετε στη συσκευή USB, αν "
+"δεν το έχετε ήδη κάνει."
 
-#: SwapManager/plugin.py:222
+#: SwapManager/plugin.py:221
 msgid "Done! You can now activate the swap on USB."
 msgstr "Ολοκληρώθηκε! Μπορείτε τώρα να ενεργοποιήσετε το swap στη συσκευή USB."
 
-#: SwapManager/plugin.py:226
+#: SwapManager/plugin.py:225
 msgid "No usb stick mounted on /media/usb."
 msgstr "Δεν βρέθηκε συσκευή USB προσαρτημένη στο /media/USB."
 
-#: SwapManager/plugin.py:234
+#: SwapManager/plugin.py:233
 msgid "Swap is activated on HDD."
 msgstr "Το swap ενεργοποιήθηκε στον σκληρό δίσκο."
 
-#: SwapManager/plugin.py:237
+#: SwapManager/plugin.py:236
 msgid "No swap file found on HDD. You have to create one first."
 msgstr ""
 "Δεν βρέθηκε αρχείο swap στον σκληρό δίσκο. Πρέπει να δημιουργήσετε ένα πρώτα."
 
-#: SwapManager/plugin.py:244
+#: SwapManager/plugin.py:243
 msgid "Swap is activated on CF."
 msgstr "Το swap ενεργοποιήθηκε στη μνήμη CF."
 
-#: SwapManager/plugin.py:247
+#: SwapManager/plugin.py:246
 msgid "No swap file found on CF. You have to create one first."
 msgstr ""
 "Δεν βρέθηκε αρχείο swap στη μνήμη CF. Πρέπει να δημιουργήσετε ένα πρώτα."
 
-#: SwapManager/plugin.py:254
+#: SwapManager/plugin.py:253
 msgid "Swap is activated on USB."
 msgstr "Το swap ενεργοποιήθηκε στη συσκευή USB."
 
-#: SwapManager/plugin.py:257
+#: SwapManager/plugin.py:256
 msgid "No swap file found on USB. You have to create one first."
 msgstr ""
 "Δεν βρέθηκε αρχείο swap στη συσκευή USB. Πρέπει να δημιουργήσετε ένα πρώτα."
