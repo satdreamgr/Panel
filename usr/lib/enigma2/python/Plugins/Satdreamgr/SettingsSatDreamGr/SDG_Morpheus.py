@@ -1,7 +1,6 @@
 from Screens.MessageBox import MessageBox
 from Components.config import config
 from SDG_ActionBox import SDG_ActionBox
-from SDG_Settings import SDG_Settings
 from SDG_SettingsList import SDG_SettingsList
 import xml.etree.cElementTree
 import httplib
