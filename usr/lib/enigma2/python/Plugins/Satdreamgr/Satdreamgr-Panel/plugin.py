@@ -47,7 +47,7 @@ panel_main = """<screen name="Panel+" position="center,center" size="600,405" ti
 					<widget source="list" render="Listbox" position="20,10" size="580,320" scrollbarMode="showOnDemand" transparent="1" >
 						<convert type="TemplatedMultiContent">
 							{"template": [
-								MultiContentEntryPixmapAlphaTest(pos = (12, 4), size = (32, 32), png = 0),
+								MultiContentEntryPixmapAlphaBlend(pos = (12, 4), size = (32, 32), png = 0),
 								MultiContentEntryText(pos = (58, 5), size = (440, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
 								],
 							"fonts": [gFont("Regular", 22)],
