@@ -53,7 +53,7 @@ class SDG_Menu(Screen):
 			<widget source="list" render="Listbox" position="10,10" size="580,350" scrollbarMode="showOnDemand">
 				<convert type="TemplatedMultiContent">
 					{"template": [
-						MultiContentEntryPixmapAlphaTest(pos = (12, 4), size = (32, 32), png = 0),
+						MultiContentEntryPixmapAlphaBlend(pos = (12, 4), size = (32, 32), png = 0),
 						MultiContentEntryText(pos = (58, 5), size = (440, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
 						],
 						"fonts": [gFont("Regular", 20)],
