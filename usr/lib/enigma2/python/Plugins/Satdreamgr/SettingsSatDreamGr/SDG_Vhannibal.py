@@ -1,20 +1,9 @@
-from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-from Components.config import getConfigListEntry, config
-from Components.Sources.List import List
-from Components.ActionMap import ActionMap
-from Components.Button import Button
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
-from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad
+from Components.config import config
 from SDG_ActionBox import SDG_ActionBox
-from SDG_Deflate import SDG_Deflate
-from SDG_Settings import SDG_Settings
 from SDG_SettingsList import SDG_SettingsList
-from SDG_Common import TMP_IMPORT_PWD, TMP_SETTINGS_PWD
-from urlparse import urlparse
 import xml.etree.cElementTree
 import httplib
-import shutil
 import os
 import datetime
 import gettext
