@@ -46,15 +46,15 @@ class SDG_MorpheusHelper():
 						url = "http://" + MORPHEUS_HOST + MORPHEUS_PATH + node.get("filename")
 						self.list.append([sat, date, url])
 			else:
-				self.session.open(MessageBox, _("Cannot download morpheus883 list"), MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox, _("Cannot download %s settings list") % ("morpheus883"), MessageBox.TYPE_ERROR)
 				self.loaded = False
 		except Exception, e:
 			print e
-			self.session.open(MessageBox, _("Cannot download morpheus883 list"), MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("Cannot download %s settings list") % ("morpheus883"), MessageBox.TYPE_ERROR)
 			self.loaded = False
 
 	def load(self):
-		self.session.openWithCallback(self.show, SDG_ActionBox, _("Downloading morpheus883 list"), _("Downloading..."), self.download)
+		self.session.openWithCallback(self.show, SDG_ActionBox, _("Updating %s settings list") % ("morpheus883"), _("Downloading..."), self.download)
 
 	def show(self, ret = None):
 		if self.loaded:
@@ -66,4 +66,4 @@ class SDG_Morpheus(SDG_SettingsList):
 	def __init__(self, session, list):
 		SDG_SettingsList.__init__(self, session, list)
 		self.skinName = "SDG_SettingsList"
-		self.title = _("Available Morpheus883 settings")
+		self.title = _("List of available %s settings") % ("morpheus883")

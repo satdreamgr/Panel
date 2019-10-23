@@ -135,7 +135,7 @@ class System_Panel(Screen):
 	def refresh(self):
 		self.drawList = []
 		self.drawList.append(self.buildListEntry(_("Archives explorer"), "Archives.png"))
-		self.drawList.append(self.buildListEntry(_("Hardware info"), "hardware.png"))
+		self.drawList.append(self.buildListEntry(_("System information"), "hardware.png"))
 		self.drawList.append(self.buildListEntry(_("TranspBA skin configuration"), "eye.png"))
 		self.drawList.append(self.buildListEntry(_("Enigma2 settings"), "settings.png"))
 		self.drawList.append(self.buildListEntry(_("SDGBackup Dreambox Enigma2"), "backup.png"))

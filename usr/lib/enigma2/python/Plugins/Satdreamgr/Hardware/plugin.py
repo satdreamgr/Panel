@@ -31,18 +31,18 @@ def autostart(reason,**kwargs):
 
 def menu(menuid, **kwargs):
 	if menuid == "none":
-		return [(_("Hardware info"), main, "harware_setup", 45)]
+		return [(_("System information"), main, "harware_setup", 45)]
 	return []
 
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name=_("Hardware info"), description=_("Hardware info"), where=PluginDescriptor.WHERE_MENU, fnc=menu)
+	return PluginDescriptor(name=_("System information"), description=_("System information"), where=PluginDescriptor.WHERE_MENU, fnc=menu)
 
 
 class HardwareInfo(Screen):
 
 	skin = """
-		<screen name="HardwareInfo" position="center,center" size="600,405" >
+		<screen name="System information" position="center,center" size="600,405" >
 			<widget name="menu" itemHeight="35" position="20,10" size="580,330" scrollbarMode="showOnDemand" transparent="1" zPosition="9"/>
 			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/red.png" position="80,360" size="32,32" zPosition="1" alphatest="blend"/>
 			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/green.png" position="240,360" size="32,32" zPosition="1" alphatest="blend"/>
@@ -54,7 +54,7 @@ class HardwareInfo(Screen):
 		Screen.__init__(self, session)
 		self.session = session
 		menu = []
-		menu.append((_("System information"), "system"))
+		menu.append((_("Hardware info"), "system"))
 		menu.append((_("DVB modules"), "modules"))
 		menu.append((_("Netstat"), "netstat"))
 		menu.append((_("Ifconfig"), "ifconfig"))
@@ -68,7 +68,7 @@ class HardwareInfo(Screen):
 		self["menu"] = MenuList(menu)
 		self["key_red"] = Label(_("Exit"))
 		self["key_green"] = Label(_("Select"))
-		self.setup_title = _("Hardware info")
+		self.setup_title = _("System information")
 		self.setTitle(self.setup_title)
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "WizardActions", "DirectionActions"],{"ok": self.go, "red": self.close, "green": self.go, "back": self.close,}, -1)
 
@@ -114,7 +114,7 @@ class HardwareInfo(Screen):
 class system_info(Screen):
 
 	skin = """
-	<screen name="HardwareInfobis" position="center,center" size="640,480">
+	<screen name="Hardware info" position="center,center" size="640,480">
 		<ePixmap position="20,30" zPosition="5" size="50,50" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/ram.png" alphatest="blend" />
 		<widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/bar.png" position="90,30" size="515,20" transparent="1" zPosition="6">
 			<convert type="PanelSpaceInfo">MemTotal</convert>

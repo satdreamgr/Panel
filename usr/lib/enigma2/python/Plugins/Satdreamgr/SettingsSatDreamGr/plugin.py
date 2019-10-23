@@ -43,7 +43,7 @@ def menu(menuid, **kwargs):
 
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name = _("Enigma2 settings"), description = _("Morpheus, Vhannibal, Cyrus, Satvenus, Likra"), where = PluginDescriptor.WHERE_MENU, fnc = menu)
+	return PluginDescriptor(name=_("Enigma2 settings"), description="Morpheus, Vhannibal, Cyrus, Satvenus, Likra", where=PluginDescriptor.WHERE_MENU, fnc=menu)
 
 
 class SDG_Menu(Screen):
@@ -92,11 +92,11 @@ class SDG_Menu(Screen):
 
 	def refresh(self):
 		self.drawList = []
-		self.drawList.append(self.buildListEntry(_("Morpheus883"), "morphd.png"))
-		self.drawList.append(self.buildListEntry(_("Vhannibal"), "Vhannibal.png"))
-		self.drawList.append(self.buildListEntry(_("Cyrus"), "downloads.png"))
-		self.drawList.append(self.buildListEntry(_("Satvenus"), "satv.png"))
-		self.drawList.append(self.buildListEntry(_("Likra"), "likra.png"))
+		self.drawList.append(self.buildListEntry("Morpheus883", "morphd.png"))
+		self.drawList.append(self.buildListEntry("Vhannibal", "Vhannibal.png"))
+		self.drawList.append(self.buildListEntry("Cyrus", "downloads.png"))
+		self.drawList.append(self.buildListEntry("Satvenus", "satv.png"))
+		self.drawList.append(self.buildListEntry("Likra", "likra.png"))
 		self["list"].setList(self.drawList)
 
 	def openSelected(self):

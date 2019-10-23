@@ -50,15 +50,15 @@ class SDG_LikraHelper():
 
 
 			else:
-				self.session.open(MessageBox, _("Cannot download Likra list"), MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox, _("Cannot download %s settings list") % ("Likra"), MessageBox.TYPE_ERROR)
 				self.loaded = False
 		except Exception, e:
 			print e
-			self.session.open(MessageBox, _("Cannot download Likra list"), MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("Cannot download %s settings list") % ("Likra"), MessageBox.TYPE_ERROR)
 			self.loaded = False
 
 	def load(self):
-		self.session.openWithCallback(self.show, SDG_ActionBox, _("Downloading Likra list"), _("Downloading..."), self.download)
+		self.session.openWithCallback(self.show, SDG_ActionBox, _("Updating %s settings list") % ("Likra"), _("Downloading..."), self.download)
 
 	def show(self, ret = None):
 		if self.loaded:
@@ -70,4 +70,4 @@ class SDG_Likra(SDG_SettingsList):
 	def __init__(self, session, list):
 		SDG_SettingsList.__init__(self, session, list)
 		self.skinName = "SDG_SettingsList"
-		self.title = _("Available Likra settings")
+		self.title = _("List of available %s settings") % ("Likra")
