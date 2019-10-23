@@ -39,9 +39,9 @@ class SDG_SatvenusHelper():
 					if node.tag == "package":
 						sat = node.text
 						date = node.get("date")
-						print date[:4]
-						print date[4:6]
-						print date[-2:]
+						#print date[:4]
+						#print date[4:6]
+						#print date[-2:]
 						date = datetime.date(int(date[:4]), int(date[4:6]), int(date[-2:]))
 						date = date.strftime("%d %b")
 						url = "http://" + SATVENUS_HOST + SATVENUS_PATH + node.get("filename")

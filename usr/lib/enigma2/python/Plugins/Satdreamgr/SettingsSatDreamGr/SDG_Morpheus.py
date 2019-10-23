@@ -38,9 +38,9 @@ class SDG_MorpheusHelper():
 					if node.tag == "package":
 						sat = node.text
 						date = node.get("date")
-						print date[:4]
-						print date[4:6]
-						print date[-2:]
+						#print date[:4]
+						#print date[4:6]
+						#print date[-2:]
 						date = datetime.date(int(date[:4]), int(date[4:6]), int(date[-2:]))
 						date = date.strftime("%d %b")
 						url = "http://" + MORPHEUS_HOST + MORPHEUS_PATH + node.get("filename")

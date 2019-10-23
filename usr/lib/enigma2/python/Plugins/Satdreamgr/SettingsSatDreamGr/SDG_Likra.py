@@ -47,8 +47,6 @@ class SDG_LikraHelper():
 							elif x.tag == "URL":
 								url = x.text
 						self.list.append([sat, date, url])
-
-
 			else:
 				self.session.open(MessageBox, _("Cannot download %s settings list") % ("Likra"), MessageBox.TYPE_ERROR)
 				self.loaded = False

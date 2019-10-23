@@ -47,8 +47,6 @@ class SDG_VhannibalHelper():
 							elif x.tag == "URL":
 								url = x.text
 						self.list.append([sat, date, url])
-
-
 			else:
 				self.session.open(MessageBox, _("Cannot download %s settings list") % ("Vhannibal"), MessageBox.TYPE_ERROR)
 				self.loaded = False
