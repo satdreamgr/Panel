@@ -39,23 +39,23 @@ class SDG_SatdreamgrHelper():
 					if node.tag == "package":
 						sat = node.text
 						date = node.get("date")
-						print date[:4]
-						print date[4:6]
-						print date[-2:]
+						#print date[:4]
+						#print date[4:6]
+						#print date[-2:]
 						date = datetime.date(int(date[:4]), int(date[4:6]), int(date[-2:]))
 						date = date.strftime("%d %b")
 						url = "http://" + SATDREAMGR_HOST + SATDREAMGR_PATH + node.get("filename")
 						self.list.append([sat, date, url])
 			else:
-				self.session.open(MessageBox, _("Cannot download Cyrus list"), MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox, _("Cannot download %s settings list") % ("Cyrus"), MessageBox.TYPE_ERROR)
 				self.loaded = False
 		except Exception, e:
 			print e
-			self.session.open(MessageBox, _("Cannot download Cyrus list"), MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("Cannot download %s settings list") % ("Cyrus"), MessageBox.TYPE_ERROR)
 			self.loaded = False
 
 	def load(self):
-		self.session.openWithCallback(self.show, SDG_ActionBox, _("Downloading Cyrus list"), _("Downloading..."), self.download)
+		self.session.openWithCallback(self.show, SDG_ActionBox, _("Updating %s settings list") % ("Cyrus"), _("Downloading..."), self.download)
 
 	def show(self, ret = None):
 		if self.loaded:
@@ -67,4 +67,4 @@ class SDG_Satdreamgr(SDG_SettingsList):
 	def __init__(self, session, list):
 		SDG_SettingsList.__init__(self, session, list)
 		self.skinName = "SDG_SettingsList"
-		self.title = _("Available Cyrus settings")
+		self.title = _("List of available %s settings") % ("Cyrus")

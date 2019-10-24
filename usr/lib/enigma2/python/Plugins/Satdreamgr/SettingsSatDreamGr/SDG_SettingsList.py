@@ -81,7 +81,7 @@ class SDG_SettingsList(Screen):
 			httpres = conn.getresponse()
 			if httpres.status == 200:
 				tmp = url.path.split("/")
-				filename = TMP_IMPORT_PWD + "/" + tmp[len(tmp)-1]
+				filename = TMP_IMPORT_PWD + "/" + tmp[len(tmp) - 1]
 				out = open(filename, "w")
 				out.write(httpres.read())
 				out.close()
@@ -108,7 +108,7 @@ class SDG_SettingsList(Screen):
 		except Exception, e:
 			print e
 
-		self.session.open(MessageBox, _("Settings installed"), type = MessageBox.TYPE_INFO, timeout = 5)
+		self.session.open(MessageBox, _("Settings list installed successfully"), type=MessageBox.TYPE_INFO, timeout=5)
 
 	def ok(self):
 		if len(self.list) == 0:

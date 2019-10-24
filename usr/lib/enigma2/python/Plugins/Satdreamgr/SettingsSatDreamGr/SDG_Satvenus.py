@@ -39,23 +39,23 @@ class SDG_SatvenusHelper():
 					if node.tag == "package":
 						sat = node.text
 						date = node.get("date")
-						print date[:4]
-						print date[4:6]
-						print date[-2:]
+						#print date[:4]
+						#print date[4:6]
+						#print date[-2:]
 						date = datetime.date(int(date[:4]), int(date[4:6]), int(date[-2:]))
 						date = date.strftime("%d %b")
 						url = "http://" + SATVENUS_HOST + SATVENUS_PATH + node.get("filename")
 						self.list.append([sat, date, url])
 			else:
-				self.session.open(MessageBox, _("Cannot download Satvenus list"), MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox, _("Cannot download %s settings list") % ("Satvenus"), MessageBox.TYPE_ERROR)
 				self.loaded = False
 		except Exception, e:
 			print e
-			self.session.open(MessageBox, _("Cannot download Satvenus list"), MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("Cannot download %s settings list") % ("Satvenus"), MessageBox.TYPE_ERROR)
 			self.loaded = False
 
 	def load(self):
-		self.session.openWithCallback(self.show, SDG_ActionBox, _("Downloading Satvenus list"), _("Downloading..."), self.download)
+		self.session.openWithCallback(self.show, SDG_ActionBox, _("Updating %s settings list") % ("Satvenus"), _("Downloading..."), self.download)
 
 	def show(self, ret = None):
 		if self.loaded:
@@ -67,4 +67,4 @@ class SDG_Satvenus(SDG_SettingsList):
 	def __init__(self, session, list):
 		SDG_SettingsList.__init__(self, session, list)
 		self.skinName = "SDG_SettingsList"
-		self.title = _("Available Satvenus settings")
+		self.title = _("List of available %s settings") % ("Satvenus")

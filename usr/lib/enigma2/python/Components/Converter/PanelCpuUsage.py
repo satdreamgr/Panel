@@ -12,13 +12,13 @@ from Components.Element import cached
 
 
 class PanelCpuUsage(Converter, object):
-	CPU_ALL   = -2
+	CPU_ALL = -2
 	CPU_TOTAL = -1
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
-		
-		self.percentlist = [ ]
+
+		self.percentlist = []
 		self.pfmt = "%3d%%"
 		if not type or type == "Total":
 			self.type = self.CPU_TOTAL
@@ -36,10 +36,8 @@ class PanelCpuUsage(Converter, object):
 				while True:
 					pos = self.sfmt.find("$", pos)
 					if pos == -1: break
-					if pos < len(self.sfmt)-1 and \
-					   self.sfmt[pos+1].isdigit() and \
-					   int(self.sfmt[pos+1]) > cpus:
-						self.sfmt = self.sfmt.replace("$" + self.sfmt[pos+1], "n/a")
+					if pos < len(self.sfmt) - 1 and self.sfmt[pos + 1].isdigit() and int(self.sfmt[pos + 1]) > cpus:
+						self.sfmt = self.sfmt.replace("$" + self.sfmt[pos + 1], "n/a")
 					pos += 1
 
 	def doSuspend(self, suspended):
@@ -58,8 +56,8 @@ class PanelCpuUsage(Converter, object):
 		if not self.percentlist:
 			self.percentlist = [0] * 3
 		for i in range(len(self.percentlist)):
-			res = res.replace("$" + str(i), self.pfmt%(self.percentlist[i]))
-		res = res.replace("$?", "%d" % (len(self.percentlist)-1))
+			res = res.replace("$" + str(i), self.pfmt % (self.percentlist[i]))
+		res = res.replace("$?", "%d" % (len(self.percentlist) - 1))
 		return res
 
 	@cached
@@ -140,4 +138,3 @@ class PanelCpuUsageMonitor(Poll, object):
 
 
 cpuUsageMonitor = PanelCpuUsageMonitor()
-
