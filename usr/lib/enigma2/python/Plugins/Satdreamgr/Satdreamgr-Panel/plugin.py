@@ -226,8 +226,8 @@ class Plugins_Panel(Screen):
 
 	def refresh(self):
 		self.drawList = []
-		self.drawList.append(self.buildListEntry(_("SDG Radio"), "radio.png"))
-		self.drawList.append(self.buildListEntry(_("GreekNetRadio"), "netradio.png"))
+		self.drawList.append(self.buildListEntry(_("SDG radio"), "radio.png"))
+		self.drawList.append(self.buildListEntry(_("Internet radio"), "netradio.png"))
 		self.drawList.append(self.buildListEntry(_("Picture camera"), "camera.png"))
 		self.drawList.append(self.buildListEntry(_("GreekStreamTV"), "greekstream.png"))
 		self.drawList.append(self.buildListEntry(_("GreekStreamTV in bouquets"), "greekstreamb.png"))

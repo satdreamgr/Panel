@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Panel\n"
-"POT-Creation-Date: 2019-10-24 01:45+0300\n"
-"PO-Revision-Date: 2019-10-24 01:45+0300\n"
+"POT-Creation-Date: 2019-12-06 00:11+0200\n"
+"PO-Revision-Date: 2019-12-06 00:11+0200\n"
 "Last-Translator: \n"
 "Language-Team: SatDreamGr\n"
 "Language: el_GR\n"
@@ -292,7 +292,8 @@ msgid "Download completed!"
 msgstr "Η λήψη ολοκληρώθηκε!"
 
 #: PictureCamera/plugin.py:146 UpdateBouquet/plugin.py:123
-msgid "For information or questions please refer to www.satdreamgr.com forum."
+msgid ""
+"For information or questions please refer to the www.satdreamgr.com forum."
 msgstr "Για πληροφορίες ή ερωτήσεις ανατρέξτε στο www.satdreamgr.com."
 
 #: PictureCamera/plugin.py:148
@@ -395,12 +396,12 @@ msgid "Hotkey"
 msgstr "Hotkey"
 
 #: Satdreamgr-Panel/plugin.py:229
-msgid "SDG Radio"
-msgstr "SDG Radio"
+msgid "SDG radio"
+msgstr "SDG radio"
 
 #: Satdreamgr-Panel/plugin.py:230
-msgid "GreekNetRadio"
-msgstr "GreekNetRadio"
+msgid "Internet radio"
+msgstr "Διαδικτυακό ραδιόφωνο"
 
 #: Satdreamgr-Panel/plugin.py:232
 msgid "GreekStreamTV"
@@ -411,35 +412,35 @@ msgstr "GreekStreamTV"
 msgid "GreekStreamTV in bouquets"
 msgstr "GreekStreamTV στα μπουκέτα"
 
-#: SettingsSatDreamGr/SDG_Likra.py:53 SettingsSatDreamGr/SDG_Likra.py:57
+#: SettingsSatDreamGr/SDG_Likra.py:51 SettingsSatDreamGr/SDG_Likra.py:55
 #: SettingsSatDreamGr/SDG_Morpheus.py:49 SettingsSatDreamGr/SDG_Morpheus.py:53
 #: SettingsSatDreamGr/SDG_Satdreamgr.py:50
 #: SettingsSatDreamGr/SDG_Satdreamgr.py:54
 #: SettingsSatDreamGr/SDG_Satvenus.py:50 SettingsSatDreamGr/SDG_Satvenus.py:54
-#: SettingsSatDreamGr/SDG_Vhannibal.py:53
-#: SettingsSatDreamGr/SDG_Vhannibal.py:57
+#: SettingsSatDreamGr/SDG_Vhannibal.py:51
+#: SettingsSatDreamGr/SDG_Vhannibal.py:55
 #, python-format
 msgid "Cannot download %s settings list"
 msgstr "Δεν είναι δυνατή η λήψη της λίστας %s"
 
-#: SettingsSatDreamGr/SDG_Likra.py:61 SettingsSatDreamGr/SDG_Morpheus.py:57
+#: SettingsSatDreamGr/SDG_Likra.py:59 SettingsSatDreamGr/SDG_Morpheus.py:57
 #: SettingsSatDreamGr/SDG_Satdreamgr.py:58
-#: SettingsSatDreamGr/SDG_Satvenus.py:58 SettingsSatDreamGr/SDG_Vhannibal.py:61
+#: SettingsSatDreamGr/SDG_Satvenus.py:58 SettingsSatDreamGr/SDG_Vhannibal.py:59
 #, python-format
 msgid "Updating %s settings list"
 msgstr "Ενημέρωση λιστών %s"
 
-#: SettingsSatDreamGr/SDG_Likra.py:61 SettingsSatDreamGr/SDG_Morpheus.py:57
+#: SettingsSatDreamGr/SDG_Likra.py:59 SettingsSatDreamGr/SDG_Morpheus.py:57
 #: SettingsSatDreamGr/SDG_Satdreamgr.py:58
 #: SettingsSatDreamGr/SDG_Satvenus.py:58
 #: SettingsSatDreamGr/SDG_SettingsList.py:119
-#: SettingsSatDreamGr/SDG_Vhannibal.py:61
+#: SettingsSatDreamGr/SDG_Vhannibal.py:59
 msgid "Downloading..."
 msgstr "Γίνεται λήψη..."
 
-#: SettingsSatDreamGr/SDG_Likra.py:73 SettingsSatDreamGr/SDG_Morpheus.py:69
+#: SettingsSatDreamGr/SDG_Likra.py:71 SettingsSatDreamGr/SDG_Morpheus.py:69
 #: SettingsSatDreamGr/SDG_Satdreamgr.py:70
-#: SettingsSatDreamGr/SDG_Satvenus.py:70 SettingsSatDreamGr/SDG_Vhannibal.py:73
+#: SettingsSatDreamGr/SDG_Satvenus.py:70 SettingsSatDreamGr/SDG_Vhannibal.py:71
 #, python-format
 msgid "List of available %s settings"
 msgstr "Διαθέσιμες λίστες %s"
