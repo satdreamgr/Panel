@@ -243,8 +243,8 @@ class Plugins_Panel(Screen):
 				self.session.open(MessageBox, _("Sorry, plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 1:
 			try:
-				from Plugins.Extensions.GreekNetRadio.plugin import GreekMenuscrn
-				self.session.open(GreekMenuscrn)
+				from Plugins.Extensions.GreekNetRadio.plugin import GreekNetRadio
+				self.session.open(GreekNetRadio)
 			except:
 				self.session.open(MessageBox, _("Sorry, plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 2:
