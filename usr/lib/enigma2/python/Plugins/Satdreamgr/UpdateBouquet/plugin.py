@@ -120,7 +120,7 @@ class UpdateBouquet(Screen):
 			self.session.open(Console,_("Create bouquets list"),["%s create" % url_sc])
 
 	def showInfo(self):
-		tmpMessage = _("For information or questions please refer to www.satdreamgr.com forum.")
+		tmpMessage = _("For information or questions please refer to the www.satdreamgr.com forum.")
 		tmpMessage += "\n\n"
 		tmpMessage += _("GreekStreamTV is free.")
 		self.session.open(MessageBox, tmpMessage, MessageBox.TYPE_INFO)

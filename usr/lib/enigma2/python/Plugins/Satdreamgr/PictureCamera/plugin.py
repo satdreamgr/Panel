@@ -143,7 +143,7 @@ class PictureCamera(Screen):
 			self.close(PictureCamera)
 
 	def info(self):
-		MyMessage = _("For information or questions please refer to www.satdreamgr.com forum.")
+		MyMessage = _("For information or questions please refer to the www.satdreamgr.com forum.")
 		MyMessage += "\n\n"
 		MyMessage += _("Picture camera is free.")
 		self.session.open(MessageBox, MyMessage, MessageBox.TYPE_INFO)
