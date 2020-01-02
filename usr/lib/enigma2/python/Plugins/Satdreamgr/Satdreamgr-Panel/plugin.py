@@ -138,7 +138,6 @@ class System_Panel(Screen):
 		self.drawList.append(self.buildListEntry(_("System information"), "hardware.png"))
 		self.drawList.append(self.buildListEntry(_("TranspBA skin configuration"), "eye.png"))
 		self.drawList.append(self.buildListEntry(_("Enigma2 settings"), "settings.png"))
-		self.drawList.append(self.buildListEntry(_("SDGBackup Dreambox Enigma2"), "backup.png"))
 		self.drawList.append(self.buildListEntry(_("Remove packages"), "remove.png"))
 		self.drawList.append(self.buildListEntry(_("Swap manager"), "swap.png"))
 		self.drawList.append(self.buildListEntry(_("Hotkey"), "hotkey.png"))
@@ -172,23 +171,17 @@ class System_Panel(Screen):
 				self.session.open(MessageBox, _("Sorry, plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 4:
 			try:
-				from Plugins.Satdreamgr.SDGBackup.plugin import SDGBackup
-				self.session.open(SDGBackup)
-			except:
-				self.session.open(MessageBox, _("Sorry, plugin is not installed!"), MessageBox.TYPE_INFO)
-		elif index == 5:
-			try:
 				from Plugins.Satdreamgr.RemoveOPKG.plugin import Removeopkg
 				self.session.open(Removeopkg)
 			except:
 				self.session.open(MessageBox, _("Sorry, plugin is not installed!"), MessageBox.TYPE_INFO)
-		elif index == 6:
+		elif index == 5:
 			try:
 				from Plugins.Satdreamgr.SwapManager.plugin import SystemToolsSwap
 				self.session.open(SystemToolsSwap)
 			except:
 				self.session.open(MessageBox, _("Sorry, plugin is not installed!"), MessageBox.TYPE_INFO)
-		elif index == 7:
+		elif index == 6:
 			try:
 				from Screens.Hotkey import HotkeySetup
 				self.session.open(HotkeySetup)
