@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Panel\n"
-"POT-Creation-Date: 2019-12-06 00:11+0200\n"
-"PO-Revision-Date: 2019-12-06 00:11+0200\n"
+"POT-Creation-Date: 2020-01-02 19:47+0200\n"
+"PO-Revision-Date: 2020-01-02 19:47+0200\n"
 "Last-Translator: \n"
 "Language-Team: SatDreamGr\n"
 "Language: el_GR\n"
@@ -156,8 +156,7 @@ msgstr "Σχετικά με την εξερεύνηση αρχείων"
 
 #: Manipulate/plugin.py:128 Manipulate/plugin.py:133 Manipulate/plugin.py:138
 #: Manipulate/plugin.py:146 Manipulate/plugin.py:153 Manipulate/plugin.py:158
-#: SDGBackup/plugin.py:62 SettingsSatDreamGr/SDG_SettingsList.py:57
-#: SwapManager/plugin.py:63
+#: SettingsSatDreamGr/SDG_SettingsList.py:57 SwapManager/plugin.py:63
 msgid "Cancel"
 msgstr "Ακύρωση"
 
@@ -227,8 +226,7 @@ msgid ""
 "Do you realy want to delete the following directory and its content?\n"
 "\n"
 msgstr ""
-"Είστε βέβαιοι ότι θέλετε να διαγράψετε τον παρακάτω φάκελο και τα "
-"περιεχόμενά του;\n"
+"Είστε βέβαιοι ότι θέλετε να διαγράψετε τον παρακάτω φάκελο και τα περιεχόμενά του;\n"
 "\n"
 "\n"
 
@@ -275,7 +273,7 @@ msgstr "αναμείνατε..."
 msgid "No more picture files."
 msgstr "Δεν υπάρχουν άλλα αρχεία φωτογραφιών."
 
-#: PictureCamera/plugin.py:74 Satdreamgr-Panel/plugin.py:231
+#: PictureCamera/plugin.py:74 Satdreamgr-Panel/plugin.py:224
 msgid "Picture camera"
 msgstr "Picture camera"
 
@@ -292,8 +290,7 @@ msgid "Download completed!"
 msgstr "Η λήψη ολοκληρώθηκε!"
 
 #: PictureCamera/plugin.py:146 UpdateBouquet/plugin.py:123
-msgid ""
-"For information or questions please refer to the www.satdreamgr.com forum."
+msgid "For information or questions please refer to the www.satdreamgr.com forum."
 msgstr "Για πληροφορίες ή ερωτήσεις ανατρέξτε στο www.satdreamgr.com."
 
 #: PictureCamera/plugin.py:148
@@ -301,7 +298,7 @@ msgid "Picture camera is free."
 msgstr "Το Picture camera είναι δωρεάν."
 
 #: RemoveOPKG/plugin.py:34 RemoveOPKG/plugin.py:39 RemoveOPKG/plugin.py:65
-#: Satdreamgr-Panel/plugin.py:142
+#: Satdreamgr-Panel/plugin.py:141
 msgid "Remove packages"
 msgstr "Απεγκατάσταση πακέτων"
 
@@ -317,37 +314,9 @@ msgstr "Είστε βέβαιοι ότι θέλετε να επεγκαταστ�
 msgid "Delete package..."
 msgstr "Διαγραφή πακέτου..."
 
-#: SDGBackup/plugin.py:37 SDGBackup/plugin.py:42 Satdreamgr-Panel/plugin.py:141
-msgid "SDGBackup Dreambox Enigma2"
-msgstr "SDGBackup Dreambox Enigma2"
-
-#: SDGBackup/plugin.py:59
-msgid "Start SDGBackup on USB"
-msgstr "Εκκίνηση SDGBackup σε USB"
-
-#: SDGBackup/plugin.py:60
-msgid "Start SDGBackup on HDD"
-msgstr "Εκκίνηση SDGBackup σε HDD"
-
-#: SDGBackup/plugin.py:63 SwapManager/plugin.py:64
-msgid "OK"
-msgstr "ΟΚ"
-
-#: SDGBackup/plugin.py:71
-msgid ""
-"You are about to create a backup to the selected location.\n"
-"Do you really want to proceed?"
-msgstr ""
-"Πρόκειται να δημιουργήσετε ένα αντίγραφο ασφαλείας στην επιλεγμένη θέση.\n"
-"Είστε βέβαιοι ότι θέλετε να προχωρήσετε;"
-
-#: SDGBackup/plugin.py:75
-msgid "Backup is running..."
-msgstr "Η δημιουργία αντιγράφου ασφαλείας είναι σε εξέλιξη..."
-
 #: Satdreamgr-Panel/plugin.py:35 Satdreamgr-Panel/plugin.py:41
 #: Satdreamgr-Panel/plugin.py:70 Satdreamgr-Panel/plugin.py:120
-#: Satdreamgr-Panel/plugin.py:212
+#: Satdreamgr-Panel/plugin.py:205
 msgid "Panel +"
 msgstr "Panel +"
 
@@ -367,13 +336,13 @@ msgstr "Panel συστήματος"
 msgid "Plugins panel"
 msgstr "Panel προσθέτων"
 
-#: Satdreamgr-Panel/plugin.py:100 Satdreamgr-Panel/plugin.py:154
-#: Satdreamgr-Panel/plugin.py:160 Satdreamgr-Panel/plugin.py:166
-#: Satdreamgr-Panel/plugin.py:172 Satdreamgr-Panel/plugin.py:178
-#: Satdreamgr-Panel/plugin.py:184 Satdreamgr-Panel/plugin.py:190
-#: Satdreamgr-Panel/plugin.py:196 Satdreamgr-Panel/plugin.py:243
-#: Satdreamgr-Panel/plugin.py:249 Satdreamgr-Panel/plugin.py:255
-#: Satdreamgr-Panel/plugin.py:261 Satdreamgr-Panel/plugin.py:267
+#: Satdreamgr-Panel/plugin.py:100 Satdreamgr-Panel/plugin.py:153
+#: Satdreamgr-Panel/plugin.py:159 Satdreamgr-Panel/plugin.py:165
+#: Satdreamgr-Panel/plugin.py:171 Satdreamgr-Panel/plugin.py:177
+#: Satdreamgr-Panel/plugin.py:183 Satdreamgr-Panel/plugin.py:189
+#: Satdreamgr-Panel/plugin.py:236 Satdreamgr-Panel/plugin.py:242
+#: Satdreamgr-Panel/plugin.py:248 Satdreamgr-Panel/plugin.py:254
+#: Satdreamgr-Panel/plugin.py:260
 msgid "Sorry, plugin is not installed!"
 msgstr "Λυπούμαστε, το πρόσθετο δεν είναι εγκατεστημένο!"
 
@@ -386,28 +355,28 @@ msgstr "Ρύθμιση θέματος TranspBA"
 msgid "Enigma2 settings"
 msgstr "Λίστες καναλιών"
 
-#: Satdreamgr-Panel/plugin.py:143 SwapManager/plugin.py:40
+#: Satdreamgr-Panel/plugin.py:142 SwapManager/plugin.py:40
 #: SwapManager/plugin.py:45 SwapManager/plugin.py:62
 msgid "Swap manager"
 msgstr "Διαχείριση swap"
 
-#: Satdreamgr-Panel/plugin.py:144
+#: Satdreamgr-Panel/plugin.py:143
 msgid "Hotkey"
 msgstr "Hotkey"
 
-#: Satdreamgr-Panel/plugin.py:229
+#: Satdreamgr-Panel/plugin.py:222
 msgid "SDG radio"
 msgstr "SDG radio"
 
-#: Satdreamgr-Panel/plugin.py:230
+#: Satdreamgr-Panel/plugin.py:223
 msgid "Internet radio"
 msgstr "Διαδικτυακό ραδιόφωνο"
 
-#: Satdreamgr-Panel/plugin.py:232
+#: Satdreamgr-Panel/plugin.py:225
 msgid "GreekStreamTV"
 msgstr "GreekStreamTV"
 
-#: Satdreamgr-Panel/plugin.py:233 UpdateBouquet/plugin.py:40
+#: Satdreamgr-Panel/plugin.py:226 UpdateBouquet/plugin.py:40
 #: UpdateBouquet/plugin.py:45 UpdateBouquet/plugin.py:64
 msgid "GreekStreamTV in bouquets"
 msgstr "GreekStreamTV στα μπουκέτα"
@@ -558,6 +527,10 @@ msgstr "Σφάλμα κατά τη δημιουργία του θέματος!"
 msgid "Restart GUI"
 msgstr "Επανεκκίνηση GUI"
 
+#: SwapManager/plugin.py:64
+msgid "OK"
+msgstr "ΟΚ"
+
 #: SwapManager/plugin.py:74 SwapManager/plugin.py:90
 msgid "Swap info"
 msgstr "Πληροφορίες swap"
@@ -612,9 +585,7 @@ msgstr "Το αρχείο swap δεν είναι ενεργοποιημένο!"
 
 #: SwapManager/plugin.py:173
 msgid "Swap file exists! You can activate it on CF if you haven't already."
-msgstr ""
-"Το αρχείο swap υπάρχει! Μπορείτε να το ενεργοποιήσετε στη μνήμη CF, αν δεν "
-"το έχετε ήδη κάνει."
+msgstr "Το αρχείο swap υπάρχει! Μπορείτε να το ενεργοποιήσετε στη μνήμη CF, αν δεν το έχετε ήδη κάνει."
 
 #: SwapManager/plugin.py:181
 msgid "Done! You can now activate the swap on CF."
@@ -626,14 +597,11 @@ msgstr "Δεν βρέθηκε μνήμη compact flash προσαρτημένη 
 
 #: SwapManager/plugin.py:193
 msgid "Swap file exists! You can activate it on HDD if you haven't already."
-msgstr ""
-"Το αρχείο swap υπάρχει! Μπορείτε να το ενεργοποιήσετε στον σκληρό δίσκο, αν "
-"δεν το έχετε ήδη κάνει."
+msgstr "Το αρχείο swap υπάρχει! Μπορείτε να το ενεργοποιήσετε στον σκληρό δίσκο, αν δεν το έχετε ήδη κάνει."
 
 #: SwapManager/plugin.py:201
 msgid "Done! You can now activate the swap on HDD."
-msgstr ""
-"Ολοκληρώθηκε! Μπορείτε τώρα να ενεργοποιήσετε το swap στον σκληρό δίσκο."
+msgstr "Ολοκληρώθηκε! Μπορείτε τώρα να ενεργοποιήσετε το swap στον σκληρό δίσκο."
 
 #: SwapManager/plugin.py:205
 msgid "No hard drive mounted on /media/hdd."
@@ -641,9 +609,7 @@ msgstr "Δεν βρέθηκε σκληρός δίσκος προσαρτημέν
 
 #: SwapManager/plugin.py:213
 msgid "Swap file exists! You can activate it on USB if you haven't already."
-msgstr ""
-"Το αρχείο swap υπάρχει! Μπορείτε να το ενεργοποιήσετε στη συσκευή USB, αν "
-"δεν το έχετε ήδη κάνει."
+msgstr "Το αρχείο swap υπάρχει! Μπορείτε να το ενεργοποιήσετε στη συσκευή USB, αν δεν το έχετε ήδη κάνει."
 
 #: SwapManager/plugin.py:221
 msgid "Done! You can now activate the swap on USB."
@@ -659,8 +625,7 @@ msgstr "Το swap ενεργοποιήθηκε στον σκληρό δίσκο.
 
 #: SwapManager/plugin.py:236
 msgid "No swap file found on HDD. You have to create one first."
-msgstr ""
-"Δεν βρέθηκε αρχείο swap στον σκληρό δίσκο. Πρέπει να δημιουργήσετε ένα πρώτα."
+msgstr "Δεν βρέθηκε αρχείο swap στον σκληρό δίσκο. Πρέπει να δημιουργήσετε ένα πρώτα."
 
 #: SwapManager/plugin.py:243
 msgid "Swap is activated on CF."
@@ -668,8 +633,7 @@ msgstr "Το swap ενεργοποιήθηκε στη μνήμη CF."
 
 #: SwapManager/plugin.py:246
 msgid "No swap file found on CF. You have to create one first."
-msgstr ""
-"Δεν βρέθηκε αρχείο swap στη μνήμη CF. Πρέπει να δημιουργήσετε ένα πρώτα."
+msgstr "Δεν βρέθηκε αρχείο swap στη μνήμη CF. Πρέπει να δημιουργήσετε ένα πρώτα."
 
 #: SwapManager/plugin.py:253
 msgid "Swap is activated on USB."
@@ -677,8 +641,7 @@ msgstr "Το swap ενεργοποιήθηκε στη συσκευή USB."
 
 #: SwapManager/plugin.py:256
 msgid "No swap file found on USB. You have to create one first."
-msgstr ""
-"Δεν βρέθηκε αρχείο swap στη συσκευή USB. Πρέπει να δημιουργήσετε ένα πρώτα."
+msgstr "Δεν βρέθηκε αρχείο swap στη συσκευή USB. Πρέπει να δημιουργήσετε ένα πρώτα."
 
 #: UpdateBouquet/plugin.py:45
 msgid "Update bouquet list"
