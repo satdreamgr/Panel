@@ -136,7 +136,7 @@ class System_Panel(Screen):
 		self.drawList = []
 		self.drawList.append(self.buildListEntry(_("Archives explorer"), "Archives.png"))
 		self.drawList.append(self.buildListEntry(_("System information"), "hardware.png"))
-		self.drawList.append(self.buildListEntry(_("TranspBA skin configuration"), "eye.png"))
+		self.drawList.append(self.buildListEntry(_("TranspBA skin setup"), "eye.png")) # this has been removed - just display an information message
 		self.drawList.append(self.buildListEntry(_("Enigma2 settings"), "settings.png"))
 		self.drawList.append(self.buildListEntry(_("Remove packages"), "remove.png"))
 		self.drawList.append(self.buildListEntry(_("Swap manager"), "swap.png"))
@@ -158,11 +158,7 @@ class System_Panel(Screen):
 			except:
 				self.session.open(MessageBox, _("Sorry, plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 2:
-			try:
-				from Plugins.Satdreamgr.SkinSatdreamgr.plugin import MyMenuSKIN
-				self.session.open(MyMenuSKIN)
-			except:
-				self.session.open(MessageBox, _("Sorry, plugin is not installed!"), MessageBox.TYPE_INFO)
+			self.session.open(MessageBox, _("Plugin has been moved under the 'GUI settings' menu."), MessageBox.TYPE_INFO)
 		elif index == 3:
 			try:
 				from Plugins.Satdreamgr.SettingsSatDreamGr.plugin import SDG_Menu

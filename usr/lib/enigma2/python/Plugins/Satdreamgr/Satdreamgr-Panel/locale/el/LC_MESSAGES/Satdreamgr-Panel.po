@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Panel\n"
-"POT-Creation-Date: 2020-01-02 19:47+0200\n"
-"PO-Revision-Date: 2020-01-02 19:47+0200\n"
+"POT-Creation-Date: 2020-01-11 22:55+0200\n"
+"PO-Revision-Date: 2020-01-11 22:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: SatDreamGr\n"
 "Language: el_GR\n"
@@ -65,14 +65,12 @@ msgstr "Δημιουργία αρχείου καταγραφής"
 
 #: Hardware/plugin.py:69 Manipulate/plugin.py:79 PictureCamera/plugin.py:80
 #: RemoveOPKG/plugin.py:63 SettingsSatDreamGr/plugin.py:77
-#: SkinSatdreamgr/plugin.py:86 SkinSatdreamgr/plugin.py:220
 #: UpdateBouquet/plugin.py:72
 msgid "Exit"
 msgstr "Έξοδος"
 
 #: Hardware/plugin.py:70 Manipulate/plugin.py:80 PictureCamera/plugin.py:81
-#: SettingsSatDreamGr/plugin.py:78 SkinSatdreamgr/plugin.py:87
-#: UpdateBouquet/plugin.py:73
+#: SettingsSatDreamGr/plugin.py:78 UpdateBouquet/plugin.py:73
 msgid "Select"
 msgstr "Επιλογή"
 
@@ -273,7 +271,7 @@ msgstr "αναμείνατε..."
 msgid "No more picture files."
 msgstr "Δεν υπάρχουν άλλα αρχεία φωτογραφιών."
 
-#: PictureCamera/plugin.py:74 Satdreamgr-Panel/plugin.py:224
+#: PictureCamera/plugin.py:74 Satdreamgr-Panel/plugin.py:220
 msgid "Picture camera"
 msgstr "Picture camera"
 
@@ -316,7 +314,7 @@ msgstr "Διαγραφή πακέτου..."
 
 #: Satdreamgr-Panel/plugin.py:35 Satdreamgr-Panel/plugin.py:41
 #: Satdreamgr-Panel/plugin.py:70 Satdreamgr-Panel/plugin.py:120
-#: Satdreamgr-Panel/plugin.py:205
+#: Satdreamgr-Panel/plugin.py:201
 msgid "Panel +"
 msgstr "Panel +"
 
@@ -337,17 +335,16 @@ msgid "Plugins panel"
 msgstr "Panel προσθέτων"
 
 #: Satdreamgr-Panel/plugin.py:100 Satdreamgr-Panel/plugin.py:153
-#: Satdreamgr-Panel/plugin.py:159 Satdreamgr-Panel/plugin.py:165
-#: Satdreamgr-Panel/plugin.py:171 Satdreamgr-Panel/plugin.py:177
-#: Satdreamgr-Panel/plugin.py:183 Satdreamgr-Panel/plugin.py:189
-#: Satdreamgr-Panel/plugin.py:236 Satdreamgr-Panel/plugin.py:242
-#: Satdreamgr-Panel/plugin.py:248 Satdreamgr-Panel/plugin.py:254
-#: Satdreamgr-Panel/plugin.py:260
+#: Satdreamgr-Panel/plugin.py:159 Satdreamgr-Panel/plugin.py:167
+#: Satdreamgr-Panel/plugin.py:173 Satdreamgr-Panel/plugin.py:179
+#: Satdreamgr-Panel/plugin.py:185 Satdreamgr-Panel/plugin.py:232
+#: Satdreamgr-Panel/plugin.py:238 Satdreamgr-Panel/plugin.py:244
+#: Satdreamgr-Panel/plugin.py:250 Satdreamgr-Panel/plugin.py:256
 msgid "Sorry, plugin is not installed!"
 msgstr "Λυπούμαστε, το πρόσθετο δεν είναι εγκατεστημένο!"
 
-#: Satdreamgr-Panel/plugin.py:139 SkinSatdreamgr/plugin.py:71
-msgid "TranspBA skin configuration"
+#: Satdreamgr-Panel/plugin.py:139
+msgid "TranspBA skin setup"
 msgstr "Ρύθμιση θέματος TranspBA"
 
 #: Satdreamgr-Panel/plugin.py:140 SettingsSatDreamGr/plugin.py:41
@@ -364,19 +361,23 @@ msgstr "Διαχείριση swap"
 msgid "Hotkey"
 msgstr "Hotkey"
 
-#: Satdreamgr-Panel/plugin.py:222
+#: Satdreamgr-Panel/plugin.py:161
+msgid "Plugin has been moved under the 'GUI settings' menu."
+msgstr "Το πρόσθετο έχει μεταφερθεί στο μενού 'Ρυθμίσεις διεπαφής χρήστη'."
+
+#: Satdreamgr-Panel/plugin.py:218
 msgid "SDG radio"
 msgstr "SDG radio"
 
-#: Satdreamgr-Panel/plugin.py:223
+#: Satdreamgr-Panel/plugin.py:219
 msgid "Internet radio"
 msgstr "Διαδικτυακό ραδιόφωνο"
 
-#: Satdreamgr-Panel/plugin.py:225
+#: Satdreamgr-Panel/plugin.py:221
 msgid "GreekStreamTV"
 msgstr "GreekStreamTV"
 
-#: Satdreamgr-Panel/plugin.py:226 UpdateBouquet/plugin.py:40
+#: Satdreamgr-Panel/plugin.py:222 UpdateBouquet/plugin.py:40
 #: UpdateBouquet/plugin.py:45 UpdateBouquet/plugin.py:64
 msgid "GreekStreamTV in bouquets"
 msgstr "GreekStreamTV στα μπουκέτα"
@@ -431,101 +432,6 @@ msgstr "Η λίστα καναλιών εγκαταστάθηκε με επιτ�
 #: SettingsSatDreamGr/SDG_SettingsList.py:119
 msgid "Updating settings list"
 msgstr "Ενημέρωση λιστών"
-
-#: SkinSatdreamgr/plugin.py:25
-msgid "1-Original"
-msgstr "1-Πρωτότυπο"
-
-#: SkinSatdreamgr/plugin.py:26
-msgid "2-Black"
-msgstr "2-Μαύρο"
-
-#: SkinSatdreamgr/plugin.py:27
-msgid "3-Ultra Transparent"
-msgstr "3-Διαφανές"
-
-#: SkinSatdreamgr/plugin.py:28
-msgid "4-Blue"
-msgstr "4-Μπλε"
-
-#: SkinSatdreamgr/plugin.py:29
-msgid "5-Green"
-msgstr "5-Πράσινο"
-
-#: SkinSatdreamgr/plugin.py:30
-msgid "6-Navy Blue"
-msgstr "6-Μπλε μαρέν"
-
-#: SkinSatdreamgr/plugin.py:31
-msgid "7-Grey"
-msgstr "7-Γκρι"
-
-#: SkinSatdreamgr/plugin.py:49 SkinSatdreamgr/plugin.py:54
-msgid "Satdreamgr-HD-TranspBA"
-msgstr "Satdreamgr-HD-TranspBA"
-
-#: SkinSatdreamgr/plugin.py:54
-msgid "Configuration tool for Satdreamgr TranspBA skin"
-msgstr "Εργαλείο διαμόρφωσης για το θέμα Satdreamgr TranspBA"
-
-#: SkinSatdreamgr/plugin.py:73 SkinSatdreamgr/plugin.py:211
-msgid "Change color"
-msgstr "Αλλαγή χρώματος"
-
-#: SkinSatdreamgr/plugin.py:74
-msgid "Select main skin color"
-msgstr "Επιλέξτε το κυρίως χρώμα του θέματος"
-
-#: SkinSatdreamgr/plugin.py:76
-msgid "Change infobar"
-msgstr "Επιλογή μπάρας πληροφοριών"
-
-#: SkinSatdreamgr/plugin.py:77
-msgid "Simple infobar"
-msgstr "Απλή μπάρα πληροφοριών"
-
-#: SkinSatdreamgr/plugin.py:78
-msgid "Full bottom infobar"
-msgstr "Πλήρης κάτω μπάρα πληροφοριών"
-
-#: SkinSatdreamgr/plugin.py:79
-msgid "Full infobar"
-msgstr "Πλήρης μπάρα πληροφοριών"
-
-#: SkinSatdreamgr/plugin.py:81
-msgid "Weather in infobar"
-msgstr "Εμφάνιση καιρού στην μπάρα πληροφοριών"
-
-#: SkinSatdreamgr/plugin.py:82
-msgid "Weather on"
-msgstr "Εμφάνιση καιρού"
-
-#: SkinSatdreamgr/plugin.py:83
-msgid "Weather off"
-msgstr "Μη εμφάνιση καιρού"
-
-#: SkinSatdreamgr/plugin.py:103 SkinSatdreamgr/plugin.py:105
-#: SkinSatdreamgr/plugin.py:107 SkinSatdreamgr/plugin.py:109
-#: SkinSatdreamgr/plugin.py:111 SkinSatdreamgr/plugin.py:307
-#: UpdateBouquet/plugin.py:89
-msgid "Confirm your selection?"
-msgstr "Επιβεβαίωση επιλογής;"
-
-#: SkinSatdreamgr/plugin.py:221
-msgid "Save"
-msgstr "Αποθήκευση"
-
-#: SkinSatdreamgr/plugin.py:236
-msgid "Skin color"
-msgstr "Χρώμα θέματος"
-
-#: SkinSatdreamgr/plugin.py:303
-msgid "Error creating skin!"
-msgstr "Σφάλμα κατά τη δημιουργία του θέματος!"
-
-#: SkinSatdreamgr/plugin.py:308
-msgid "Restart GUI"
-msgstr "Επανεκκίνηση GUI"
 
 #: SwapManager/plugin.py:64
 msgid "OK"
@@ -654,6 +560,10 @@ msgstr "Δημιουργία λίστας στα μπουκέτα"
 #: UpdateBouquet/plugin.py:69
 msgid "Download & update bouquets list"
 msgstr "Λήψη & ενημέρωση λίστας μπουκέτων"
+
+#: UpdateBouquet/plugin.py:89
+msgid "Confirm your selection?"
+msgstr "Επιβεβαίωση επιλογής;"
 
 #: UpdateBouquet/plugin.py:111
 msgid "GreekStreamTV bouquet updated successfully..."
