@@ -8,6 +8,7 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.MenuList import MenuList
 from Components.ActionMap import ActionMap
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from requests.exceptions import *
 import os
 import requests
@@ -32,7 +33,7 @@ def Plugins(**kwargs):
 
 def getCameras():
 	cameras = []
-	with open('/usr/lib/enigma2/python/Plugins/Satdreamgr/PictureCamera/camera.txt','r') as f:
+	with open(resolveFilename(SCOPE_PLUGINS, "Satdreamgr/PictureCamera/camera.txt"), "r") as f:
 		for line in f:
 			for name, url in [x.split("|") for x in line.splitlines()]:
 				cameras.append((str(name), str(url)))
@@ -45,10 +46,10 @@ class PictureCamera(Screen):
 		<screen name="PictureCamera" title="Picture camera" position="center,center" size="640,480">
 			<widget name="menu" position="10,10" size="190,380" font="Regular;20" scrollbarMode="showOnDemand"/>
 			<widget name="pic" position="210,10" size="420,380" halign="center"/>
-			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/red.png" position="10,442" size="32,32" alphatest="blend"/>
-			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/green.png" position="165,442" size="32,32" alphatest="blend"/>
-			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/yellow.png" position="320,442" size="32,32" alphatest="blend"/>
-			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/blue.png" position="475,442" size="32,32" alphatest="blend"/>
+			<ePixmap pixmap="buttons/key_red.png" position="10,442" size="32,32" alphatest="blend"/>
+			<ePixmap pixmap="buttons/key_green.png" position="165,442" size="32,32" alphatest="blend"/>
+			<ePixmap pixmap="buttons/key_yellow.png" position="320,442" size="32,32" alphatest="blend"/>
+			<ePixmap pixmap="buttons/key_blue.png" position="475,442" size="32,32" alphatest="blend"/>
 			<widget name="key_red" position="45,440" size="120,32" valign="center" font="Regular;20"/>
 			<widget name="key_green" position="200,440" size="120,32" valign="center" font="Regular;20"/>
 			<widget name="key_yellow" position="355,440" size="120,32" valign="center" font="Regular;20"/>
@@ -124,7 +125,7 @@ class PictureCamera(Screen):
 			self.session.open(MessageBox, _("Internet connection error! Please check your internet connection!"), MessageBox.TYPE_ERROR)
 			pass
 		else:
-			dst = open("/usr/lib/enigma2/python/Plugins/Satdreamgr/PictureCamera/camera.txt", "w");
+			dst = open(resolveFilename(SCOPE_PLUGINS, "Satdreamgr/PictureCamera/camera.txt"), "w");
 			shutil.copyfileobj(src, dst)
 			self.session.open(MessageBox, _("Download completed!"), MessageBox.TYPE_INFO)
 			self.close(PictureCamera)
