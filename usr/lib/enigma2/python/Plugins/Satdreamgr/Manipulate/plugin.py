@@ -1,3 +1,4 @@
+from . import _
 from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Screens.Console import Console
@@ -16,14 +17,6 @@ from enigma import ePicLoad, getDesktop
 from os import system as os_system
 from os import stat as os_stat
 from os import walk as os_walk
-import gettext
-
-
-try:
-	cat = gettext.translation('Satdreamgr-Panel', '/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/locale', [config.osd.language.getText()])
-	_ = cat.gettext
-except IOError:
-	pass
 
 
 config.plugins.ExFiles = ConfigSubsection()

@@ -1,21 +1,23 @@
-# -*- coding: utf-8 -*-
-
 from Components.Language import language
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 import gettext
- 
-PluginLanguageDomain = "Foreca"
-PluginLanguagePath = "Extensions/Foreca/locale"
- 
-def localeInit():
-    gettext.bindtextdomain(PluginLanguageDomain, resolveFilename(SCOPE_PLUGINS, PluginLanguagePath))
- 
+
+LOCALES_DOMAIN = "Satdreamgr-Panel"
+LOCALES_RELPATH = "Satdreamgr/Satdreamgr-Panel/locale"
+
+def _locale_init():
+	gettext.bindtextdomain(
+		LOCALES_DOMAIN,
+		resolveFilename(SCOPE_PLUGINS, LOCALES_RELPATH))
+
 def _(txt):
-    t = gettext.dgettext(PluginLanguageDomain, txt)
-    if t == txt:
-        #print "[%s] fallback to default translation for %s" %(PluginLanguageDomain, txt)
-        t = gettext.gettext(txt)
-    return t
- 
-localeInit()
-language.addCallback(localeInit)
+	try:
+		t = gettext.dgettext(LOCALES_DOMAIN, txt)
+		if t == txt:
+			t = gettext.gettext(txt)
+		return t
+	except Exception:
+		return txt
+
+_locale_init()
+language.addCallback(_locale_init)

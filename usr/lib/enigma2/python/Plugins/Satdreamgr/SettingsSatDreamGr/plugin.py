@@ -1,7 +1,7 @@
+from . import _
 from Screens.Screen import Screen
 from Components.Sources.List import List
 from Components.ActionMap import ActionMap
-from Components.config import config
 from Tools.LoadPixmap import LoadPixmap
 from SDG_Vhannibal import SDG_VhannibalHelper
 from SDG_Morpheus import SDG_MorpheusHelper
@@ -14,14 +14,6 @@ import os
 import sys
 from enigma import *
 from time import *
-import gettext
-
-
-try:
-	cat = gettext.translation('Satdreamgr-Panel', '/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/locale', [config.osd.language.getText()])
-	_ = cat.gettext
-except IOError:
-	pass
 
 
 def main(session, **kwargs):

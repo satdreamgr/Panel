@@ -1,6 +1,6 @@
+from . import _
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-from Components.config import config
 from Components.Sources.List import List
 from Components.ActionMap import ActionMap
 from Components.Button import Button
@@ -12,14 +12,6 @@ from urlparse import urlparse
 import httplib
 import shutil
 import os
-import gettext
-
-
-try:
-	cat = gettext.translation('Satdreamgr-Panel', '/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/locale', [config.osd.language.getText()])
-	_ = cat.gettext
-except IOError:
-	pass
 
 
 class SDG_SettingsList(Screen):

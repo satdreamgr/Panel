@@ -1,18 +1,10 @@
+from . import _
 from Screens.MessageBox import MessageBox
-from Components.config import config
 from SDG_ActionBox import SDG_ActionBox
 from SDG_SettingsList import SDG_SettingsList
 import xml.etree.cElementTree
 import httplib
 import os
-import gettext
-
-
-try:
-	cat = gettext.translation('Satdreamgr-Panel', '/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/locale', [config.osd.language.getText()])
-	_ = cat.gettext
-except IOError:
-	pass
 
 
 Likra_HOST = "sgcpm.com"

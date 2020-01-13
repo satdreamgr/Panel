@@ -1,4 +1,4 @@
-from Components.config import config
+from . import _
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.MenuList import MenuList
@@ -8,14 +8,6 @@ from Screens.MessageBox import MessageBox
 from Screens.Console import Console
 #from os import path
 import os, urllib
-import gettext
-
-
-try:
-	cat = gettext.translation("Satdreamgr-Panel", "/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/locale", [config.osd.language.getText()])
-	_ = cat.gettext
-except IOError:
-	pass
 
 
 url_sc = "/usr/lib/enigma2/python/Plugins/Satdreamgr/UpdateBouquet/update.sh"
