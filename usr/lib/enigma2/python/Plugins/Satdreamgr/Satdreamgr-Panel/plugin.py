@@ -46,8 +46,6 @@ panel_main = """<screen name="Panel+" position="center,center" size="600,405" ti
 							}
 						</convert>
 					</widget>
-					<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/key_exit.png" position="80,360" size="40,32" zPosition="1" alphatest="blend"/>
-					<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/key_ok.png" position="240,360" size="40,32" zPosition="1" alphatest="blend"/>
 				</screen>"""
 
 

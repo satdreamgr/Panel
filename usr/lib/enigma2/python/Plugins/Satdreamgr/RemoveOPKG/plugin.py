@@ -36,8 +36,8 @@ class Removeopkg(Screen):
 	skin = """
 		<screen name="Removeopkg" position="center,center" size="500,405">
 			<widget name="list" itemHeight="35" position="10,10" size="480,350" scrollbarMode="showOnDemand" font="Regular;20"/>
-			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/red.png" position="10,372" size="32,32" alphatest="blend"/>
-			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/green.png" position="165,372" size="32,32" alphatest="blend"/>
+			<ePixmap pixmap="buttons/key_red.png" position="10,372" size="32,32" alphatest="blend"/>
+			<ePixmap pixmap="buttons/key_green.png" position="165,372" size="32,32" alphatest="blend"/>
 			<widget name="key_red" position="45,370" size="120,32" valign="center" font="Regular;20"/>
 			<widget name="key_green" position="200,370" size="120,32" valign="center" font="Regular;20"/>
 		</screen>"""

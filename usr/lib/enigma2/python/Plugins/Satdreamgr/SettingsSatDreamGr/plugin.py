@@ -53,8 +53,8 @@ class SDG_Menu(Screen):
 					}
 				</convert>
 			</widget>
-			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/red.png" position="10,372" size="32,32" alphatest="blend"/>
-			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/green.png" position="165,372" size="32,32" alphatest="blend"/>
+			<ePixmap pixmap="buttons/key_red.png" position="10,372" size="32,32" alphatest="blend"/>
+			<ePixmap pixmap="buttons/key_green.png" position="165,372" size="32,32" alphatest="blend"/>
 			<widget name="key_red" position="45,370" size="120,32" valign="center" font="Regular;20"/>
 			<widget name="key_green" position="200,370" size="120,32" valign="center" font="Regular;20"/>
 		</screen>"""
