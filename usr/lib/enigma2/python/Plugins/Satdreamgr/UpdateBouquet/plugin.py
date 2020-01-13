@@ -6,12 +6,13 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console
-#from os import path
-import os, urllib
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS
+import os
+import urllib
 
 
-url_sc = "/usr/lib/enigma2/python/Plugins/Satdreamgr/UpdateBouquet/update.sh"
-GSXML = "/usr/lib/enigma2/python/Plugins/Satdreamgr/UpdateBouquet/stream.xml"
+url_sc = resolveFilename(SCOPE_PLUGINS, "Satdreamgr/UpdateBouquet/update.sh")
+GSXML = resolveFilename(SCOPE_PLUGINS, "Satdreamgr/UpdateBouquet/stream.xml")
 GSBQ = "/etc/enigma2/userbouquet.greekstreamtv.tv"
 
 
@@ -42,9 +43,9 @@ class UpdateBouquet(Screen):
 	skin = """
 		<screen name="UpdateBouquet" title="GreekStreamTV in bouquets" position="center,center" size="600,405">
 			<widget name="menu" itemHeight="35" position="10,10" size="580,300" scrollbarMode="showOnDemand"/>
-			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/red.png" position="10,372" size="32,32" alphatest="blend"/>
-			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/green.png" position="165,372" size="32,32" alphatest="blend"/>
-			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/blue.png" position="320,372" size="32,32" alphatest="blend"/>
+			<ePixmap pixmap="buttons/key_red.png" position="10,372" size="32,32" alphatest="blend"/>
+			<ePixmap pixmap="buttons/key_green.png" position="165,372" size="32,32" alphatest="blend"/>
+			<ePixmap pixmap="buttons/key_blue.png" position="320,372" size="32,32" alphatest="blend"/>
 			<widget name="key_red" position="45,370" size="120,32" valign="center" font="Regular;20"/>
 			<widget name="key_green" position="200,370" size="120,32" valign="center" font="Regular;20"/>
 			<widget name="key_blue" position="355,370" size="120,32" valign="center" font="Regular;20"/>
@@ -54,24 +55,23 @@ class UpdateBouquet(Screen):
 		Screen.__init__(self, session)
 		self.session = session
 		self.setTitle(_("GreekStreamTV in bouquets"))
+
 		menu = []
+		menu.append((_("Create bouquets list"), "create"))
+		menu.append((_("Download & update bouquets list"), "updatebq"))
+		self["menu"] = MenuList(menu)
 
-		if os.path.isdir("/usr/lib/enigma2/python/Plugins/Satdreamgr/UpdateBouquet"):
-			menu.append((_("Create bouquets list"), "create"))
-			menu.append((_("Download & update bouquets list"), "updatebq"))
-			self["menu"] = MenuList(menu)
-
-			self["key_red"] = Label(_("Exit"))
-			self["key_green"] = Label(_("Select"))
-			self["key_blue"] = Label(_("Info"))
-			self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
-			{
-				"ok": self.go,
-				"cancel": self.close,
-				"red": self.close,
-				"green": self.go,
-				"blue": self.showInfo,
-			}, -1)
+		self["key_red"] = Label(_("Exit"))
+		self["key_green"] = Label(_("Select"))
+		self["key_blue"] = Label(_("Info"))
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
+		{
+			"ok": self.go,
+			"cancel": self.close,
+			"red": self.close,
+			"green": self.go,
+			"blue": self.showInfo,
+		}, -1)
 
 	def go(self):
 		if self["menu"].l.getCurrentSelection() is not None:
@@ -85,8 +85,7 @@ class UpdateBouquet(Screen):
 				url = "http://sgcpm.com/livestream/stream.xml"
 				f = urllib.urlopen(url)
 				info = f.read()
-				tmp = "/usr/lib/enigma2/python/Plugins/Satdreamgr/UpdateBouquet/stream.xml"
-				file = open(tmp, "w")
+				file = open(resolveFilename(SCOPE_PLUGINS, "Satdreamgr/UpdateBouquet/stream.xml"), "w")
 				file.write(info)
 				file.close()
 				print "[Testplugin]: download done ", url
@@ -138,7 +137,7 @@ class UpdateBouquet(Screen):
 			for (name, service) in tvlist:
 				f.write(service)
 
-		com = "cat /usr/lib/enigma2/python/Plugins/Satdreamgr/UpdateBouquet/stream.xml ; rm /usr/lib/enigma2/python/Plugins/Satdreamgr/UpdateBouquet/stream.xml"
+		com = "cat {0} ; rm {0}".format(GSXML)
 		out = os.popen(com)
 
 		return list

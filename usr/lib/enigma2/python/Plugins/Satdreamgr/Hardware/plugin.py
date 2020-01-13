@@ -8,6 +8,7 @@ from Components.MenuList import MenuList
 from Screens.Console import Console
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
 
 def main(session,**kwargs):
@@ -37,8 +38,8 @@ class HardwareInfo(Screen):
 	skin = """
 		<screen name="System information" position="center,center" size="600,405" >
 			<widget name="menu" itemHeight="35" position="20,10" size="580,330" scrollbarMode="showOnDemand" transparent="1" zPosition="9"/>
-			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/red.png" position="80,360" size="32,32" zPosition="1" alphatest="blend"/>
-			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/images/green.png" position="240,360" size="32,32" zPosition="1" alphatest="blend"/>
+			<ePixmap pixmap="buttons/key_red.png" position="80,360" size="32,32" zPosition="1" alphatest="blend"/>
+			<ePixmap pixmap="buttons/key_green.png" position="240,360" size="32,32" zPosition="1" alphatest="blend"/>
 			<widget name="key_red" position="110,360" size="80,32" valign="center" halign="center" zPosition="1" font="Regular;22" transparent="1" />
 			<widget name="key_green" position="270,360" size="80,32" valign="center" halign="center" zPosition="1" font="Regular;22" transparent="1" />
 		</screen>"""
@@ -108,36 +109,36 @@ class system_info(Screen):
 
 	skin = """
 	<screen name="Hardware info" position="center,center" size="640,480">
-		<ePixmap position="20,30" zPosition="5" size="50,50" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/ram.png" alphatest="blend" />
-		<widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/bar.png" position="90,30" size="515,20" transparent="1" zPosition="6">
+		<ePixmap position="20,30" zPosition="5" size="50,50" pixmap="~/icons/ram.png" alphatest="blend" />
+		<widget source="session.Event_Now" render="Progress" pixmap="~/icons/bar.png" position="90,30" size="515,20" transparent="1" zPosition="6">
 			<convert type="PanelSpaceInfo">MemTotal</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" zPosition="6" position="90,56" size="515,26" halign="left" valign="center" font="Regular; 23" transparent="0">
 			<convert type="PanelSpaceInfo">MemTotal,Full</convert>
 		</widget>
-		<ePixmap position="20,110" zPosition="1" size="50,50" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/swap.png" alphatest="blend" />
-		<widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/bar.png" position="90,110" size="515,20" transparent="1" zPosition="6">
+		<ePixmap position="20,110" zPosition="1" size="50,50" pixmap="~/icons/swap.png" alphatest="blend" />
+		<widget source="session.Event_Now" render="Progress" pixmap="~/icons/bar.png" position="90,110" size="515,20" transparent="1" zPosition="6">
 			<convert type="PanelSpaceInfo">SwapTotal</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" zPosition="6" position="90,134" size="515,26" halign="left" valign="center" font="Regular; 23" transparent="0">
 			<convert type="PanelSpaceInfo">SwapTotal,Full</convert>
 		</widget>
-		<ePixmap position="20,190" zPosition="1" size="50,50" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/flash.png" alphatest="blend" />
-		<widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/bar.png" position="90,190" size="515,20" transparent="1" zPosition="6">
+		<ePixmap position="20,190" zPosition="1" size="50,50" pixmap="~/icons/flash.png" alphatest="blend" />
+		<widget source="session.Event_Now" render="Progress" pixmap="~/icons/bar.png" position="90,190" size="515,20" transparent="1" zPosition="6">
 			<convert type="PanelSpaceInfo">FleshInfo</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" zPosition="6" position="90,213" size="515,26" halign="left" valign="center" font="Regular; 23" transparent="0">
 			<convert type="PanelSpaceInfo">Flesh,Full</convert>
 		</widget>
-		<ePixmap position="20,270" zPosition="1" size="50,50" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/hdd.png" alphatest="blend" />
-		<widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/bar.png" position="90,270" size="515,20" transparent="1" zPosition="6">
+		<ePixmap position="20,270" zPosition="1" size="50,50" pixmap="~/icons/hdd.png" alphatest="blend" />
+		<widget source="session.Event_Now" render="Progress" pixmap="~/icons/bar.png" position="90,270" size="515,20" transparent="1" zPosition="6">
 			<convert type="PanelSpaceInfo">HddInfo</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" zPosition="6" position="90,293" size="515,26" halign="left" valign="center" font="Regular; 23" transparent="0">
 			<convert type="PanelSpaceInfo">HddInfo,Full</convert>
 		</widget>
-		<ePixmap position="20,350" zPosition="1" size="50,50" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/usb.png" alphatest="blend" />
-		<widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Satdreamgr/Hardware/icons/bar.png" position="90,350" size="515,20" transparent="1" zPosition="6">
+		<ePixmap position="20,350" zPosition="1" size="50,50" pixmap="~/icons/usb.png" alphatest="blend" />
+		<widget source="session.Event_Now" render="Progress" pixmap="~/icons/bar.png" position="90,350" size="515,20" transparent="1" zPosition="6">
 			<convert type="PanelSpaceInfo">UsbInfo</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" zPosition="6" position="90,378" size="515,26" halign="left" valign="center" font="Regular; 23" transparent="0">
@@ -150,7 +151,11 @@ class system_info(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.session = session
-		self.setup_title = _("Hardware info")
-		self.setTitle(self.setup_title)
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "WizardActions", "DirectionActions"], {"ok": self.close, "back": self.close,}, -1)
+		self.setTitle(_("Hardware info"))
+		self.skin_path = resolveFilename(SCOPE_PLUGINS, "Satdreamgr/Hardware")
+
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "WizardActions", "DirectionActions"],
+		{
+			"ok": self.close,
+			"back": self.close,
+		}, -1)
