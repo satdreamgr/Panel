@@ -1,3 +1,4 @@
+from . import _
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.TextBox import TextBox
@@ -5,18 +6,9 @@ from Components.MenuList import MenuList
 from Components.ActionMap import ActionMap
 from Plugins.Plugin import PluginDescriptor
 from Components.Label import Label
-from Components.config import config
 from Tools.Directories import fileExists, pathExists
 from enigma import eTimer
 import os
-import gettext
-
-
-try:
-	cat = gettext.translation('Satdreamgr-Panel', '/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/locale', [config.osd.language.getText()])
-	_ = cat.gettext
-except IOError:
-	pass
 
 
 entrylist = []

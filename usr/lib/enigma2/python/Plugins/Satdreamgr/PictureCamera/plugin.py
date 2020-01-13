@@ -1,8 +1,4 @@
-##
-## Picture Camera Plugin
-## SatDreamGr Team
-## www.satdreamgr.com
-##
+from . import _
 from Plugins.Plugin import PluginDescriptor
 from enigma import ePicLoad, eTimer
 from Components.AVSwitch import AVSwitch
@@ -10,7 +6,6 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-from Components.config import config
 from Components.MenuList import MenuList
 from Components.ActionMap import ActionMap
 from requests.exceptions import *
@@ -18,14 +13,6 @@ import os
 import requests
 import urllib2
 import shutil
-import gettext
-
-
-try:
-	cat = gettext.translation('Satdreamgr-Panel', '/usr/lib/enigma2/python/Plugins/Satdreamgr/Satdreamgr-Panel/locale', [config.osd.language.getText()])
-	_ = cat.gettext
-except IOError:
-	pass
 
 
 def main(session, **kwargs):
