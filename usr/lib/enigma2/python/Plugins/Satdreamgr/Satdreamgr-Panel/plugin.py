@@ -238,11 +238,7 @@ class Plugins_Panel(Screen):
 			except:
 				self.session.open(MessageBox, _("Sorry, plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 4:
-			try:
-				from Plugins.Satdreamgr.UpdateBouquet.plugin import UpdateBouquet
-				self.session.open(UpdateBouquet)
-			except:
-				self.session.open(MessageBox, _("Sorry, plugin is not installed!"), MessageBox.TYPE_INFO)
+			self.session.open(MessageBox, _("This functionality has been moved into the GreekStreamTV plugin."), MessageBox.TYPE_INFO)
 
 	def quit(self):
 		self.close()
