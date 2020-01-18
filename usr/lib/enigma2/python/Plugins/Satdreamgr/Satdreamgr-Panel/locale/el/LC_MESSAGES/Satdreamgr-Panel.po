@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Panel\n"
-"POT-Creation-Date: 2020-01-11 22:55+0200\n"
-"PO-Revision-Date: 2020-01-11 22:58+0200\n"
+"POT-Creation-Date: 2020-01-18 20:50+0200\n"
+"PO-Revision-Date: 2020-01-18 20:51+0200\n"
 "Last-Translator: \n"
 "Language-Team: SatDreamGr\n"
 "Language: el_GR\n"
@@ -14,109 +14,107 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: Hardware/plugin.py:34 Hardware/plugin.py:39 Hardware/plugin.py:71
-#: Satdreamgr-Panel/plugin.py:138
+#: Hardware/plugin.py:28 Hardware/plugin.py:33 Hardware/plugin.py:65
+#: Satdreamgr-Panel/plugin.py:127
 msgid "System information"
 msgstr "Πληροφορίες συστήματος"
 
-#: Hardware/plugin.py:57 Hardware/plugin.py:161
+#: Hardware/plugin.py:51 Hardware/plugin.py:154
 msgid "Hardware info"
 msgstr "Πληροφορίες υλικού"
 
-#: Hardware/plugin.py:58 Hardware/plugin.py:81
+#: Hardware/plugin.py:52 Hardware/plugin.py:75
 msgid "DVB modules"
 msgstr "Δομοστοιχεία DVB"
 
-#: Hardware/plugin.py:59 Hardware/plugin.py:83
+#: Hardware/plugin.py:53 Hardware/plugin.py:77
 msgid "Netstat"
 msgstr "Πληροφορίες δικτύου"
 
-#: Hardware/plugin.py:60 Hardware/plugin.py:85
+#: Hardware/plugin.py:54 Hardware/plugin.py:79
 msgid "Ifconfig"
 msgstr "Κατάσταση δικτύου"
 
-#: Hardware/plugin.py:61 Hardware/plugin.py:87
+#: Hardware/plugin.py:55 Hardware/plugin.py:81
 msgid "Internet connectivity test"
 msgstr "Έλεγχος σύνδεσης ίντερνετ"
 
-#: Hardware/plugin.py:62
+#: Hardware/plugin.py:56
 msgid "Second stage loader version"
 msgstr "Έκδοση second stage loader"
 
-#: Hardware/plugin.py:63 Hardware/plugin.py:91
+#: Hardware/plugin.py:57 Hardware/plugin.py:85
 msgid "Show installed packages"
 msgstr "Εμφάνιση εγκατεστημένων πακέτων"
 
-#: Hardware/plugin.py:64
+#: Hardware/plugin.py:58
 msgid "Show devices"
 msgstr "Εμφάνιση συσκευών"
 
-#: Hardware/plugin.py:65
+#: Hardware/plugin.py:59
 msgid "Show mounts"
 msgstr "Εμφάνιση προσαρτήσεων"
 
-#: Hardware/plugin.py:66
+#: Hardware/plugin.py:60
 msgid "Delete crash logs"
 msgstr "Διαγραφή αρχείων καταγραφής"
 
-#: Hardware/plugin.py:67
+#: Hardware/plugin.py:61
 msgid "Create debug log"
 msgstr "Δημιουργία αρχείου καταγραφής"
 
-#: Hardware/plugin.py:69 Manipulate/plugin.py:79 PictureCamera/plugin.py:80
-#: RemoveOPKG/plugin.py:63 SettingsSatDreamGr/plugin.py:77
-#: UpdateBouquet/plugin.py:72
+#: Hardware/plugin.py:63 Manipulate/plugin.py:72 PictureCamera/plugin.py:68
+#: RemoveOPKG/plugin.py:55 SettingsSatDreamGr/plugin.py:69
 msgid "Exit"
 msgstr "Έξοδος"
 
-#: Hardware/plugin.py:70 Manipulate/plugin.py:80 PictureCamera/plugin.py:81
-#: SettingsSatDreamGr/plugin.py:78 UpdateBouquet/plugin.py:73
+#: Hardware/plugin.py:64 Manipulate/plugin.py:73 PictureCamera/plugin.py:69
+#: SettingsSatDreamGr/plugin.py:70
 msgid "Select"
 msgstr "Επιλογή"
 
-#: Hardware/plugin.py:89
+#: Hardware/plugin.py:83
 msgid "Second stage loader installed version"
 msgstr "Εγκατεστημένη έκδοση second stage loader"
 
-#: Hardware/plugin.py:93
+#: Hardware/plugin.py:87
 msgid "Device info"
 msgstr "Πληροφορίες συσκευών"
 
-#: Hardware/plugin.py:95
+#: Hardware/plugin.py:89
 msgid "Mounts info"
 msgstr "Πληροφορίες προσαρτήσεων"
 
-#: Hardware/plugin.py:97
+#: Hardware/plugin.py:91
 msgid "Do you really want to delete all existing crash logs?"
 msgstr "Είστε βέβαιοι ότι θέλετε να διαγράψετε τα υπάρχοντα αρχεία καταγραφής;"
 
-#: Hardware/plugin.py:99
+#: Hardware/plugin.py:93
 msgid "Do you really want to create a new debug log?"
 msgstr "Είστε βέβαιοι ότι θέλετε να δημιουργήσετε ένα νέο αρχείο καταγραφής;"
 
-#: Hardware/plugin.py:105 Hardware/plugin.py:111
+#: Hardware/plugin.py:99 Hardware/plugin.py:105
 msgid "Execution finished!"
 msgstr "Η εκτέλεση ολοκληρώθηκε!"
 
-#: Manipulate/plugin.py:43 Manipulate/plugin.py:48 Manipulate/plugin.py:78
-#: Manipulate/plugin.py:188 Satdreamgr-Panel/plugin.py:137
+#: Manipulate/plugin.py:36 Manipulate/plugin.py:41 Manipulate/plugin.py:71
+#: Manipulate/plugin.py:181 Satdreamgr-Panel/plugin.py:126
 msgid "Archives explorer"
 msgstr "Εξερεύνηση αρχείων"
 
-#: Manipulate/plugin.py:48
+#: Manipulate/plugin.py:41
 msgid "Install ipk or tar.gz files..."
 msgstr "Εγκατάσταση αρχείων ipk, tar.gz..."
 
-#: Manipulate/plugin.py:81
+#: Manipulate/plugin.py:74
 msgid "Delete"
 msgstr "Διαγραφή"
 
-#: Manipulate/plugin.py:82 Manipulate/plugin.py:262 PictureCamera/plugin.py:83
-#: UpdateBouquet/plugin.py:74
+#: Manipulate/plugin.py:75 Manipulate/plugin.py:255 PictureCamera/plugin.py:71
 msgid "Info"
 msgstr "Πληροφορίες"
 
-#: Manipulate/plugin.py:98
+#: Manipulate/plugin.py:91
 msgid ""
 "Information\n"
 "\n"
@@ -148,65 +146,65 @@ msgstr ""
 "http://www.satdreamgr.com\n"
 "---------------------------"
 
-#: Manipulate/plugin.py:99
+#: Manipulate/plugin.py:92
 msgid "About archives explorer"
 msgstr "Σχετικά με την εξερεύνηση αρχείων"
 
-#: Manipulate/plugin.py:128 Manipulate/plugin.py:133 Manipulate/plugin.py:138
-#: Manipulate/plugin.py:146 Manipulate/plugin.py:153 Manipulate/plugin.py:158
-#: SettingsSatDreamGr/SDG_SettingsList.py:57 SwapManager/plugin.py:63
+#: Manipulate/plugin.py:121 Manipulate/plugin.py:126 Manipulate/plugin.py:131
+#: Manipulate/plugin.py:139 Manipulate/plugin.py:146 Manipulate/plugin.py:151
+#: SettingsSatDreamGr/SDG_SettingsList.py:49 SwapManager/plugin.py:55
 msgid "Cancel"
 msgstr "Ακύρωση"
 
-#: Manipulate/plugin.py:128
+#: Manipulate/plugin.py:121
 msgid "Install new bootlogo..."
 msgstr "Εγκατάσταση νέου λογοτύπου εκκίνησης..."
 
-#: Manipulate/plugin.py:129
+#: Manipulate/plugin.py:122
 msgid "Bootlogo-package:\\n"
 msgstr "Πακέτο λογοτύπου εκκίνησης:\\n"
 
-#: Manipulate/plugin.py:133 Manipulate/plugin.py:138 Manipulate/plugin.py:146
+#: Manipulate/plugin.py:126 Manipulate/plugin.py:131 Manipulate/plugin.py:139
 msgid "Install this package"
 msgstr "Εγκατάσταση αυτού του πακέτου"
 
-#: Manipulate/plugin.py:134
+#: Manipulate/plugin.py:127
 msgid "GZ-package:\\n"
 msgstr "Πακέτο GZ:\\n"
 
-#: Manipulate/plugin.py:139
+#: Manipulate/plugin.py:132
 msgid "BZ2-package:\\n"
 msgstr "Πακέτο BZ2:\\n"
 
-#: Manipulate/plugin.py:153
+#: Manipulate/plugin.py:146
 msgid "View this shell-script"
 msgstr "Προβολή εκτελέσιμου αρχείου shell"
 
-#: Manipulate/plugin.py:153
+#: Manipulate/plugin.py:146
 msgid "Start execution"
 msgstr "Έναρξη εκτέλεσης"
 
-#: Manipulate/plugin.py:153
+#: Manipulate/plugin.py:146
 msgid "Set chmod to 755 for this file"
 msgstr "Αλλαγή δικαιωμάτων σε 755 για αυτό το αρχείο"
 
-#: Manipulate/plugin.py:154 Manipulate/plugin.py:159
+#: Manipulate/plugin.py:147 Manipulate/plugin.py:152
 msgid "Do you want to execute?\\n"
 msgstr "Είστε βέβαιοι ότι θέλετε να εκτελέσετε;\\n"
 
-#: Manipulate/plugin.py:158
+#: Manipulate/plugin.py:151
 msgid "View this file"
 msgstr "Προβολή αρχείου"
 
-#: Manipulate/plugin.py:184
+#: Manipulate/plugin.py:177
 msgid "[Media files] "
 msgstr "[Αρχεία πολυμέσων] "
 
-#: Manipulate/plugin.py:186
+#: Manipulate/plugin.py:179
 msgid "[All files] "
 msgstr "[Όλα τα αρχεία] "
 
-#: Manipulate/plugin.py:205
+#: Manipulate/plugin.py:198
 msgid ""
 "Do you realy want to delete the following file?\n"
 "\n"
@@ -215,11 +213,11 @@ msgstr ""
 "\n"
 "\n"
 
-#: Manipulate/plugin.py:206
+#: Manipulate/plugin.py:199
 msgid "Delete file..."
 msgstr "Διαγραφή αρχείου..."
 
-#: Manipulate/plugin.py:210
+#: Manipulate/plugin.py:203
 msgid ""
 "Do you realy want to delete the following directory and its content?\n"
 "\n"
@@ -228,7 +226,7 @@ msgstr ""
 "\n"
 "\n"
 
-#: Manipulate/plugin.py:210
+#: Manipulate/plugin.py:203
 msgid ""
 "\n"
 "\n"
@@ -238,11 +236,11 @@ msgstr ""
 "\n"
 "Προχωρήστε με δική σας ευθύνη!"
 
-#: Manipulate/plugin.py:211
+#: Manipulate/plugin.py:204
 msgid "Delete directory..."
 msgstr "Διαγραφή φακέλου..."
 
-#: Manipulate/plugin.py:221 Manipulate/plugin.py:233
+#: Manipulate/plugin.py:214 Manipulate/plugin.py:226
 #, python-format
 msgid ""
 "%s\n"
@@ -251,328 +249,303 @@ msgstr ""
 "%s\n"
 "ΑΠΕΤΥΧΕ!"
 
-#: Manipulate/plugin.py:222 Manipulate/plugin.py:234
+#: Manipulate/plugin.py:215 Manipulate/plugin.py:227
 msgid "Manipulate files"
 msgstr "Διαχείριση αρχείων"
 
-#: Manipulate/plugin.py:320 Manipulate/plugin.py:361 Manipulate/plugin.py:374
+#: Manipulate/plugin.py:313 Manipulate/plugin.py:354 Manipulate/plugin.py:367
 msgid "loading... "
 msgstr "φόρτωση… "
 
-#: Manipulate/plugin.py:350
+#: Manipulate/plugin.py:343
 msgid "ready..."
 msgstr "έτοιμο..."
 
-#: Manipulate/plugin.py:364 Manipulate/plugin.py:377 Manipulate/plugin.py:383
+#: Manipulate/plugin.py:357 Manipulate/plugin.py:370 Manipulate/plugin.py:376
 msgid "wait..."
 msgstr "αναμείνατε..."
 
-#: Manipulate/plugin.py:366 Manipulate/plugin.py:379
+#: Manipulate/plugin.py:359 Manipulate/plugin.py:372
 msgid "No more picture files."
 msgstr "Δεν υπάρχουν άλλα αρχεία φωτογραφιών."
 
-#: PictureCamera/plugin.py:74 Satdreamgr-Panel/plugin.py:220
+#: PictureCamera/plugin.py:62 Satdreamgr-Panel/plugin.py:209
 msgid "Picture camera"
 msgstr "Picture camera"
 
-#: PictureCamera/plugin.py:82
+#: PictureCamera/plugin.py:70
 msgid "Refresh list"
 msgstr "Ανανέωση λίστας"
 
-#: PictureCamera/plugin.py:137
+#: PictureCamera/plugin.py:125
 msgid "Internet connection error! Please check your internet connection!"
 msgstr "Πρόβλημα στη σύνδεση με ίντερνετ! Ελέγξτε τη σύνδεση ίντερνετ!"
 
-#: PictureCamera/plugin.py:142
+#: PictureCamera/plugin.py:130
 msgid "Download completed!"
 msgstr "Η λήψη ολοκληρώθηκε!"
 
-#: PictureCamera/plugin.py:146 UpdateBouquet/plugin.py:123
+#: PictureCamera/plugin.py:134
 msgid "For information or questions please refer to the www.satdreamgr.com forum."
 msgstr "Για πληροφορίες ή ερωτήσεις ανατρέξτε στο www.satdreamgr.com."
 
-#: PictureCamera/plugin.py:148
+#: PictureCamera/plugin.py:136
 msgid "Picture camera is free."
 msgstr "Το Picture camera είναι δωρεάν."
 
-#: RemoveOPKG/plugin.py:34 RemoveOPKG/plugin.py:39 RemoveOPKG/plugin.py:65
-#: Satdreamgr-Panel/plugin.py:141
+#: RemoveOPKG/plugin.py:26 RemoveOPKG/plugin.py:31 RemoveOPKG/plugin.py:57
+#: Satdreamgr-Panel/plugin.py:130
 msgid "Remove packages"
 msgstr "Απεγκατάσταση πακέτων"
 
-#: RemoveOPKG/plugin.py:64 RemoveOPKG/plugin.py:85
+#: RemoveOPKG/plugin.py:56 RemoveOPKG/plugin.py:77
 msgid "Remove"
 msgstr "Απεγκατάσταση"
 
-#: RemoveOPKG/plugin.py:77
+#: RemoveOPKG/plugin.py:69
 msgid "Do you realy want to remove the following package?\n"
 msgstr "Είστε βέβαιοι ότι θέλετε να επεγκαταστήσετε το παρακάτω πακέτο;\n"
 
-#: RemoveOPKG/plugin.py:78
+#: RemoveOPKG/plugin.py:70
 msgid "Delete package..."
 msgstr "Διαγραφή πακέτου..."
 
-#: Satdreamgr-Panel/plugin.py:35 Satdreamgr-Panel/plugin.py:41
-#: Satdreamgr-Panel/plugin.py:70 Satdreamgr-Panel/plugin.py:120
-#: Satdreamgr-Panel/plugin.py:201
+#: Satdreamgr-Panel/plugin.py:26 Satdreamgr-Panel/plugin.py:32
+#: Satdreamgr-Panel/plugin.py:59 Satdreamgr-Panel/plugin.py:109
+#: Satdreamgr-Panel/plugin.py:190
 msgid "Panel +"
 msgstr "Panel +"
 
-#: Satdreamgr-Panel/plugin.py:41
+#: Satdreamgr-Panel/plugin.py:32
 msgid "Panel + SatDreamGr"
 msgstr "Panel + SatDreamGr"
 
-#: Satdreamgr-Panel/plugin.py:87
+#: Satdreamgr-Panel/plugin.py:76
 msgid "Softcam setup"
 msgstr "Ρύθμιση softcam"
 
-#: Satdreamgr-Panel/plugin.py:88
+#: Satdreamgr-Panel/plugin.py:77
 msgid "System panel"
 msgstr "Panel συστήματος"
 
-#: Satdreamgr-Panel/plugin.py:89
+#: Satdreamgr-Panel/plugin.py:78
 msgid "Plugins panel"
 msgstr "Panel προσθέτων"
 
-#: Satdreamgr-Panel/plugin.py:100 Satdreamgr-Panel/plugin.py:153
-#: Satdreamgr-Panel/plugin.py:159 Satdreamgr-Panel/plugin.py:167
-#: Satdreamgr-Panel/plugin.py:173 Satdreamgr-Panel/plugin.py:179
-#: Satdreamgr-Panel/plugin.py:185 Satdreamgr-Panel/plugin.py:232
-#: Satdreamgr-Panel/plugin.py:238 Satdreamgr-Panel/plugin.py:244
-#: Satdreamgr-Panel/plugin.py:250 Satdreamgr-Panel/plugin.py:256
+#: Satdreamgr-Panel/plugin.py:89 Satdreamgr-Panel/plugin.py:142
+#: Satdreamgr-Panel/plugin.py:148 Satdreamgr-Panel/plugin.py:156
+#: Satdreamgr-Panel/plugin.py:162 Satdreamgr-Panel/plugin.py:168
+#: Satdreamgr-Panel/plugin.py:174 Satdreamgr-Panel/plugin.py:221
+#: Satdreamgr-Panel/plugin.py:227 Satdreamgr-Panel/plugin.py:233
+#: Satdreamgr-Panel/plugin.py:239
 msgid "Sorry, plugin is not installed!"
 msgstr "Λυπούμαστε, το πρόσθετο δεν είναι εγκατεστημένο!"
 
-#: Satdreamgr-Panel/plugin.py:139
+#: Satdreamgr-Panel/plugin.py:128
 msgid "TranspBA skin setup"
 msgstr "Ρύθμιση θέματος TranspBA"
 
-#: Satdreamgr-Panel/plugin.py:140 SettingsSatDreamGr/plugin.py:41
-#: SettingsSatDreamGr/plugin.py:46 SettingsSatDreamGr/plugin.py:74
+#: Satdreamgr-Panel/plugin.py:129 SettingsSatDreamGr/plugin.py:33
+#: SettingsSatDreamGr/plugin.py:38 SettingsSatDreamGr/plugin.py:66
 msgid "Enigma2 settings"
 msgstr "Λίστες καναλιών"
 
-#: Satdreamgr-Panel/plugin.py:142 SwapManager/plugin.py:40
-#: SwapManager/plugin.py:45 SwapManager/plugin.py:62
+#: Satdreamgr-Panel/plugin.py:131 SwapManager/plugin.py:32
+#: SwapManager/plugin.py:37 SwapManager/plugin.py:54
 msgid "Swap manager"
 msgstr "Διαχείριση swap"
 
-#: Satdreamgr-Panel/plugin.py:143
+#: Satdreamgr-Panel/plugin.py:132
 msgid "Hotkey"
 msgstr "Hotkey"
 
-#: Satdreamgr-Panel/plugin.py:161
+#: Satdreamgr-Panel/plugin.py:150
 msgid "Plugin has been moved under the 'GUI settings' menu."
 msgstr "Το πρόσθετο έχει μεταφερθεί στο μενού 'Ρυθμίσεις διεπαφής χρήστη'."
 
-#: Satdreamgr-Panel/plugin.py:218
+#: Satdreamgr-Panel/plugin.py:207
 msgid "SDG radio"
 msgstr "SDG radio"
 
-#: Satdreamgr-Panel/plugin.py:219
+#: Satdreamgr-Panel/plugin.py:208
 msgid "Internet radio"
 msgstr "Διαδικτυακό ραδιόφωνο"
 
-#: Satdreamgr-Panel/plugin.py:221
+#: Satdreamgr-Panel/plugin.py:210
 msgid "GreekStreamTV"
 msgstr "GreekStreamTV"
 
-#: Satdreamgr-Panel/plugin.py:222 UpdateBouquet/plugin.py:40
-#: UpdateBouquet/plugin.py:45 UpdateBouquet/plugin.py:64
+#: Satdreamgr-Panel/plugin.py:211
 msgid "GreekStreamTV in bouquets"
 msgstr "GreekStreamTV στα μπουκέτα"
 
-#: SettingsSatDreamGr/SDG_Likra.py:51 SettingsSatDreamGr/SDG_Likra.py:55
-#: SettingsSatDreamGr/SDG_Morpheus.py:49 SettingsSatDreamGr/SDG_Morpheus.py:53
-#: SettingsSatDreamGr/SDG_Satdreamgr.py:50
-#: SettingsSatDreamGr/SDG_Satdreamgr.py:54
-#: SettingsSatDreamGr/SDG_Satvenus.py:50 SettingsSatDreamGr/SDG_Satvenus.py:54
-#: SettingsSatDreamGr/SDG_Vhannibal.py:51
-#: SettingsSatDreamGr/SDG_Vhannibal.py:55
+#: Satdreamgr-Panel/plugin.py:241
+msgid "This functionality has been moved into the GreekStreamTV plugin."
+msgstr "Η λειτουργία αυτή έχει μεταφερθεί στο πρόσθετο GreekStreamTV."
+
+#: SettingsSatDreamGr/SDG_Likra.py:43 SettingsSatDreamGr/SDG_Likra.py:47
+#: SettingsSatDreamGr/SDG_Morpheus.py:42 SettingsSatDreamGr/SDG_Morpheus.py:46
+#: SettingsSatDreamGr/SDG_Satdreamgr.py:42
+#: SettingsSatDreamGr/SDG_Satdreamgr.py:46
+#: SettingsSatDreamGr/SDG_Satvenus.py:42 SettingsSatDreamGr/SDG_Satvenus.py:46
+#: SettingsSatDreamGr/SDG_Vhannibal.py:43
+#: SettingsSatDreamGr/SDG_Vhannibal.py:47
 #, python-format
 msgid "Cannot download %s settings list"
 msgstr "Δεν είναι δυνατή η λήψη της λίστας %s"
 
-#: SettingsSatDreamGr/SDG_Likra.py:59 SettingsSatDreamGr/SDG_Morpheus.py:57
-#: SettingsSatDreamGr/SDG_Satdreamgr.py:58
-#: SettingsSatDreamGr/SDG_Satvenus.py:58 SettingsSatDreamGr/SDG_Vhannibal.py:59
+#: SettingsSatDreamGr/SDG_Likra.py:51 SettingsSatDreamGr/SDG_Morpheus.py:50
+#: SettingsSatDreamGr/SDG_Satdreamgr.py:50
+#: SettingsSatDreamGr/SDG_Satvenus.py:50 SettingsSatDreamGr/SDG_Vhannibal.py:51
 #, python-format
 msgid "Updating %s settings list"
 msgstr "Ενημέρωση λιστών %s"
 
-#: SettingsSatDreamGr/SDG_Likra.py:59 SettingsSatDreamGr/SDG_Morpheus.py:57
-#: SettingsSatDreamGr/SDG_Satdreamgr.py:58
-#: SettingsSatDreamGr/SDG_Satvenus.py:58
-#: SettingsSatDreamGr/SDG_SettingsList.py:119
-#: SettingsSatDreamGr/SDG_Vhannibal.py:59
+#: SettingsSatDreamGr/SDG_Likra.py:51 SettingsSatDreamGr/SDG_Morpheus.py:50
+#: SettingsSatDreamGr/SDG_Satdreamgr.py:50
+#: SettingsSatDreamGr/SDG_Satvenus.py:50
+#: SettingsSatDreamGr/SDG_SettingsList.py:111
+#: SettingsSatDreamGr/SDG_Vhannibal.py:51
 msgid "Downloading..."
 msgstr "Γίνεται λήψη..."
 
-#: SettingsSatDreamGr/SDG_Likra.py:71 SettingsSatDreamGr/SDG_Morpheus.py:69
-#: SettingsSatDreamGr/SDG_Satdreamgr.py:70
-#: SettingsSatDreamGr/SDG_Satvenus.py:70 SettingsSatDreamGr/SDG_Vhannibal.py:71
+#: SettingsSatDreamGr/SDG_Likra.py:63 SettingsSatDreamGr/SDG_Morpheus.py:62
+#: SettingsSatDreamGr/SDG_Satdreamgr.py:62
+#: SettingsSatDreamGr/SDG_Satvenus.py:62 SettingsSatDreamGr/SDG_Vhannibal.py:63
 #, python-format
 msgid "List of available %s settings"
 msgstr "Διαθέσιμες λίστες %s"
 
-#: SettingsSatDreamGr/SDG_SettingsList.py:58
+#: SettingsSatDreamGr/SDG_SettingsList.py:50
 msgid "Download"
 msgstr "Λήψη"
 
-#: SettingsSatDreamGr/SDG_SettingsList.py:91
-#: SettingsSatDreamGr/SDG_SettingsList.py:95
+#: SettingsSatDreamGr/SDG_SettingsList.py:83
+#: SettingsSatDreamGr/SDG_SettingsList.py:87
 #, python-format
 msgid "Cannot download settings (%s)"
 msgstr "Δεν είναι δυνατή η λήψη της λίστας (%s)"
 
-#: SettingsSatDreamGr/SDG_SettingsList.py:111
+#: SettingsSatDreamGr/SDG_SettingsList.py:103
 msgid "Settings list installed successfully"
 msgstr "Η λίστα καναλιών εγκαταστάθηκε με επιτυχία"
 
-#: SettingsSatDreamGr/SDG_SettingsList.py:119
+#: SettingsSatDreamGr/SDG_SettingsList.py:111
 msgid "Updating settings list"
 msgstr "Ενημέρωση λιστών"
 
-#: SwapManager/plugin.py:64
+#: SwapManager/plugin.py:56
 msgid "OK"
 msgstr "ΟΚ"
 
-#: SwapManager/plugin.py:74 SwapManager/plugin.py:90
+#: SwapManager/plugin.py:66 SwapManager/plugin.py:82
 msgid "Swap info"
 msgstr "Πληροφορίες swap"
 
-#: SwapManager/plugin.py:75
+#: SwapManager/plugin.py:67
 msgid "Deactivate swap"
 msgstr "Απενεργοποίηση swap"
 
-#: SwapManager/plugin.py:76
+#: SwapManager/plugin.py:68
 msgid "Create swap file on HDD"
 msgstr "Δημιουργία αρχείου swap στον σκληρό δίσκο"
 
-#: SwapManager/plugin.py:77
+#: SwapManager/plugin.py:69
 msgid "Activate swap on HDD"
 msgstr "Ενεργοποίηση swap στον σκληρό δίσκο"
 
-#: SwapManager/plugin.py:78
+#: SwapManager/plugin.py:70
 msgid "Create swap file on USB"
 msgstr "Δημιουργία αρχείου swap στη συσκευή USB"
 
-#: SwapManager/plugin.py:79
+#: SwapManager/plugin.py:71
 msgid "Activate swap on USB"
 msgstr "Ενεργοποίηση swap στη συσκευή USB"
 
-#: SwapManager/plugin.py:80
+#: SwapManager/plugin.py:72
 msgid "Create swap file on CF"
 msgstr "Δημιουργία αρχείου swap στη μνήμη CF"
 
-#: SwapManager/plugin.py:81
+#: SwapManager/plugin.py:73
 msgid "Activate swap on CF"
 msgstr "Ενεργοποίηση swap στη μνήμη CF"
 
-#: SwapManager/plugin.py:95
+#: SwapManager/plugin.py:87
 msgid "Please wait: Creating swap file on HDD."
 msgstr "Παρακαλώ περιμένετε: Το αρχείο swap δημιουργείται στον σκληρό δίσκο."
 
-#: SwapManager/plugin.py:102
+#: SwapManager/plugin.py:94
 msgid "Please wait: Creating swap file on CF."
 msgstr "Παρακαλώ περιμένετε: Το αρχείο swap δημιουργείται στη μνήμη CF."
 
-#: SwapManager/plugin.py:109
+#: SwapManager/plugin.py:101
 msgid "Please wait: Creating swap file on USB."
 msgstr "Παρακαλώ περιμένετε: Το αρχείο swap δημιουργείται στη συσκευή USB."
 
-#: SwapManager/plugin.py:125
+#: SwapManager/plugin.py:117
 msgid "Swap is deactivated."
 msgstr "Το swap απενεργοποιήθηκε."
 
-#: SwapManager/plugin.py:165
+#: SwapManager/plugin.py:157
 msgid "Swap file is not activated!"
 msgstr "Το αρχείο swap δεν είναι ενεργοποιημένο!"
 
-#: SwapManager/plugin.py:173
+#: SwapManager/plugin.py:165
 msgid "Swap file exists! You can activate it on CF if you haven't already."
 msgstr "Το αρχείο swap υπάρχει! Μπορείτε να το ενεργοποιήσετε στη μνήμη CF, αν δεν το έχετε ήδη κάνει."
 
-#: SwapManager/plugin.py:181
+#: SwapManager/plugin.py:173
 msgid "Done! You can now activate the swap on CF."
 msgstr "Ολοκληρώθηκε! Μπορείτε τώρα να ενεργοποιήσετε το swap στη μνήμη CF."
 
-#: SwapManager/plugin.py:185
+#: SwapManager/plugin.py:177
 msgid "No compact flash mounted on /media/cf."
 msgstr "Δεν βρέθηκε μνήμη compact flash προσαρτημένη στο /media/cf."
 
-#: SwapManager/plugin.py:193
+#: SwapManager/plugin.py:185
 msgid "Swap file exists! You can activate it on HDD if you haven't already."
 msgstr "Το αρχείο swap υπάρχει! Μπορείτε να το ενεργοποιήσετε στον σκληρό δίσκο, αν δεν το έχετε ήδη κάνει."
 
-#: SwapManager/plugin.py:201
+#: SwapManager/plugin.py:193
 msgid "Done! You can now activate the swap on HDD."
 msgstr "Ολοκληρώθηκε! Μπορείτε τώρα να ενεργοποιήσετε το swap στον σκληρό δίσκο."
 
-#: SwapManager/plugin.py:205
+#: SwapManager/plugin.py:197
 msgid "No hard drive mounted on /media/hdd."
 msgstr "Δεν βρέθηκε σκληρός δίσκος προσαρτημένος στο /media/hdd."
 
-#: SwapManager/plugin.py:213
+#: SwapManager/plugin.py:205
 msgid "Swap file exists! You can activate it on USB if you haven't already."
 msgstr "Το αρχείο swap υπάρχει! Μπορείτε να το ενεργοποιήσετε στη συσκευή USB, αν δεν το έχετε ήδη κάνει."
 
-#: SwapManager/plugin.py:221
+#: SwapManager/plugin.py:213
 msgid "Done! You can now activate the swap on USB."
 msgstr "Ολοκληρώθηκε! Μπορείτε τώρα να ενεργοποιήσετε το swap στη συσκευή USB."
 
-#: SwapManager/plugin.py:225
+#: SwapManager/plugin.py:217
 msgid "No usb stick mounted on /media/usb."
 msgstr "Δεν βρέθηκε συσκευή USB προσαρτημένη στο /media/USB."
 
-#: SwapManager/plugin.py:233
+#: SwapManager/plugin.py:225
 msgid "Swap is activated on HDD."
 msgstr "Το swap ενεργοποιήθηκε στον σκληρό δίσκο."
 
-#: SwapManager/plugin.py:236
+#: SwapManager/plugin.py:228
 msgid "No swap file found on HDD. You have to create one first."
 msgstr "Δεν βρέθηκε αρχείο swap στον σκληρό δίσκο. Πρέπει να δημιουργήσετε ένα πρώτα."
 
-#: SwapManager/plugin.py:243
+#: SwapManager/plugin.py:235
 msgid "Swap is activated on CF."
 msgstr "Το swap ενεργοποιήθηκε στη μνήμη CF."
 
-#: SwapManager/plugin.py:246
+#: SwapManager/plugin.py:238
 msgid "No swap file found on CF. You have to create one first."
 msgstr "Δεν βρέθηκε αρχείο swap στη μνήμη CF. Πρέπει να δημιουργήσετε ένα πρώτα."
 
-#: SwapManager/plugin.py:253
+#: SwapManager/plugin.py:245
 msgid "Swap is activated on USB."
 msgstr "Το swap ενεργοποιήθηκε στη συσκευή USB."
 
-#: SwapManager/plugin.py:256
+#: SwapManager/plugin.py:248
 msgid "No swap file found on USB. You have to create one first."
 msgstr "Δεν βρέθηκε αρχείο swap στη συσκευή USB. Πρέπει να δημιουργήσετε ένα πρώτα."
-
-#: UpdateBouquet/plugin.py:45
-msgid "Update bouquet list"
-msgstr "Ενημέρωση λίστας μπουκέτων"
-
-#: UpdateBouquet/plugin.py:68 UpdateBouquet/plugin.py:120
-msgid "Create bouquets list"
-msgstr "Δημιουργία λίστας στα μπουκέτα"
-
-#: UpdateBouquet/plugin.py:69
-msgid "Download & update bouquets list"
-msgstr "Λήψη & ενημέρωση λίστας μπουκέτων"
-
-#: UpdateBouquet/plugin.py:89
-msgid "Confirm your selection?"
-msgstr "Επιβεβαίωση επιλογής;"
-
-#: UpdateBouquet/plugin.py:111
-msgid "GreekStreamTV bouquet updated successfully..."
-msgstr "Το μπουκέτο GreekStreamTV ενημερώθηκε με επιτυχία..."
-
-#: UpdateBouquet/plugin.py:115
-msgid "GreekStreamTV bouquet update failed..."
-msgstr "Η ενημέρωση του μπουκέτου GreekStreamTV απέτυχε..."
-
-#: UpdateBouquet/plugin.py:125
-msgid "GreekStreamTV is free."
-msgstr "Το GreekStreamTV είναι δωρεάν."
