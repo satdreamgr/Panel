@@ -109,7 +109,7 @@ class PictureCamera(Screen):
 				self["pic"].instance.size().height(),
 				sc[0], sc[1], False, 1, "#00000000"))
 			self.picloads.startDecode(image)
-			self.cameraTimer.start(60*1000)
+			self.cameraTimer.start(60 * 1000)
 
 	def FinishDecode(self, picInfo=None):
 		ptr = self.picloads.getData()
