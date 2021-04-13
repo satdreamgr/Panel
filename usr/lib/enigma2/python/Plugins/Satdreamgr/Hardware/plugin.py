@@ -11,14 +11,14 @@ from Screens.MessageBox import MessageBox
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
 
-def main(session,**kwargs):
+def main(session, **kwargs):
 	try:
 		session.open(HardwareInfo)
 	except:
 		print "[Hardware] Plugin execution failed"
 
 
-def autostart(reason,**kwargs):
+def autostart(reason, **kwargs):
 	if reason == 0:
 		print "[PluginMenu] no autostart"
 
@@ -64,7 +64,7 @@ class HardwareInfo(Screen):
 		self["key_green"] = Label(_("Select"))
 		self.setup_title = _("System information")
 		self.setTitle(self.setup_title)
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "WizardActions", "DirectionActions"],{"ok": self.go, "red": self.close, "green": self.go, "back": self.close,}, -1)
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "WizardActions", "DirectionActions"], {"ok": self.go, "red": self.close, "green": self.go, "back": self.close, }, -1)
 
 	def go(self):
 		if self["menu"].l.getCurrentSelection() is not None:
