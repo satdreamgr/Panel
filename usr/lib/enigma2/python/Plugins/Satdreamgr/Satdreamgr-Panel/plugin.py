@@ -68,7 +68,7 @@ class Panel(Screen):
 		self.refresh()
 
 	def buildListEntry(self, description, image):
-		pixmap = LoadPixmap(cached=True, path="%s/images/%s" % (os.path.dirname(sys.modules[__name__].__file__), image));
+		pixmap = LoadPixmap(cached=True, path="%s/images/%s" % (os.path.dirname(sys.modules[__name__].__file__), image))
 		return((pixmap, description))
 
 	def refresh(self):
@@ -118,7 +118,7 @@ class System_Panel(Screen):
 		self.refresh()
 
 	def buildListEntry(self, description, image):
-		pixmap = LoadPixmap(cached=True, path="%s/images/%s" % (os.path.dirname(sys.modules[__name__].__file__), image));
+		pixmap = LoadPixmap(cached=True, path="%s/images/%s" % (os.path.dirname(sys.modules[__name__].__file__), image))
 		return((pixmap, description))
 
 	def refresh(self):
@@ -192,7 +192,7 @@ class Plugins_Panel(Screen):
 		self.refresh()
 
 	def buildListEntry(self, description, image):
-		pixmap = LoadPixmap(cached=True, path="%s/images/%s" % (os.path.dirname(sys.modules[__name__].__file__), image));
+		pixmap = LoadPixmap(cached=True, path="%s/images/%s" % (os.path.dirname(sys.modules[__name__].__file__), image))
 		return((pixmap, description))
 
 	def refresh(self):
