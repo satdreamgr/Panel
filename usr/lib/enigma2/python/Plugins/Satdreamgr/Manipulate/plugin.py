@@ -119,17 +119,17 @@ class PluginStart(Screen):
 				if testFileName.endswith(".bootlogo.tar.gz"):
 					self.commando = ["mount -rw /boot -o remount", "sleep 3","tar -xzvf " + filename + " -C /", "mount -ro /boot -o remount"]
 					askList = [(_("Cancel"), "NO"),(_("Install new bootlogo..."), "ExecB")]
-					dei = self.session.openWithCallback(self.SysExecution, ChoiceBox, title=_("Bootlogo-package:\\n"+filename), list=askList)
+					dei = self.session.openWithCallback(self.SysExecution, ChoiceBox, title=_("Bootlogo-package:\\n" + filename), list=askList)
 					dei.setTitle(("."))
 				elif testFileName.endswith(".tar.gz"):
 					self.commando = ["tar -xzvf " + filename + " -C /"]
 					askList = [(_("Cancel"), "NO"),(_("Install this package"), "ExecA")]
-					dei = self.session.openWithCallback(self.SysExecution, ChoiceBox, title=_("GZ-package:\\n"+filename), list=askList)
+					dei = self.session.openWithCallback(self.SysExecution, ChoiceBox, title=_("GZ-package:\\n" + filename), list=askList)
 					dei.setTitle(("."))
 				elif testFileName.endswith(".tar.bz2"):
 					self.commando = ["tar -xjvf " + filename + " -C /"]
 					askList = [(_("Cancel"), "NO"),(_("Install this package"), "ExecA")]
-					dei = self.session.openWithCallback(self.SysExecution, ChoiceBox, title=_("BZ2-package:\\n"+filename), list=askList)
+					dei = self.session.openWithCallback(self.SysExecution, ChoiceBox, title=_("BZ2-package:\\n" + filename), list=askList)
 					dei.setTitle(("."))
 				elif testFileName.endswith(".ipk"):
 					if fileExists("/usr/bin/opkg"):
@@ -144,15 +144,15 @@ class PluginStart(Screen):
 					self.commando = [filename]
 					self.chmodexec = ["chmod 755 " + filename]
 					askList = [(_("Cancel"), "NO"),(_("View this shell-script"), "ExecC"),(_("Start execution"), "ExecA"),(_("Set chmod to 755 for this file"), "Chmod")]
-					self.session.openWithCallback(self.SysExecution, ChoiceBox, title=(_("Do you want to execute?\\n") +filename), list=askList)
+					self.session.openWithCallback(self.SysExecution, ChoiceBox, title=(_("Do you want to execute?\\n") + filename), list=askList)
 
 				elif testFileName.endswith(".info") or (testFileName.endswith(".log")) or (testFileName.endswith(".py")) or (testFileName.endswith(".xml")):
 					self.commando = [filename]
 					askList = [(_("Cancel"), "NO"), (_("View this file"), "ExecC")]
-					self.session.openWithCallback(self.SysExecution, ChoiceBox, title=(_("Do you want to execute?\\n") +filename), list=askList)
+					self.session.openWithCallback(self.SysExecution, ChoiceBox, title=(_("Do you want to execute?\\n") + filename), list=askList)
 
 				elif (testFileName.endswith(".jpg")) or (testFileName.endswith(".jpeg")) or (testFileName.endswith(".jpe")) or (testFileName.endswith(".png")) or (testFileName.endswith(".bmp")):
-					if self["myliste"].getSelectionIndex()!=0:
+					if self["myliste"].getSelectionIndex() != 0:
 						Pdir = self["myliste"].getCurrentDirectory()
 						self.session.open(PictureExplorer, filename, Pdir)
 
@@ -167,7 +167,7 @@ class PluginStart(Screen):
 			self.session.open(Console, cmdlist=self.chmodexec)
 
 		elif answer == "ExecC":
-			yfile=os_stat(self.commando[0])
+			yfile = os_stat(self.commando[0])
 			if (yfile.st_size < 61440):
 				self.session.open(TextExit, self.commando[0])
 
@@ -198,7 +198,7 @@ class PluginStart(Screen):
 			dei = self.session.openWithCallback(self.callbackExecDelete, MessageBox, _("Do you realy want to delete the following file?\n\n") + DELfilename, MessageBox.TYPE_YESNO)
 			dei.setTitle(_("Delete file..."))
 
-		elif (self["myliste"].getSelectionIndex()!=0) and (self["myliste"].canDescent()):
+		elif (self["myliste"].getSelectionIndex() != 0) and (self["myliste"].canDescent()):
 			DELDIR = self["myliste"].getSelection()[0]
 			dei = self.session.openWithCallback(self.callbackDelDir, MessageBox, _("Do you realy want to delete the following directory and its content?\n\n") + DELDIR + _("\n\nProceed at your own risk!"), MessageBox.TYPE_YESNO)
 			dei.setTitle(_("Delete directory..."))
@@ -346,8 +346,8 @@ class PictureExplorer(Screen):
 			self["Picture"].instance.setPixmap(ptr)
 
 	def Pright(self):
-		if len(self.picList)>2:
-			if self.Pindex<(len(self.picList)-1):
+		if len(self.picList) > 2:
+			if self.Pindex < (len(self.picList) - 1):
 				self.Pindex = self.Pindex + 1
 				self.whatPic = self.whatDir + str(self.picList[self.Pindex])
 				self["State"].visible = True
@@ -359,8 +359,8 @@ class PictureExplorer(Screen):
 				self.session.open(MessageBox, _("No more picture files."), MessageBox.TYPE_INFO)
 
 	def Pleft(self):
-		if len(self.picList)>2:
-			if self.Pindex>0:
+		if len(self.picList) > 2:
+			if self.Pindex > 0:
 				self.Pindex = self.Pindex - 1
 				self.whatPic = self.whatDir + str(self.picList[self.Pindex])
 				self["State"].visible = True
