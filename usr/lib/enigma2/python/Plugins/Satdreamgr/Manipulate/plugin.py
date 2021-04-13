@@ -265,7 +265,6 @@ class TextExit(Screen):
 	def layoutFinished(self):
 		self.setTitle(self.setup_title)
 
-
 	def GetFileData(self, fx):
 		try:
 			flines = open(fx, "r")
