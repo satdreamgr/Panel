@@ -9,14 +9,14 @@ from Screens.Console import Console
 from os import listdir
 
 
-def main(session,**kwargs):
+def main(session, **kwargs):
 	try:
 		session.open(Removeopkg)
 	except:
 		print "[Removeopkg] Plugin execution failed"
 
 
-def autostart(reason,**kwargs):
+def autostart(reason, **kwargs):
 	if reason == 0:
 		print "[PluginMenu] no autostart"
 

@@ -24,7 +24,7 @@ config.plugins.ExFiles.Execute = ConfigText(default="/")
 config.plugins.ExFiles.Filtre = ConfigText(default="off")
 
 
-def main(session,**kwargs):
+def main(session, **kwargs):
 	try:
 		session.open(PluginStart)
 	except:
@@ -117,18 +117,18 @@ class PluginStart(Screen):
 			testFileName = testFileName.lower()
 			if filename != None:
 				if testFileName.endswith(".bootlogo.tar.gz"):
-					self.commando = ["mount -rw /boot -o remount", "sleep 3","tar -xzvf " + filename + " -C /", "mount -ro /boot -o remount"]
-					askList = [(_("Cancel"), "NO"),(_("Install new bootlogo..."), "ExecB")]
+					self.commando = ["mount -rw /boot -o remount", "sleep 3", "tar -xzvf " + filename + " -C /", "mount -ro /boot -o remount"]
+					askList = [(_("Cancel"), "NO"), (_("Install new bootlogo..."), "ExecB")]
 					dei = self.session.openWithCallback(self.SysExecution, ChoiceBox, title=_("Bootlogo-package:\\n" + filename), list=askList)
 					dei.setTitle(("."))
 				elif testFileName.endswith(".tar.gz"):
 					self.commando = ["tar -xzvf " + filename + " -C /"]
-					askList = [(_("Cancel"), "NO"),(_("Install this package"), "ExecA")]
+					askList = [(_("Cancel"), "NO"), (_("Install this package"), "ExecA")]
 					dei = self.session.openWithCallback(self.SysExecution, ChoiceBox, title=_("GZ-package:\\n" + filename), list=askList)
 					dei.setTitle(("."))
 				elif testFileName.endswith(".tar.bz2"):
 					self.commando = ["tar -xjvf " + filename + " -C /"]
-					askList = [(_("Cancel"), "NO"),(_("Install this package"), "ExecA")]
+					askList = [(_("Cancel"), "NO"), (_("Install this package"), "ExecA")]
 					dei = self.session.openWithCallback(self.SysExecution, ChoiceBox, title=_("BZ2-package:\\n" + filename), list=askList)
 					dei.setTitle(("."))
 				elif testFileName.endswith(".ipk"):
@@ -136,14 +136,14 @@ class PluginStart(Screen):
 						self.commando = ["opkg install " + filename]
 					else:
 						self.commando = ["ipkg install " + filename]
-					askList = [(_("Cancel"), "NO"),(_("Install this package"), "ExecA")]
+					askList = [(_("Cancel"), "NO"), (_("Install this package"), "ExecA")]
 					dei = self.session.openWithCallback(self.SysExecution, ChoiceBox, title=filename, list=askList)
 					dei.setTitle(("."))
 
 				elif testFileName.endswith(".sh"):
 					self.commando = [filename]
 					self.chmodexec = ["chmod 755 " + filename]
-					askList = [(_("Cancel"), "NO"),(_("View this shell-script"), "ExecC"),(_("Start execution"), "ExecA"),(_("Set chmod to 755 for this file"), "Chmod")]
+					askList = [(_("Cancel"), "NO"), (_("View this shell-script"), "ExecC"), (_("Start execution"), "ExecA"), (_("Set chmod to 755 for this file"), "Chmod")]
 					self.session.openWithCallback(self.SysExecution, ChoiceBox, title=(_("Do you want to execute?\\n") + filename), list=askList)
 
 				elif testFileName.endswith(".info") or (testFileName.endswith(".log")) or (testFileName.endswith(".py")) or (testFileName.endswith(".xml")):
