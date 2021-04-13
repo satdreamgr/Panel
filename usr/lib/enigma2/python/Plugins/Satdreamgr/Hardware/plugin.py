@@ -66,7 +66,7 @@ class HardwareInfo(Screen):
 		self.setTitle(self.setup_title)
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "WizardActions", "DirectionActions"],{"ok": self.go, "red": self.close, "green": self.go, "back": self.close,}, -1)
 
-	def go (self):
+	def go(self):
 		if self["menu"].l.getCurrentSelection() is not None:
 			choice = self["menu"].l.getCurrentSelection()[1]
 		if choice == "system":
