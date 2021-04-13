@@ -34,7 +34,7 @@ def menu(menuid, **kwargs):
 
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name = _("Swap manager"), description = _("Swap manager"), where = PluginDescriptor.WHERE_MENU, fnc = menu)
+	return PluginDescriptor(name=_("Swap manager"), description=_("Swap manager"), where=PluginDescriptor.WHERE_MENU, fnc=menu)
 
 
 class SystemToolsSwap(Screen):

@@ -111,7 +111,7 @@ class PictureCamera(Screen):
 			self.picloads.startDecode(image)
 			self.cameraTimer.start(60*1000)
 
-	def FinishDecode(self, picInfo = None):
+	def FinishDecode(self, picInfo=None):
 		ptr = self.picloads.getData()
 		if ptr:
 			self["pic"].instance.setPixmap(ptr.__deref__())

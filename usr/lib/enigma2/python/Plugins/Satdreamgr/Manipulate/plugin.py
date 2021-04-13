@@ -38,7 +38,7 @@ def menu(menuid, **kwargs):
 
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name = _("Archives explorer"), description = _("Install ipk or tar.gz files..."), where = PluginDescriptor.WHERE_MENU, fnc = menu)
+	return PluginDescriptor(name=_("Archives explorer"), description=_("Install ipk or tar.gz files..."), where=PluginDescriptor.WHERE_MENU, fnc=menu)
 
 
 class PluginStart(Screen):
@@ -56,7 +56,7 @@ class PluginStart(Screen):
 			<widget name="key_blue" position="510,370" size="120,32" valign="center" font="Regular;20"/>
 		</screen>"""
 
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		self.sesion = session
 		self.altservice = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -144,12 +144,12 @@ class PluginStart(Screen):
 					self.commando = [ filename ]
 					self.chmodexec = [ "chmod 755 " + filename ]
 					askList = [(_("Cancel"), "NO"),(_("View this shell-script"), "ExecC"),(_("Start execution"), "ExecA"),(_("Set chmod to 755 for this file"), "Chmod")]
-					self.session.openWithCallback(self.SysExecution, ChoiceBox, title= (_("Do you want to execute?\\n") +filename), list=askList)
+					self.session.openWithCallback(self.SysExecution, ChoiceBox, title=(_("Do you want to execute?\\n") +filename), list=askList)
 
 				elif testFileName.endswith(".info") or (testFileName.endswith(".log")) or (testFileName.endswith(".py")) or (testFileName.endswith(".xml")):
 					self.commando = [ filename ]
 					askList = [(_("Cancel"), "NO"), (_("View this file"), "ExecC")]
-					self.session.openWithCallback(self.SysExecution, ChoiceBox, title= (_("Do you want to execute?\\n") +filename), list=askList)
+					self.session.openWithCallback(self.SysExecution, ChoiceBox, title=(_("Do you want to execute?\\n") +filename), list=askList)
 
 				elif (testFileName.endswith(".jpg")) or (testFileName.endswith(".jpeg")) or (testFileName.endswith(".jpe")) or (testFileName.endswith(".png")) or (testFileName.endswith(".bmp")):
 					if self["myliste"].getSelectionIndex()!=0:
@@ -160,11 +160,11 @@ class PluginStart(Screen):
 		global PicPlayerAviable
 		answer = answer and answer[1]
 		if answer == "ExecA":
-			self.session.open(Console, cmdlist = [ self.commando[0] ])
+			self.session.open(Console, cmdlist=[ self.commando[0] ])
 		elif answer == "ExecB":
-			self.session.open(Console, cmdlist = self.commando)
+			self.session.open(Console, cmdlist=self.commando)
 		elif answer == "Chmod":
-			self.session.open(Console, cmdlist = self.chmodexec)
+			self.session.open(Console, cmdlist=self.chmodexec)
 
 		elif answer == "ExecC":
 			yfile=os_stat(self.commando[0])
@@ -299,7 +299,7 @@ class PictureExplorer(Screen):
 				<widget name="State" font="Regular;20" halign="center" position="0,506" size="720,70" backgroundColor="#01080911" foregroundColor="#fcc000" transparent="0" zPosition="9"/>
 			</screen>"""
 
-	def __init__(self, session, whatPic = None, whatDir = None):
+	def __init__(self, session, whatPic=None, whatDir=None):
 		self.skin = PictureExplorer.skin
 		Screen.__init__(self, session)
 		self.session = session
