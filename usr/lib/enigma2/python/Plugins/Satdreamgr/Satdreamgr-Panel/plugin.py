@@ -125,7 +125,6 @@ class System_Panel(Screen):
 		self.drawList = []
 		self.drawList.append(self.buildListEntry(_("Archives explorer"), "Archives.png"))
 		self.drawList.append(self.buildListEntry(_("System information"), "hardware.png"))
-		self.drawList.append(self.buildListEntry(_("TranspBA skin setup"), "eye.png")) # this has been removed - just display an information message
 		self.drawList.append(self.buildListEntry(_("Remove packages"), "remove.png"))
 		self.drawList.append(self.buildListEntry(_("Swap manager"), "swap.png"))
 		self.drawList.append(self.buildListEntry(_("Hotkey"), "hotkey.png"))
@@ -146,20 +145,18 @@ class System_Panel(Screen):
 			except:
 				self.session.open(MessageBox, _("Sorry, plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 2:
-			self.session.open(MessageBox, _("Plugin has been moved under the 'GUI settings' menu."), MessageBox.TYPE_INFO)
-		elif index == 3:
 			try:
 				from Plugins.Satdreamgr.RemoveOPKG.plugin import Removeopkg
 				self.session.open(Removeopkg)
 			except:
 				self.session.open(MessageBox, _("Sorry, plugin is not installed!"), MessageBox.TYPE_INFO)
-		elif index == 4:
+		elif index == 3:
 			try:
 				from Plugins.Satdreamgr.SwapManager.plugin import SystemToolsSwap
 				self.session.open(SystemToolsSwap)
 			except:
 				self.session.open(MessageBox, _("Sorry, plugin is not installed!"), MessageBox.TYPE_INFO)
-		elif index == 5:
+		elif index == 4:
 			try:
 				from Screens.Hotkey import HotkeySetup
 				self.session.open(HotkeySetup)
@@ -201,7 +198,6 @@ class Plugins_Panel(Screen):
 		self.drawList.append(self.buildListEntry(_("Internet radio"), "netradio.png"))
 		self.drawList.append(self.buildListEntry(_("Picture camera"), "camera.png"))
 		self.drawList.append(self.buildListEntry(_("GreekStreamTV"), "greekstream.png"))
-		self.drawList.append(self.buildListEntry(_("GreekStreamTV in bouquets"), "greekstreamb.png"))
 		self["list"].setList(self.drawList)
 
 	def openSelected(self):
@@ -230,8 +226,6 @@ class Plugins_Panel(Screen):
 				self.session.open(GSMenu)
 			except:
 				self.session.open(MessageBox, _("Sorry, plugin is not installed!"), MessageBox.TYPE_INFO)
-		elif index == 4:
-			self.session.open(MessageBox, _("This functionality has been moved into the GreekStreamTV plugin."), MessageBox.TYPE_INFO)
 
 	def quit(self):
 		self.close()
