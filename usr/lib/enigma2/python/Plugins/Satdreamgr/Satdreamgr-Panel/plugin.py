@@ -1,83 +1,68 @@
-import os
-import sys
 from . import _
-from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
-from Screens.MessageBox import MessageBox
-from Plugins.Plugin import PluginDescriptor
-from Tools.LoadPixmap import LoadPixmap
 from Components.Sources.List import List
+from Plugins.Plugin import PluginDescriptor
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Tools.LoadPixmap import LoadPixmap
+from os import path
+from sys import modules
+
+mainPanelEntries = [
+	(_("Softcam setup"), "key.png"),
+	(_("System panel"), "system.png"),
+	(_("Plugins panel"), "plus.png")
+]
+
+systemPanelEntries = [
+	(_("Archives explorer"), "Archives.png"),
+	(_("System information"), "hardware.png"),
+	(_("Remove packages"), "remove.png"),
+	(_("Swap manager"), "swap.png"),
+	(_("Hotkey"), "hotkey.png")
+]
+
+pluginsPanelEntries = [
+	(_("SDG radio"), "radio.png"),
+	(_("Internet radio"), "netradio.png"),
+	(_("Picture camera"), "camera.png"),
+	(_("GreekStreamTV"), "greekstream.png")
+]
 
 
-def main(session, **kwargs):
-	try:
-		session.open(Panel)
-	except:
-		print "[Panel +] Plugin execution failed"
+class SDGPanel(Screen):
 
+	skin = """
+	<screen name="Panel+" position="center,center" size="600,405" title="Panel +" >
+		<widget source="list" render="Listbox" position="20,10" size="580,320" scrollbarMode="showOnDemand" transparent="1" >
+			<convert type="TemplatedMultiContent">
+				{"template": [
+					MultiContentEntryPixmapAlphaBlend(pos = (12, 4), size = (32, 32), png = 0),
+					MultiContentEntryText(pos = (58, 5), size = (440, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
+					],
+				"fonts": [gFont("Regular", 22)],
+				"itemHeight": 40
+				}
+			</convert>
+		</widget>
+	</screen>"""
 
-def autostart(reason, **kwargs):
-	if reason == 0:
-		print "[PluginMenu] no autostart"
-
-
-def menu(menuid):
-	if menuid == "mainmenu":
-		return [(_("Panel +"), main, "panel_setup", 1)]
-	return []
-
-
-def Plugins(**kwargs):
-	list = []
-	list.append(PluginDescriptor(name=_("Panel +"), description=_("Panel + SatDreamGr"), where=PluginDescriptor.WHERE_EXTENSIONSMENU, icon="plugin.png", fnc=main))
-	list.append(PluginDescriptor(where=PluginDescriptor.WHERE_MENU, fnc=menu))
-	return list
-
-
-panel_main = """<screen name="Panel+" position="center,center" size="600,405" title="Panel +" >
-					<widget source="list" render="Listbox" position="20,10" size="580,320" scrollbarMode="showOnDemand" transparent="1" >
-						<convert type="TemplatedMultiContent">
-							{"template": [
-								MultiContentEntryPixmapAlphaBlend(pos = (12, 4), size = (32, 32), png = 0),
-								MultiContentEntryText(pos = (58, 5), size = (440, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
-								],
-							"fonts": [gFont("Regular", 22)],
-							"itemHeight": 40
-							}
-						</convert>
-					</widget>
-				</screen>"""
-
-
-class Panel(Screen):
-
-	def __init__(self, session):
+	def __init__(self, session, menuEntries):
 		Screen.__init__(self, session)
-		self.skin = panel_main
-		self.session = session
-		self.drawList = []
-		self.setup_title = _("Panel +")
-		self.onLayoutFinish.append(self.layoutFinished)
-		self["list"] = List()
+		self.setTitle(_("Panel +"))
+		if not isinstance(self.skinName, list):
+			self.skinName = [self.skinName]
+		self.skinName.append("Panel") # Support legacy skin name
+		menu = []
+		for (description, image) in menuEntries:
+			pixmap = LoadPixmap(cached=True, path="%s/images/%s" % (path.dirname(modules[__name__].__file__), image))
+			menu.append((pixmap, description))
+		self["list"] = List(menu)
 		self["setupActions"] = ActionMap(["SetupActions"],
 		{
-			"cancel": self.quit,
+			"cancel": self.close,
 			"ok": self.openSelected,
 		}, -2)
-
-		self.refresh()
-
-	def buildListEntry(self, description, image):
-		pixmap = LoadPixmap(cached=True, path="%s/images/%s" % (os.path.dirname(sys.modules[__name__].__file__), image))
-		return((pixmap, description))
-
-	def refresh(self):
-		self.drawList = []
-		self.drawList.append(self.buildListEntry(_("Softcam setup"), "key.png"))
-		self.drawList.append(self.buildListEntry(_("System panel"), "system.png"))
-		self.drawList.append(self.buildListEntry(_("Plugins panel"), "plus.png"))
-
-		self["list"].setList(self.drawList)
 
 	def openSelected(self):
 		index = self["list"].getIndex()
@@ -88,47 +73,17 @@ class Panel(Screen):
 			except:
 				self.session.open(MessageBox, _("Sorry, plugin is not installed!"), MessageBox.TYPE_INFO)
 		elif index == 1:
-			self.session.open(System_Panel)
+			self.session.open(SDGSystemPanel, systemPanelEntries)
 		elif index == 2:
-			self.session.open(Plugins_Panel)
-
-	def quit(self):
-		self.close()
-
-	def layoutFinished(self):
-		self.setTitle(self.setup_title)
+			self.session.open(SDGPluginsPanel, pluginsPanelEntries)
 
 
-class System_Panel(Screen):
+class SDGSystemPanel(SDGPanel):
 
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		self.skin = panel_main
-		self.session = session
-		self.drawList = []
-		self.setup_title = _("Panel +")
-		self.onLayoutFinish.append(self.layoutFinished)
-		self["list"] = List()
-		self["setupActions"] = ActionMap(["SetupActions"],
-		{
-			"cancel": self.quit,
-			"ok": self.openSelected,
-		}, -2)
-
-		self.refresh()
-
-	def buildListEntry(self, description, image):
-		pixmap = LoadPixmap(cached=True, path="%s/images/%s" % (os.path.dirname(sys.modules[__name__].__file__), image))
-		return((pixmap, description))
-
-	def refresh(self):
-		self.drawList = []
-		self.drawList.append(self.buildListEntry(_("Archives explorer"), "Archives.png"))
-		self.drawList.append(self.buildListEntry(_("System information"), "hardware.png"))
-		self.drawList.append(self.buildListEntry(_("Remove packages"), "remove.png"))
-		self.drawList.append(self.buildListEntry(_("Swap manager"), "swap.png"))
-		self.drawList.append(self.buildListEntry(_("Hotkey"), "hotkey.png"))
-		self["list"].setList(self.drawList)
+	def __init__(self, session, menuEntries):
+		SDGPanel.__init__(self, session, menuEntries=menuEntries)
+		self.skinName.insert(1, "System_Panel") # Support legacy skin name
+		self.skinName.insert(1, "SDGPanel")
 
 	def openSelected(self):
 		index = self["list"].getIndex()
@@ -163,42 +118,13 @@ class System_Panel(Screen):
 			except:
 				self.session.open(MessageBox, _("Sorry, plugin is not installed!"), MessageBox.TYPE_INFO)
 
-	def quit(self):
-		self.close()
 
-	def layoutFinished(self):
-		self.setTitle(self.setup_title)
+class SDGPluginsPanel(SDGPanel):
 
-
-class Plugins_Panel(Screen):
-
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		self.skin = panel_main
-		self.session = session
-		self.drawList = []
-		self.setup_title = _("Panel +")
-		self.onLayoutFinish.append(self.layoutFinished)
-		self["list"] = List()
-		self["setupActions"] = ActionMap(["SetupActions"],
-		{
-			"cancel": self.quit,
-			"ok": self.openSelected,
-		}, -2)
-
-		self.refresh()
-
-	def buildListEntry(self, description, image):
-		pixmap = LoadPixmap(cached=True, path="%s/images/%s" % (os.path.dirname(sys.modules[__name__].__file__), image))
-		return((pixmap, description))
-
-	def refresh(self):
-		self.drawList = []
-		self.drawList.append(self.buildListEntry(_("SDG radio"), "radio.png"))
-		self.drawList.append(self.buildListEntry(_("Internet radio"), "netradio.png"))
-		self.drawList.append(self.buildListEntry(_("Picture camera"), "camera.png"))
-		self.drawList.append(self.buildListEntry(_("GreekStreamTV"), "greekstream.png"))
-		self["list"].setList(self.drawList)
+	def __init__(self, session, menuEntries):
+		SDGPanel.__init__(self, session, menuEntries=menuEntries)
+		self.skinName.insert(1, "Plugins_Panel") # Support legacy skin name
+		self.skinName.insert(1, "SDGPanel")
 
 	def openSelected(self):
 		index = self["list"].getIndex()
@@ -227,8 +153,19 @@ class Plugins_Panel(Screen):
 			except:
 				self.session.open(MessageBox, _("Sorry, plugin is not installed!"), MessageBox.TYPE_INFO)
 
-	def quit(self):
-		self.close()
 
-	def layoutFinished(self):
-		self.setTitle(self.setup_title)
+def main(session, **kwargs):
+	session.open(SDGPanel, mainPanelEntries)
+
+
+def menu(menuid):
+	if menuid == "mainmenu":
+		return [(_("Panel +"), main, "panel_setup", 1)]
+	return []
+
+
+def Plugins(**kwargs):
+	plugin = []
+	plugin.append(PluginDescriptor(name=_("Panel +"), description=_("Panel + SatDreamGr"), where=PluginDescriptor.WHERE_EXTENSIONSMENU, icon="plugin.png", fnc=main))
+	plugin.append(PluginDescriptor(where=PluginDescriptor.WHERE_MENU, fnc=menu))
+	return plugin
