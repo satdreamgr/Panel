@@ -1,36 +1,14 @@
-import os
 from . import _
-from Plugins.Plugin import PluginDescriptor
 from Components.ActionMap import ActionMap
-from Components.Label import Label
 from Components.config import configfile
+from Components.Label import Label
 from Components.MenuList import MenuList
+from Plugins.Plugin import PluginDescriptor
 from Screens.Console import Console
-from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
-
-
-def main(session, **kwargs):
-	try:
-		session.open(HardwareInfo)
-	except:
-		print "[Hardware] Plugin execution failed"
-
-
-def autostart(reason, **kwargs):
-	if reason == 0:
-		print "[PluginMenu] no autostart"
-
-
-def menu(menuid, **kwargs):
-	if menuid == "none":
-		return [(_("System information"), main, "harware_setup", 45)]
-	return []
-
-
-def Plugins(**kwargs):
-	return PluginDescriptor(name=_("System information"), description=_("System information"), where=PluginDescriptor.WHERE_MENU, fnc=menu)
+from os import system
 
 
 class HardwareInfo(Screen):
@@ -46,7 +24,6 @@ class HardwareInfo(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.session = session
 		menu = []
 		menu.append((_("Hardware info"), "system"))
 		menu.append((_("DVB modules"), "modules"))
@@ -62,9 +39,14 @@ class HardwareInfo(Screen):
 		self["menu"] = MenuList(menu)
 		self["key_red"] = Label(_("Exit"))
 		self["key_green"] = Label(_("Select"))
-		self.setup_title = _("System information")
-		self.setTitle(self.setup_title)
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "WizardActions", "DirectionActions"], {"ok": self.go, "red": self.close, "green": self.go, "back": self.close, }, -1)
+		self.setTitle(_("System information"))
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "WizardActions", "DirectionActions"],
+		{
+			"ok": self.go,
+			"red": self.close,
+			"green": self.go,
+			"back": self.close,
+		}, -1)
 
 	def go(self):
 		if self["menu"].l.getCurrentSelection() is not None:
@@ -94,13 +76,13 @@ class HardwareInfo(Screen):
 
 	def debugLOG(self, answer):
 		if answer is True:
-			os.system("dmesg > /tmp/sdg.debug.log && lsusb >> /tmp/sdg.debug.log && lsmod >> /tmp/sdg.debug.log && cat /proc/bus/nim_sockets >> /tmp/sdg.debug.log")
+			system("dmesg > /tmp/sdg.debug.log && lsusb >> /tmp/sdg.debug.log && lsmod >> /tmp/sdg.debug.log && cat /proc/bus/nim_sockets >> /tmp/sdg.debug.log")
 			configfile.save()
 			self.session.open(MessageBox, _("Execution finished!"), MessageBox.TYPE_INFO, timeout=5)
 
 	def removeCRASH(self, answer):
 		if answer is True:
-			os.system("rm -rf /media/hdd/enigma2_crash*")
+			system("rm -rf /media/hdd/enigma2_crash*")
 			configfile.save()
 			self.session.open(MessageBox, _("Execution finished!"), MessageBox.TYPE_INFO, timeout=5)
 
@@ -153,9 +135,22 @@ class system_info(Screen):
 		Screen.__init__(self, session)
 		self.setTitle(_("Hardware info"))
 		self.skin_path = resolveFilename(SCOPE_PLUGINS, "Satdreamgr/Hardware")
-
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "WizardActions", "DirectionActions"],
 		{
 			"ok": self.close,
 			"back": self.close,
 		}, -1)
+
+
+def main(session, **kwargs):
+		session.open(HardwareInfo)
+
+
+def menu(menuid, **kwargs):
+	if menuid == "none":
+		return [(_("System information"), main, "harware_setup", 45)]
+	return []
+
+
+def Plugins(**kwargs):
+	return PluginDescriptor(name=_("System information"), description=_("System information"), where=PluginDescriptor.WHERE_MENU, fnc=menu)

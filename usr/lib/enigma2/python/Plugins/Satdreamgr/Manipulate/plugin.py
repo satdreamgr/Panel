@@ -1,44 +1,25 @@
 from . import _
-from Plugins.Plugin import PluginDescriptor
-from Screens.Screen import Screen
-from Screens.Console import Console
-from Screens.ChoiceBox import ChoiceBox
-from Screens.MessageBox import MessageBox
-from Screens.TextBox import TextBox
 from Components.ActionMap import ActionMap
-from Components.FileList import FileList
-from Components.MenuList import MenuList
-from Components.Label import Label
-from Components.Pixmap import Pixmap
 from Components.AVSwitch import AVSwitch
 from Components.config import config, ConfigSubsection, ConfigText
+from Components.FileList import FileList
+from Components.Label import Label
+from Components.MenuList import MenuList
+from Components.Pixmap import Pixmap
+from Plugins.Plugin import PluginDescriptor
+from Screens.ChoiceBox import ChoiceBox
+from Screens.Console import Console
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Screens.TextBox import TextBox
 from Tools.Directories import fileExists, pathExists
 from enigma import ePicLoad, getDesktop
-from os import system as os_system
-from os import stat as os_stat
-from os import walk as os_walk
+from os import stat, system, walk
 
 
 config.plugins.ExFiles = ConfigSubsection()
 config.plugins.ExFiles.Execute = ConfigText(default="/")
 config.plugins.ExFiles.Filtre = ConfigText(default="off")
-
-
-def main(session, **kwargs):
-	try:
-		session.open(PluginStart)
-	except:
-		print "[Archives explorer] Plugin execution failed"
-
-
-def menu(menuid, **kwargs):
-	if menuid == "none":
-		return [(_("Archives explorer"), main, "archives_setup", 45)]
-	return []
-
-
-def Plugins(**kwargs):
-	return PluginDescriptor(name=_("Archives explorer"), description=_("Install ipk or tar.gz files..."), where=PluginDescriptor.WHERE_MENU, fnc=menu)
 
 
 class PluginStart(Screen):
@@ -58,7 +39,6 @@ class PluginStart(Screen):
 
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
-		self.sesion = session
 		self.altservice = self.session.nav.getCurrentlyPlayingServiceReference()
 		if pathExists(config.plugins.ExFiles.Execute.value):
 			StartP = config.plugins.ExFiles.Execute.value
@@ -167,7 +147,7 @@ class PluginStart(Screen):
 			self.session.open(Console, cmdlist=self.chmodexec)
 
 		elif answer == "ExecC":
-			yfile = os_stat(self.commando[0])
+			yfile = stat(self.commando[0])
 			if (yfile.st_size < 61440):
 				self.session.open(TextExit, self.commando[0])
 
@@ -208,7 +188,7 @@ class PluginStart(Screen):
 			DELfilename = self["myliste"].getCurrentDirectory() + self["myliste"].getFilename()
 			order = 'rm -f \"' + DELfilename + '\"'
 			try:
-				os_system(order)
+				system(order)
 				self["myliste"].refresh()
 			except:
 				dei = self.session.open(MessageBox, _("%s\nFAILED!") % order, MessageBox.TYPE_ERROR)
@@ -220,7 +200,7 @@ class PluginStart(Screen):
 			DELDIR = self["myliste"].getSelection()[0]
 			order = 'rm -r \"' + DELDIR + '\"'
 			try:
-				os_system(order)
+				system(order)
 				self["myliste"].refresh()
 			except:
 				dei = self.session.open(MessageBox, _("%s\nFAILED!") % order, MessageBox.TYPE_ERROR)
@@ -247,13 +227,10 @@ class TextExit(Screen):
 		</screen>"""
 
 	def __init__(self, session, file):
-		self.skin = TextExit.skin
 		Screen.__init__(self, session)
-		self.session = session
 		self.file_name = file
 		self.list = []
-		self.setup_title = _("Info")
-		self.onLayoutFinish.append(self.layoutFinished)
+		self.setTitle(_("Info"))
 		self["filedata"] = MenuList(self.list)
 		self["actions"] = ActionMap(["WizardActions"],
 		{
@@ -261,9 +238,6 @@ class TextExit(Screen):
 			"ok": self.close
 		}, -1)
 		self.GetFileData(file)
-
-	def layoutFinished(self):
-		self.setTitle(self.setup_title)
 
 	def GetFileData(self, fx):
 		try:
@@ -299,9 +273,7 @@ class PictureExplorer(Screen):
 			</screen>"""
 
 	def __init__(self, session, whatPic=None, whatDir=None):
-		self.skin = PictureExplorer.skin
 		Screen.__init__(self, session)
-		self.session = session
 		self.whatPic = whatPic
 		self.whatDir = whatDir
 		self.picList = []
@@ -328,7 +300,7 @@ class PictureExplorer(Screen):
 			self.EXpicload.startDecode(self.whatPic)
 		if self.whatDir is not None:
 			pidx = 0
-			for root, dirs, files in os_walk(self.whatDir):
+			for root, dirs, files in walk(self.whatDir):
 				for name in files:
 					if name.endswith(".jpg") or name.endswith(".jpeg") or name.endswith(".Jpg") or name.endswith(".Jpeg") or name.endswith(".JPG") or name.endswith(".JPEG"):
 						self.picList.append(name)
@@ -377,3 +349,17 @@ class PictureExplorer(Screen):
 		else:
 			self["State"].visible = True
 			self["State"].setText(self.whatPic)
+
+
+def main(session, **kwargs):
+	session.open(PluginStart)
+
+
+def menu(menuid, **kwargs):
+	if menuid == "none":
+		return [(_("Archives explorer"), main, "archives_setup", 45)]
+	return []
+
+
+def Plugins(**kwargs):
+	return PluginDescriptor(name=_("Archives explorer"), description=_("Install ipk or tar.gz files..."), where=PluginDescriptor.WHERE_MENU, fnc=menu)

@@ -1,34 +1,19 @@
 from . import _
-from Plugins.Plugin import PluginDescriptor
 from enigma import ePicLoad, eTimer
+from Components.ActionMap import ActionMap
 from Components.AVSwitch import AVSwitch
 from Components.Label import Label
-from Components.Pixmap import Pixmap
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
 from Components.MenuList import MenuList
-from Components.ActionMap import ActionMap
+from Components.Pixmap import Pixmap
+from Plugins.Plugin import PluginDescriptor
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from requests.exceptions import *
-import os
+from os import path, remove
 import requests
 import urllib2
 import shutil
-
-
-def main(session, **kwargs):
-	try:
-		session.open(PictureCamera)
-	except:
-		print "[Picture Camera] Plugin execution failed"
-
-
-def Plugins(**kwargs):
-	return [PluginDescriptor(name=("Picture camera"),
-		description=("SatDreamGr picture camera plugin"),
-		icon="camera.png",
-		where=PluginDescriptor.WHERE_PLUGINMENU,
-		fnc=main)]
 
 
 def getCameras():
@@ -58,7 +43,6 @@ class PictureCamera(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.session = session
 		self.setTitle(_("Picture camera"))
 		self.cameraTimer = eTimer()
 		self.cameraTimer.start(1)
@@ -70,14 +54,14 @@ class PictureCamera(Screen):
 		self["key_yellow"] = Label(_("Refresh list"))
 		self["key_blue"] = Label(_("Info"))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
-			{
-				"cancel": self.close,
-				"red": self.close,
-				"ok": self.go,
-				"green": self.go,
-				"yellow": self.downloadList,
-				"blue": self.info,
-			}, -1)
+		{
+			"cancel": self.close,
+			"red": self.close,
+			"ok": self.go,
+			"green": self.go,
+			"yellow": self.downloadList,
+			"blue": self.info,
+		}, -1)
 
 	def go(self):
 		if self["menu"].l.getCurrentSelection():
@@ -100,7 +84,7 @@ class PictureCamera(Screen):
 
 	def downloadFinished(self, result):
 		image = "/tmp/camera.jpg"
-		if os.path.exists(image):
+		if path.exists(image):
 			sc = AVSwitch().getFramebufferScale()
 			self.picloads = ePicLoad()
 			self.picloads.PictureData.get().append(self.FinishDecode)
@@ -116,7 +100,7 @@ class PictureCamera(Screen):
 		if ptr:
 			self["pic"].instance.setPixmap(ptr.__deref__())
 			del self.picloads
-			os.remove("/tmp/camera.jpg")
+			remove("/tmp/camera.jpg")
 
 	def downloadList(self):
 		try:
@@ -135,3 +119,11 @@ class PictureCamera(Screen):
 		MyMessage += "\n\n"
 		MyMessage += _("Picture camera is free.")
 		self.session.open(MessageBox, MyMessage, MessageBox.TYPE_INFO)
+
+
+def main(session, **kwargs):
+	session.open(PictureCamera)
+
+
+def Plugins(**kwargs):
+	return PluginDescriptor(name=_("Picture camera"), description=_("SatDreamGr picture camera plugin"), icon="camera.png", where=PluginDescriptor.WHERE_PLUGINMENU, fnc=main)

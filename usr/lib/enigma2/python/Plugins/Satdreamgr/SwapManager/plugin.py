@@ -1,40 +1,18 @@
 from . import _
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Screens.TextBox import TextBox
-from Components.MenuList import MenuList
-from Components.ActionMap import ActionMap
-from Plugins.Plugin import PluginDescriptor
-from Components.Label import Label
-from Tools.Directories import fileExists, pathExists
 from enigma import eTimer
-import os
+from Components.ActionMap import ActionMap
+from Components.Label import Label
+from Components.MenuList import MenuList
+from Plugins.Plugin import PluginDescriptor
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Screens.TextBox import TextBox
+from Tools.Directories import fileExists, pathExists
+from os import system
 
 
 entrylist = []
 lengthList = [0, 0, 0, 0]
-
-
-def main(session, **kwargs):
-	try:
-		session.open(SystemToolsSwap)
-	except:
-		print "[Hardware] Plugin execution failed"
-
-
-def autostart(reason, **kwargs):
-	if reason == 0:
-		print "[PluginMenu] no autostart"
-
-
-def menu(menuid, **kwargs):
-	if menuid == "none":
-		return [(_("Swap manager"), main, "swapmanager_setup", 45)]
-	return []
-
-
-def Plugins(**kwargs):
-	return PluginDescriptor(name=_("Swap manager"), description=_("Swap manager"), where=PluginDescriptor.WHERE_MENU, fnc=menu)
 
 
 class SystemToolsSwap(Screen):
@@ -54,7 +32,6 @@ class SystemToolsSwap(Screen):
 		self.setTitle(_("Swap manager"))
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("OK"))
-
 		self["actions"] = ActionMap(["OkCancelActions", "WizardActions", "ColorActions"],
 		{
 			"ok": self.go,
@@ -116,7 +93,7 @@ class SystemToolsSwap(Screen):
 			elif returnValue is "com_swapten":
 				msg = _("Swap is deactivated.")
 				self.mbox = self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
-				os.system("swapoff -a; sed -i '\/swapfile/d' /etc/fstab")
+				system("swapoff -a; sed -i '\/swapfile/d' /etc/fstab")
 
 			else:
 				print "\n[SystemToolsSwap] cancel\n"
@@ -167,9 +144,9 @@ class SystemToolsSwap(Screen):
 			self.mbox.close()
 		else:
 			if pathExists("/media/cf"):
-				os.system('sleep 1')
-				os.system('dd if=/dev/zero of=/media/cf/swapfile bs=1048576 count=128; mkswap /media/cf/swapfile')
-				os.system('sleep 1')
+				system('sleep 1')
+				system('dd if=/dev/zero of=/media/cf/swapfile bs=1048576 count=128; mkswap /media/cf/swapfile')
+				system('sleep 1')
 				msg = _("Done! You can now activate the swap on CF.")
 				self.mbox2 = self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
 				self.mbox.close()
@@ -187,9 +164,9 @@ class SystemToolsSwap(Screen):
 			self.mbox.close()
 		else:
 			if pathExists("/media/hdd"):
-				os.system('sleep 1')
-				os.system('dd if=/dev/zero of=/media/hdd/swapfile bs=1048576 count=128; mkswap /media/hdd/swapfile')
-				os.system('sleep 1')
+				system('sleep 1')
+				system('dd if=/dev/zero of=/media/hdd/swapfile bs=1048576 count=128; mkswap /media/hdd/swapfile')
+				system('sleep 1')
 				msg = _("Done! You can now activate the swap on HDD.")
 				self.mbox2 = self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
 				self.mbox.close()
@@ -207,9 +184,9 @@ class SystemToolsSwap(Screen):
 			self.mbox.close()
 		else:
 			if pathExists("/media/usb"):
-				os.system('sleep 1')
-				os.system('dd if=/dev/zero of=/media/usb/swapfile bs=1048576 count=128; mkswap /media/usb/swapfile')
-				os.system('sleep 1')
+				system('sleep 1')
+				system('dd if=/dev/zero of=/media/usb/swapfile bs=1048576 count=128; mkswap /media/usb/swapfile')
+				system('sleep 1')
 				msg = _("Done! You can now activate the swap on USB.")
 				self.mbox2 = self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
 				self.mbox.close()
@@ -220,8 +197,8 @@ class SystemToolsSwap(Screen):
 
 	def activateswaphdd(self):
 		if fileExists("/media/hdd/swapfile"):
-			os.system("swapoff -a; sed -i '\/swapfile/d' /etc/fstab; swapon /media/hdd/swapfile")
-			os.system("sed -i '/hdd\/swapfile/d' /etc/fstab; echo -e '/media/hdd/swapfile swap swap defaults 0 0' >> /etc/fstab")
+			system("swapoff -a; sed -i '\/swapfile/d' /etc/fstab; swapon /media/hdd/swapfile")
+			system("sed -i '/hdd\/swapfile/d' /etc/fstab; echo -e '/media/hdd/swapfile swap swap defaults 0 0' >> /etc/fstab")
 			msg = _("Swap is activated on HDD.")
 			self.mbox = self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
 		else:
@@ -230,8 +207,8 @@ class SystemToolsSwap(Screen):
 
 	def activateswapcf(self):
 		if fileExists("/media/cf/swapfile"):
-			os.system("swapoff -a; sed -i '\/swapfile/d' /etc/fstab; swapon /media/cf/swapfile")
-			os.system("sed -i '/cf\/swapfile/d' /etc/fstab; echo -e '/media/cf/swapfile swap swap defaults 0 0' >> /etc/fstab")
+			system("swapoff -a; sed -i '\/swapfile/d' /etc/fstab; swapon /media/cf/swapfile")
+			system("sed -i '/cf\/swapfile/d' /etc/fstab; echo -e '/media/cf/swapfile swap swap defaults 0 0' >> /etc/fstab")
 			msg = _("Swap is activated on CF.")
 			self.mbox = self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
 		else:
@@ -240,10 +217,24 @@ class SystemToolsSwap(Screen):
 
 	def activateswapusb(self):
 		if fileExists("/media/usb/swapfile"):
-			os.system("swapoff -a; sed -i '\/swapfile/d' /etc/fstab; swapon /media/usb/swapfile")
-			os.system("sed -i '/usb\/swapfile/d' /etc/fstab; echo -e '/media/usb/swapfile swap swap defaults 0 0' >> /etc/fstab")
+			system("swapoff -a; sed -i '\/swapfile/d' /etc/fstab; swapon /media/usb/swapfile")
+			system("sed -i '/usb\/swapfile/d' /etc/fstab; echo -e '/media/usb/swapfile swap swap defaults 0 0' >> /etc/fstab")
 			msg = _("Swap is activated on USB.")
 			self.mbox = self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
 		else:
 			msg = (_("No swap file found on USB. You have to create one first."))
 			self.mbox = self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
+
+
+def main(session, **kwargs):
+	session.open(SystemToolsSwap)
+
+
+def menu(menuid, **kwargs):
+	if menuid == "none":
+		return [(_("Swap manager"), main, "swapmanager_setup", 45)]
+	return []
+
+
+def Plugins(**kwargs):
+	return PluginDescriptor(name=_("Swap manager"), description=_("Swap manager"), where=PluginDescriptor.WHERE_MENU, fnc=menu)
