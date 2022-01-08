@@ -52,7 +52,7 @@ class SystemToolsSwap(Screen):
 
 	def go(self):
 		returnValue = self["entries"].l.getCurrentSelection()[1]
-		print "\n[SystemToolsSwap] returnValue: " + returnValue + "\n"
+		print("\n[SystemToolsSwap] returnValue: " + returnValue + "\n")
 
 		if returnValue is not None:
 			if returnValue is "com_swapone":
@@ -96,7 +96,7 @@ class SystemToolsSwap(Screen):
 				system("swapoff -a; sed -i '\/swapfile/d' /etc/fstab")
 
 			else:
-				print "\n[SystemToolsSwap] cancel\n"
+				print("\n[SystemToolsSwap] cancel\n")
 				self.close(None)
 
 	def readFile(self, filename):

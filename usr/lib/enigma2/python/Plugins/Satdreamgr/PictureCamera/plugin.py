@@ -70,7 +70,7 @@ class PictureCamera(Screen):
 
 	def download(self):
 		self.cameraTimer.timeout.callback.append(self.download)
-		print "[Camera] download"
+		print("[Camera] download")
 		self.cameraTimer.stop()
 		if not self.url:
 			return
