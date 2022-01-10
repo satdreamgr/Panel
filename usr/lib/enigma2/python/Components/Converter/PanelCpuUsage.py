@@ -6,12 +6,12 @@
 # Support: http://dream.altmaster.net/
 #
 
-from Converter import Converter
-from Poll import Poll
+from Components.Converter.Converter import Converter
+from Components.Converter.Poll import Poll
 from Components.Element import cached
 
 
-class PanelCpuUsage(Converter, object):
+class PanelCpuUsage(Converter):
 	CPU_ALL = -2
 	CPU_TOTAL = -1
 
@@ -63,7 +63,7 @@ class PanelCpuUsage(Converter, object):
 
 	@cached
 	def getValue(self):
-		if self.type in range(len(self.percentlist)):
+		if self.type in list(range(len(self.percentlist))):
 			i = self.type
 		else:
 			i = 0
@@ -78,7 +78,7 @@ class PanelCpuUsage(Converter, object):
 	range = 100
 
 
-class PanelCpuUsageMonitor(Poll, object):
+class PanelCpuUsageMonitor(Poll):
 
 	def __init__(self):
 		Poll.__init__(self)
@@ -115,9 +115,9 @@ class PanelCpuUsageMonitor(Poll, object):
 		if len(self.__callbacks):
 			info = []
 			for i in range(len(self.__curr_info)):
-				# xxx% = (cur_xxx - prev_xxx) / (cur_total - prev_total) * 100
+				# xxx% = (cur_xxx - prev_xxx) // (cur_total - prev_total) * 100
 				try:
-					p = 100 * (self.__curr_info[i][2] - prev_info[i][2]) / (self.__curr_info[i][1] - prev_info[i][1])
+					p = 100 * (self.__curr_info[i][2] - prev_info[i][2]) // (self.__curr_info[i][1] - prev_info[i][1])
 				except ZeroDivisionError:
 					p = 0
 				info.append(p)

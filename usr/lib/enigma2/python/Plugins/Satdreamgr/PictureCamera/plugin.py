@@ -1,19 +1,25 @@
-from . import _
-from enigma import ePicLoad, eTimer
+from os import remove
+from os.path import exists
+import requests
+from shutil import copyfileobj
+try: #python3
+	from urllib.error import HTTPError
+	from urllib.request import urlopen
+except: #python2
+	from urllib2 import HTTPError, urlopen
+
 from Components.ActionMap import ActionMap
 from Components.AVSwitch import AVSwitch
 from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
+from enigma import ePicLoad, eTimer
 from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS
-from requests.exceptions import *
-from os import path, remove
-import requests
-import urllib2
-import shutil
+from Tools.Directories import SCOPE_PLUGINS, resolveFilename
+
+from . import _
 
 
 def getCameras():
@@ -84,7 +90,7 @@ class PictureCamera(Screen):
 
 	def downloadFinished(self, result):
 		image = "/tmp/camera.jpg"
-		if path.exists(image):
+		if exists(image):
 			sc = AVSwitch().getFramebufferScale()
 			self.picloads = ePicLoad()
 			self.picloads.PictureData.get().append(self.FinishDecode)
@@ -104,13 +110,13 @@ class PictureCamera(Screen):
 
 	def downloadList(self):
 		try:
-			src = urllib2.urlopen("http://sgcpm.com/camera/camera.txt")
-		except urllib2.HTTPError:
+			src = urlopen("http://sgcpm.com/camera/camera.txt")
+		except HTTPError:
 			self.session.open(MessageBox, _("Internet connection error! Please check your internet connection!"), MessageBox.TYPE_ERROR)
 			pass
 		else:
 			dst = open(resolveFilename(SCOPE_PLUGINS, "Satdreamgr/PictureCamera/camera.txt"), "w")
-			shutil.copyfileobj(src, dst)
+			copyfileobj(src, dst)
 			self.session.open(MessageBox, _("Download completed!"), MessageBox.TYPE_INFO)
 			self.close(PictureCamera)
 

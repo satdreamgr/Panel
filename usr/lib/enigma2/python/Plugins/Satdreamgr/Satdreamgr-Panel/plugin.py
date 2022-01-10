@@ -1,12 +1,14 @@
-from . import _
+from os.path import dirname
+from sys import modules
+
 from Components.ActionMap import ActionMap
 from Components.Sources.List import List
 from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Tools.LoadPixmap import LoadPixmap
-from os import path
-from sys import modules
+
+from . import _
 
 mainPanelEntries = [
 	(_("Softcam setup"), "key.png"),
@@ -55,7 +57,7 @@ class SDGPanel(Screen):
 		self.skinName.append("Panel") # Support legacy skin name
 		menu = []
 		for (description, image) in menuEntries:
-			pixmap = LoadPixmap(cached=True, path="%s/images/%s" % (path.dirname(modules[__name__].__file__), image))
+			pixmap = LoadPixmap(cached=True, path="%s/images/%s" % (dirname(modules[__name__].__file__), image))
 			menu.append((pixmap, description))
 		self["list"] = List(menu)
 		self["setupActions"] = ActionMap(["SetupActions"],
