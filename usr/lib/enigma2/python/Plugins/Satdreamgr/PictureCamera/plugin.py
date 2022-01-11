@@ -24,7 +24,7 @@ from . import _
 
 def getCameras():
 	cameras = []
-	with open(resolveFilename(SCOPE_PLUGINS, "Satdreamgr/PictureCamera/camera.txt"), "r") as f:
+	with open(resolveFilename(SCOPE_PLUGINS, "Satdreamgr/PictureCamera/camera.txt"), "r", encoding="UTF-8") as f:
 		for line in f:
 			for name, url in [x.split("|") for x in line.splitlines()]:
 				cameras.append((str(name), str(url)))
