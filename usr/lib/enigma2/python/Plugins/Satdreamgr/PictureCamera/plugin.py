@@ -115,7 +115,7 @@ class PictureCamera(Screen):
 			self.session.open(MessageBox, _("Internet connection error! Please check your internet connection!"), MessageBox.TYPE_ERROR)
 			pass
 		else:
-			dst = open(resolveFilename(SCOPE_PLUGINS, "Satdreamgr/PictureCamera/camera.txt"), "w")
+			dst = open(resolveFilename(SCOPE_PLUGINS, "Satdreamgr/PictureCamera/camera.txt"), "wb")
 			copyfileobj(src, dst)
 			self.session.open(MessageBox, _("Download completed!"), MessageBox.TYPE_INFO)
 			self.close(PictureCamera)
